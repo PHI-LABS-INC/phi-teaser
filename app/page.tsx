@@ -1,72 +1,99 @@
-"use client";
-
-import { css } from "@/styled-system/css";
-import { ConnectKitButton } from "connectkit";
-import { useAccount, useConnect, useDisconnect } from "wagmi";
-
-import React, { useId, useState } from "react";
-import { DndContext, UniqueIdentifier } from "@dnd-kit/core";
-import { Draggable } from "@/components/draggable";
-import { Droppable } from "@/components/droppable";
-import { Monitor } from "@/components/monitor";
 import Image from "next/image";
+import Link from "next/link";
+import { flex } from "@/styled-system/patterns";
+import { css } from "@/styled-system/css";
+import { Canvas } from "@/features/canvas";
+import { WhyPhi } from "@/features/why-phi";
+import { ActionBar } from "@/components/action-bar";
+import { SocialButtons } from "@/components/social-buttons";
+import { Wallet } from "@/components/wallet";
+import Logo from "@/public/logo.svg";
+import LogoGray from "@/public/logo-gray.svg";
 
-// before connect
-// minted wallet list
-// after connect
-// filled - mint, minting, minted
-
-// modal, tooltip,
-
-function App() {
-  const account = useAccount();
-  const { connectors, connect, status, error } = useConnect();
-  const { disconnect } = useDisconnect();
-  const dndCtxId = useId();
-
-  const [isDragging, setIsDragging] = useState(false);
-  const [parent, setParent] = useState<UniqueIdentifier | null>(null);
-
-  const item = (
-    <Draggable id="1">
-      <Image
-        src="/moduler-believer.png"
-        alt="sticker-moduler-believer.png"
-        width="100"
-        height="100"
-        className={css({
-          transition: ".2s cubic-bezier(0.175,0.885,0.32,1.1)",
-          _hover: { transform: "scale(1.075)", cursor: "pointer" },
-        })}
-      />
-    </Draggable>
-  );
-
-  const droppableId = "droppable";
-
-  console.log(parent);
-
+export default function Page() {
   return (
     <>
-      <ConnectKitButton />
-
-      <DndContext
-        id={dndCtxId}
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={({ over }) => {
-          setParent(over ? over.id : null);
-          setIsDragging(false);
-        }}
-        onDragCancel={() => setIsDragging(false)}
+      <div
+        className={flex({
+          zIndex: "header",
+          position: "fixed",
+          left: "calc(1rem + 1.25rem)",
+          top: "calc(1rem + 1rem)",
+          justify: "space-between",
+          w: "calc(100vw - 2 * (1rem + 1.25rem))",
+          scrollBehavior: "smooth",
+        })}
       >
-        {parent === null ? item : null}
-        <Droppable id={droppableId} dragging={isDragging}>
-          <div className={css({ width: "200px", height: "200px", border: "1px solid" })}>{parent === droppableId ? item : null}</div>
-        </Droppable>
-        <Monitor />
-      </DndContext>
+        <Image src={Logo} alt="phi-logo" />
+        <Wallet />
+      </div>
+
+      <div
+        // className={flex({
+        //   position: "relative",
+        //   direction: "column",
+        //   align: "center",
+        //   w: "100%",
+        //   bgColor: "bg",
+        //   border: "1px solid rgba(0, 0, 0, 0.06)",
+        //   borderRadius: "1rem",
+        // })}
+        className={css({
+          position: "relative",
+          w: "100%",
+          bgColor: "bg",
+          border: "1px solid rgba(0, 0, 0, 0.06)",
+          borderRadius: "1rem",
+        })}
+      >
+        <Canvas />
+        <WhyPhi />
+      </div>
+
+      <div className={flex({ direction: "column", align: "center", p: "3rem 0", gap: "2.5rem", w: "100%", maxW: "48rem" })}>
+        {/* TODO: Philand Image */}
+        <SocialButtons />
+        <div className={flex({ direction: "column", align: "center", gap: "1.5rem" })}>
+          <div className={flex({ gap: "1rem" })}>
+            <Link
+              href="https://twitter.com/phi_xyz"
+              target="_blank"
+              className={css({
+                color: "textWeaker",
+                fontSize: "0.875rem",
+                fontWeight: 650,
+                lineHeight: "1.25rem",
+              })}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="https://twitter.com/phi_xyz"
+              target="_blank"
+              className={css({
+                color: "textWeaker",
+                fontSize: "0.875rem",
+                fontWeight: 650,
+                lineHeight: "1.25rem",
+              })}
+            >
+              Terms & Conditions
+            </Link>
+          </div>
+          <Image src={LogoGray} alt="phi-logo-gray" />
+          <p
+            className={css({
+              color: "textWeakest",
+              fontSize: "0.75rem",
+              fontWeight: 400,
+              lineHeight: "1rem",
+              letterSpacing: "0.0025rem",
+            })}
+          >
+            © 2024 DELTA LAB.
+          </p>
+        </div>
+      </div>
     </>
   );
 }
-
-export default App;

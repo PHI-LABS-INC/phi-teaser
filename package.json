@@ -3,14 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "rm -rf ./next && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prepare": "panda codegen"
+    "lint": "next lint"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/modifiers": "^7.0.0",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@tanstack/react-query": "5.0.5",
     "connectkit": "^1.7.2",
     "next": "13.5.3",
