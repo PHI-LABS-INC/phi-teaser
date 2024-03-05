@@ -4,11 +4,12 @@ import { flex } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
 import { Canvas } from "@/features/canvas";
 import { WhyPhi } from "@/features/why-phi";
-import { ActionBar } from "@/components/action-bar";
-import { SocialButtons } from "@/components/social-buttons";
 import { Wallet } from "@/components/wallet";
 import Logo from "@/public/logo.svg";
 import LogoGray from "@/public/logo-gray.svg";
+import X from "@/public/x.svg";
+import Warpcast from "@/public/warpcast.svg";
+import Discord from "@/public/discord.svg";
 
 export default function Page() {
   return (
@@ -29,15 +30,6 @@ export default function Page() {
       </div>
 
       <div
-        // className={flex({
-        //   position: "relative",
-        //   direction: "column",
-        //   align: "center",
-        //   w: "100%",
-        //   bgColor: "bg",
-        //   border: "1px solid rgba(0, 0, 0, 0.06)",
-        //   borderRadius: "1rem",
-        // })}
         className={css({
           position: "relative",
           w: "100%",
@@ -51,8 +43,32 @@ export default function Page() {
       </div>
 
       <div className={flex({ direction: "column", align: "center", p: "3rem 0", gap: "2.5rem", w: "100%", maxW: "48rem" })}>
-        {/* TODO: Philand Image */}
-        <SocialButtons />
+        <div
+          className={flex({
+            w: "100%",
+            gap: "1.5rem",
+            "& a": {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flex: "1 0 0",
+              gap: "0.5rem",
+              p: "2.5rem",
+              h: "5rem",
+              borderRadius: "0.75rem",
+            },
+          })}
+        >
+          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "xBrandPrimary" })}>
+            <Image src={X} width={32} height={32} alt="logo-twitter" />
+          </Link>
+          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "warpcastBrandPrimary" })}>
+            <Image src={Warpcast} width={32} height={32} alt="logo-warpcast" />
+          </Link>
+          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "discordBrandPrimary" })}>
+            <Image src={Discord} width={32} height={32} alt="logo-discord" />
+          </Link>
+        </div>
         <div className={flex({ direction: "column", align: "center", gap: "1.5rem" })}>
           <div className={flex({ gap: "1rem" })}>
             <Link

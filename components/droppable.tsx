@@ -1,15 +1,16 @@
-"use client";
-
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { center, flex } from "@/styled-system/patterns";
-import { LetterStickerKey, letterSticker } from "./letter-sticker";
 import { css } from "@/styled-system/css";
 
-// droppable area for stickers
-// blank space and inventory
-export function BlankSpace({ id, children }: { id: string; children: React.ReactNode }) {
-  const { active, over, isOver, setNodeRef } = useDroppable({ id: "blank-space-" + id });
+export type DroppableArea = "inventory" | "visualize" | "decentralized" | "community" | "creators";
+
+export function Inventory({ children }: { children: React.ReactNode }) {
+  const { active, over, isOver, setNodeRef } = useDroppable({ id: "inventory" });
+  return <div ref={setNodeRef}>{children}</div>;
+}
+
+export function BlankSpace({ id, children }: { id: Exclude<DroppableArea, "inventory">; children: React.ReactNode }) {
+  const { active, over, isOver, setNodeRef } = useDroppable({ id });
 
   return (
     <span ref={setNodeRef} className={css({ verticalAlign: "middle" })}>
@@ -30,9 +31,4 @@ export function BlankSpace({ id, children }: { id: string; children: React.React
       )}
     </span>
   );
-}
-
-export function Droppable({ id, children }: { id: string; children: React.ReactNode }) {
-  const { active, over, isOver, setNodeRef } = useDroppable({ id });
-  return <div ref={setNodeRef}>{children}</div>;
 }

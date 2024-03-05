@@ -140,20 +140,41 @@ export default defineConfig({
       zIndex: {
         root: { value: 0 },
         header: { value: 10 },
+        tooltip: { value: 100 },
         "modal-overlay": { value: 900 },
         "modal-content": { value: 901 },
+        "drawer-overlay": { value: 910 },
+        "drawer-content": { value: 911 },
         draggable: { value: 999 },
-      },
-      animations: {
-        snappy: {
-          value: ".2s cubic-bezier(0.175,0.885,0.32,1.1)",
-        },
       },
     },
     extend: {
-      // recipes: {
-      //   buttonSocial: {},
-      // },
+      keyframes: {
+        slideUpAndFade: {
+          "0%": { opacity: 0, transform: "translateY(2px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        slideRightAndFade: {
+          "0%": { opacity: 0, transform: "translateX(-2px)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+        slideDownAndFade: {
+          "0%": { opacity: 0, transform: "translateY(-2px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        slideLeftAndFade: {
+          "0%": { opacity: 0, transform: "translateX(2px)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+        drawerIn: {
+          "0%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+          "100%": { opacity: 1, transform: "translate(0, 0)" },
+        },
+        drawerOut: {
+          "0%": { opacity: 1, transform: "translate(0, 0)" },
+          "100%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+        },
+      },
     },
   },
 });
