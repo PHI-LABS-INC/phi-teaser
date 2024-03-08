@@ -149,6 +149,9 @@ export default defineConfig({
       },
     },
     extend: {
+      recipes: {
+        // buttonMint,
+      },
       keyframes: {
         slideUpAndFade: {
           "0%": { opacity: 0, transform: "translateY(2px)" },

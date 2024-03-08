@@ -1,7 +1,7 @@
 import { base } from "viem/chains";
 import { defineConfig } from "@wagmi/cli";
 import { react } from "@wagmi/cli/plugins";
-import phiTeaserNFTAbi from "@/lib/phi-teaser-nft";
+import phiTeaserNFTAbi from "@/lib/phi-teaser-nft-abi";
 
 export default defineConfig({
   out: "hooks/generated.ts",

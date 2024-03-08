@@ -14,6 +14,7 @@ export function WhyPhi() {
   const { address } = useAccount();
   const [openInventory, setOpenInventory] = useState(true);
   const [activeKey, setActiveKey] = useState<PuzzleKey | null>(null);
+  // TODO: localstorage
   const [stickers, setStickers] = useState<Record<PuzzleKey, DroppableArea>>({
     creators: "inventory",
     decentralized: "inventory",
@@ -200,7 +201,10 @@ export function WhyPhi() {
         openInventory={() => setOpenInventory(true)}
       />
 
-      <DragOverlay dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}>
+      <DragOverlay
+        dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}
+        // className={css({ rotate: "-10deg" })}
+      >
         {activeKey && puzzleSticker[activeKey]}
       </DragOverlay>
     </DndContext>

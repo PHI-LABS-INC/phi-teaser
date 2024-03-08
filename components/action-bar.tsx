@@ -1,3 +1,4 @@
+import Image from "next/image";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { css } from "@/styled-system/css";
 import { flex } from "@/styled-system/patterns";
@@ -104,12 +105,24 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
             </Tooltip.Root>
           </Tooltip.Provider>
         </div>
-        <div className={flex({ gap: "1rem", align: "center" })}>
-          <div className={flex({ gap: "0.5rem" })}>
-            {/* minted list */}
-            <p>XXX Minted</p>
+        <div className={flex({ align: "center", gap: "1rem" })}>
+          <div className={flex({ align: "center", gap: "0.5rem" })}>
+            <div className={flex({ "& img": { borderRadius: "1rem" }, "& :not(:first-child)": { ml: "-0.5rem" } })}>
+              <Image src="https://metadata.ens.domains/mainnet/avatar/shugo.eth" width={24} height={24} alt="ens-icon" />
+              <Image src="https://metadata.ens.domains/mainnet/avatar/zak3939.eth" width={24} height={24} alt="ens-icon" />
+              <Image src="https://metadata.ens.domains/mainnet/avatar/oji3.eth" width={24} height={24} alt="ens-icon" />
+            </div>
+            <div
+              className={flex({
+                gap: "0.25rem",
+                "& p": { fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" },
+              })}
+            >
+              <p className={css({ color: "gray.900" })}>256</p>
+              <p className={css({ color: "gray.600" })}>Minted</p>
+            </div>
           </div>
-          <Mint />
+          <Mint disabled={progress < 6} />
         </div>
       </div>
     </div>
