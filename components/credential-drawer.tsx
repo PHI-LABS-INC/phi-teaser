@@ -14,23 +14,29 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           className={cx(
             cva({
               variants: {
+                // open ? "translate(50vw, 50vh) scale(1) translate(-width/2 px, -height/2 px)" : "translate(pos-x px, pos-y px) scale(0.5)",
                 artworkKey: {
-                  "chess-uniswap": { top: "24px", left: "100px" },
-                  "crowd-front": { top: "100px", left: "200px" },
-                  "hash-hunter-uni": { top: "200px", left: "300px" },
-                  "moduler-believer": { top: "300px", left: "400px" },
+                  "chess-uniswap": {
+                    transform: open ? "translate(50vw, 50vh) translate(-128px, -256px) scale(1)" : "translate(100px, 40px) scale(0.5)",
+                  },
+                  "crowd-front": {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(600px, 256px) scale(0.5)",
+                  },
+                  "hash-hunter-uni": {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(300px, 600px) scale(0.5)",
+                  },
+                  "moduler-believer": {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(800px, 450px) scale(0.5)",
+                  },
                 },
               },
             })({ artworkKey }),
             css({
-              transition: "cubic-bezier(0.19,1,0.22,1)",
-              transitionProperty: "all",
-              transitionDuration: ".8s",
-              transform: open ? "scale(1)" : "scale(0.5)",
+              zIndex: open ? "draggable-active" : undefined,
               position: "absolute",
-              top: open ? "calc(100dvh / 2 - 6rem) !important" : undefined,
-              left: open ? "50% !important" : undefined,
-              translate: open ? "-50% -50%" : undefined,
+              transition: "cubic-bezier(0.19,1,0.22,1)",
+              transitionProperty: "transform",
+              transitionDuration: ".8s",
             })
           )}
         >

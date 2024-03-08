@@ -145,7 +145,8 @@ export default defineConfig({
         "modal-content": { value: 901 },
         "drawer-overlay": { value: 910 },
         "drawer-content": { value: 911 },
-        draggable: { value: 999 },
+        draggable: { value: 920 },
+        "draggable-active": { value: 921 },
       },
     },
     extend: {
@@ -153,19 +154,19 @@ export default defineConfig({
         // buttonMint,
       },
       keyframes: {
-        slideUpAndFade: {
+        tooltipSlideUp: {
           "0%": { opacity: 0, transform: "translateY(2px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
-        slideRightAndFade: {
+        tooltipSlideRight: {
           "0%": { opacity: 0, transform: "translateX(-2px)" },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
-        slideDownAndFade: {
+        tooltipSlideDown: {
           "0%": { opacity: 0, transform: "translateY(-2px)" },
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
-        slideLeftAndFade: {
+        tooltipSlideLeft: {
           "0%": { opacity: 0, transform: "translateX(2px)" },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
@@ -176,6 +177,14 @@ export default defineConfig({
         drawerOut: {
           "0%": { opacity: 1, transform: "translate(0, 0)" },
           "100%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+        },
+        modalIn: {
+          "0%": { opacity: 0, transform: "translate(-50%, -50%) scale(0.9)" },
+          "100%": { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
+        },
+        modalOut: {
+          "0%": { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
+          "100%": { opacity: 0, transform: "translate(-50%, -50%) scale(0.9)" },
         },
       },
     },

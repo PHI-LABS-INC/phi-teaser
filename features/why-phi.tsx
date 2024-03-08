@@ -1,17 +1,17 @@
 "use client";
 
-import { Fragment, useId, useState } from "react";
-import { useAccount } from "wagmi";
+import { useId, useState } from "react";
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
 import { center, flex } from "@/styled-system/patterns";
 import { ActionBar } from "@/components/action-bar";
 import { BlankSpace, Inventory, type DroppableArea } from "@/components/droppable";
 import { PuzzleKey, puzzleSticker } from "@/components/draggable";
+import { useScroll } from "@/hooks/use-scroll";
 
 export function WhyPhi() {
   const dndCtxId = useId();
-  const { address } = useAccount();
+  const isScrolled = useScroll({ pos: 1024 / 2 });
   const [openInventory, setOpenInventory] = useState(true);
   const [activeKey, setActiveKey] = useState<PuzzleKey | null>(null);
   // TODO: localstorage
@@ -98,6 +98,20 @@ export function WhyPhi() {
           </div>
           <div className={flex({ direction: "column", gap: "1rem" })}>
             <h2>Our feature : Phi2.0</h2>
+            <div
+              className={flex({
+                align: "center",
+                p: "1rem",
+                gap: "1rem",
+                borderRadius: "0.5rem",
+                border: "1px solid",
+                borderColor: "gray.200",
+                background: "gray.100",
+              })}
+            >
+              <BlankSpace id="blue">{stickers["blue"] === "blue" ? puzzleSticker["blue"] : null}</BlankSpace>
+              <p className={css({ fontSize: "1.5rem !important" })}>Phi Protocol → Decentralized Credential Protocol</p>
+            </div>
             <p>
               Now, we’re ready for the next step: Phi Protocol. Phi Protocol is a{" "}
               <BlankSpace id="decentralized">
@@ -120,6 +134,20 @@ export function WhyPhi() {
           </div>
           <div className={flex({ direction: "column", gap: "1rem" })}>
             <h2>The Board</h2>
+            <div
+              className={flex({
+                align: "center",
+                p: "1rem",
+                gap: "1rem",
+                borderRadius: "0.5rem",
+                border: "1px solid",
+                borderColor: "gray.200",
+                background: "gray.100",
+              })}
+            >
+              <BlankSpace id="red">{stickers["red"] === "red" ? puzzleSticker["red"] : null}</BlankSpace>
+              <p className={css({ fontSize: "1.5rem !important" })}>The Board → A place to shape onchain yourself</p>
+            </div>
             <p>
               Community <BlankSpace id="creators">{stickers["creators"] === "creators" ? puzzleSticker["creators"] : null}</BlankSpace> are
               an essential part of Phi Protocol’s potential and we’ll be providing massive support to them as they help us expand the
@@ -133,11 +161,12 @@ export function WhyPhi() {
 
       <div
         className={css({
-          visibility: address && openInventory ? "visible" : "hidden",
+          opacity: isScrolled && openInventory ? 1 : 0,
           position: "sticky",
           bottom: "calc(1rem + 72px)",
           left: "1rem",
           w: "fit-content",
+          transition: "opacity .1s",
         })}
       >
         <Inventory>
