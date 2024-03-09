@@ -14,7 +14,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           className={cx(
             cva({
               variants: {
-                // open ? "translate(50vw, 50vh) scale(1) translate(-width/2 px, -height/2 px)" : "translate(pos-x px, pos-y px) scale(0.5)",
                 artworkKey: {
                   "chess-uniswap": {
                     transform: open ? "translate(50vw, 50vh) translate(-128px, -256px) scale(1)" : "translate(100px, 40px) scale(0.5)",
@@ -27,6 +26,15 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                   },
                   "moduler-believer": {
                     transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(800px, 450px) scale(0.5)",
+                  },
+                  "ethereum-builder": {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(1000px, 0) scale(0.5)",
+                  },
+                  wawa: {
+                    transform: open ? "translate(50vw, 50vh) translate(-100px, -256px) scale(1)" : "translate(200px, 200px) scale(0.5)",
+                  },
+                  birthblock: {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(400px, 100px) scale(0.5)",
                   },
                 },
               },
