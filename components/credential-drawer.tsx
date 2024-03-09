@@ -49,7 +49,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
             zIndex: "drawer-overlay",
             position: "fixed",
             inset: 0,
-            // background: "rgba(24, 20, 18, 0.12)",
+            background: `url('/dot.png'), 50px 50px repeat, #FFF`,
           })}
         />
         <Content
