@@ -62,13 +62,25 @@ export default function Page() {
             },
           })}
         >
-          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "xBrandPrimary" })}>
+          <Link
+            href="https://twitter.com/phi_xyz"
+            target="_blank"
+            className={css({ bgColor: "xBrandPrimary", _hover: { bgColor: "#2F2723" } })}
+          >
             <Image src={X} width={32} height={32} alt="logo-twitter" />
           </Link>
-          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "warpcastBrandPrimary" })}>
+          <Link
+            href="https://twitter.com/phi_xyz"
+            target="_blank"
+            className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
+          >
             <Image src={Warpcast} width={32} height={32} alt="logo-warpcast" />
           </Link>
-          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "discordBrandPrimary" })}>
+          <Link
+            href="https://twitter.com/phi_xyz"
+            target="_blank"
+            className={css({ bgColor: "discordBrandPrimary", _hover: { bgColor: "#8A8AE5" } })}
+          >
             <Image src={Discord} width={32} height={32} alt="logo-discord" />
           </Link>
         </div>
