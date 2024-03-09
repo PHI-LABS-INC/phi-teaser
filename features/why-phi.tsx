@@ -162,6 +162,7 @@ export function WhyPhi() {
       <div
         className={css({
           opacity: isScrolled && openInventory ? 1 : 0,
+          pointerEvents: isScrolled && openInventory ? "auto" : "none",
           position: "sticky",
           bottom: "calc(1rem + 72px)",
           left: "1rem",
