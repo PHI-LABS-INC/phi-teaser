@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { flex } from "@/styled-system/patterns";
+import { center, flex, vstack } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
 import { Canvas } from "@/features/canvas";
 import { WhyPhi } from "@/features/why-phi";
@@ -45,6 +45,68 @@ export default function Page() {
       </div>
 
       <div className={flex({ direction: "column", align: "center", p: "3rem 0", gap: "2.5rem", w: "100%", maxW: "48rem" })}>
+        <div
+          className={flex({
+            w: "100%",
+            h: "16rem",
+            align: "center",
+            borderRadius: "0.75rem",
+            bgColor: "philandSky",
+            overflow: "hidden",
+          })}
+        >
+          <div
+            className={vstack({
+              h: "10.9375rem",
+              pl: "2.5rem",
+              justify: "space-between",
+              alignItems: "flex-start",
+              flex: "1 0 0",
+            })}
+          >
+            <p
+              className={css({
+                color: "bg",
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                lineHeight: "2.5rem",
+                letterSpacing: "-0.01563rem",
+              })}
+            >
+              PHI LAND
+            </p>
+            <p
+              className={css({
+                color: "bg",
+                fontSize: "1.125rem",
+                fontWeight: 500,
+                lineHeight: "1.575rem",
+              })}
+            >
+              Build your web3 cities from your wallet activities
+            </p>
+            <a
+              className={center({
+                h: "3rem",
+                p: "0.5rem 1rem",
+                gap: "0.25rem",
+                flexShrink: 0,
+                borderRadius: "8rem",
+                bgColor: "bg",
+                //
+                color: "philandSky",
+                fontSize: "1rem",
+                fontWeight: 650,
+                lineHeight: "1.5rem",
+              })}
+              href="https://philand.xyz/"
+              target="_blank"
+            >
+              OPEN APP
+            </a>
+          </div>
+          <Image src="/philand.png" width={512} height={256} alt="philand" />
+        </div>
         <div
           className={flex({
             w: "100%",
