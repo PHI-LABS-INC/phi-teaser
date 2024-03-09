@@ -42,6 +42,7 @@ const mintCva = cva({
     },
     color: "textInvert",
     lineHeight: "1.5rem",
+    textAlign: "center",
   },
   variants: {
     size: {
