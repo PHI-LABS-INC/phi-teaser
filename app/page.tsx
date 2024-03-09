@@ -34,9 +34,11 @@ export default function Page() {
           position: "relative",
           w: "100%",
           bgColor: "bg",
-          border: "1px solid rgba(0, 0, 0, 0.06)",
+          border: "1px solid",
+          borderColor: "border",
           borderRadius: "1rem",
           scrollBehavior: "smooth",
+          background: `url('/dot.png'), 50px 50px repeat, #FFF`,
         })}
       >
         <Canvas />
