@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { flex } from "@/styled-system/patterns";
+import { center, flex, vstack } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
 import { Canvas } from "@/features/canvas";
 import { WhyPhi } from "@/features/why-phi";
@@ -22,7 +22,7 @@ export default function Page() {
           top: "calc(1rem + 1rem)",
           justify: "space-between",
           w: "calc(100vw - 2 * (1rem + 1.25rem))",
-          scrollBehavior: "smooth",
+          p: "0.5rem",
         })}
       >
         <Image src={Logo} alt="phi-logo" />
@@ -34,8 +34,10 @@ export default function Page() {
           position: "relative",
           w: "100%",
           bgColor: "bg",
-          border: "1px solid rgba(0, 0, 0, 0.06)",
+          border: "1px solid",
+          borderColor: "border",
           borderRadius: "1rem",
+          background: `url('/dot.png'), 50px 50px repeat, #FFF`,
         })}
       >
         <Canvas />
@@ -43,6 +45,68 @@ export default function Page() {
       </div>
 
       <div className={flex({ direction: "column", align: "center", p: "3rem 0", gap: "2.5rem", w: "100%", maxW: "48rem" })}>
+        <div
+          className={flex({
+            w: "100%",
+            h: "16rem",
+            align: "center",
+            borderRadius: "0.75rem",
+            bgColor: "philandSky",
+            overflow: "hidden",
+          })}
+        >
+          <div
+            className={vstack({
+              h: "10.9375rem",
+              pl: "2.5rem",
+              justify: "space-between",
+              alignItems: "flex-start",
+              flex: "1 0 0",
+            })}
+          >
+            <p
+              className={css({
+                color: "bg",
+                fontSize: "2.5rem",
+                fontWeight: 700,
+                lineHeight: "2.5rem",
+                letterSpacing: "-0.01563rem",
+              })}
+            >
+              PHI LAND
+            </p>
+            <p
+              className={css({
+                color: "bg",
+                fontSize: "1.125rem",
+                fontWeight: 500,
+                lineHeight: "1.575rem",
+              })}
+            >
+              Build your web3 cities from your wallet activities
+            </p>
+            <a
+              className={center({
+                h: "3rem",
+                p: "0.5rem 1rem",
+                gap: "0.25rem",
+                flexShrink: 0,
+                borderRadius: "8rem",
+                bgColor: "bg",
+                //
+                color: "philandSky",
+                fontSize: "1rem",
+                fontWeight: 650,
+                lineHeight: "1.5rem",
+              })}
+              href="https://philand.xyz/"
+              target="_blank"
+            >
+              OPEN APP
+            </a>
+          </div>
+          <Image src="/philand.png" width={512} height={256} alt="philand" />
+        </div>
         <div
           className={flex({
             w: "100%",
@@ -59,13 +123,25 @@ export default function Page() {
             },
           })}
         >
-          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "xBrandPrimary" })}>
+          <Link
+            href="https://twitter.com/phi_xyz"
+            target="_blank"
+            className={css({ bgColor: "xBrandPrimary", _hover: { bgColor: "#2F2723" } })}
+          >
             <Image src={X} width={32} height={32} alt="logo-twitter" />
           </Link>
-          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "warpcastBrandPrimary" })}>
+          <Link
+            href="https://twitter.com/phi_xyz"
+            target="_blank"
+            className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
+          >
             <Image src={Warpcast} width={32} height={32} alt="logo-warpcast" />
           </Link>
-          <Link href="https://twitter.com/phi_xyz" target="_blank" className={css({ bgColor: "discordBrandPrimary" })}>
+          <Link
+            href="https://twitter.com/phi_xyz"
+            target="_blank"
+            className={css({ bgColor: "discordBrandPrimary", _hover: { bgColor: "#8A8AE5" } })}
+          >
             <Image src={Discord} width={32} height={32} alt="logo-discord" />
           </Link>
         </div>

@@ -107,7 +107,12 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
         </div>
         <div className={flex({ align: "center", gap: "1rem" })}>
           <div className={flex({ align: "center", gap: "0.5rem" })}>
-            <div className={flex({ "& img": { borderRadius: "1rem" }, "& :not(:first-child)": { ml: "-0.5rem" } })}>
+            <div
+              className={flex({
+                "& img": { borderRadius: "1rem", border: "2px solid", borderColor: "bg" },
+                "& :not(:first-child)": { ml: "-0.5rem" },
+              })}
+            >
               <Image src="https://metadata.ens.domains/mainnet/avatar/shugo.eth" width={24} height={24} alt="ens-icon" />
               <Image src="https://metadata.ens.domains/mainnet/avatar/zak3939.eth" width={24} height={24} alt="ens-icon" />
               <Image src="https://metadata.ens.domains/mainnet/avatar/oji3.eth" width={24} height={24} alt="ens-icon" />

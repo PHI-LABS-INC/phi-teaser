@@ -31,6 +31,7 @@ export default function RootLayout(props: { children: ReactNode }) {
             align: "center",
             p: "1rem !important", // for radix-ui/dialog overlay
             bgColor: "bgWeak",
+            scrollBehavior: "smooth",
           })
         )}
       >

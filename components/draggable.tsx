@@ -13,6 +13,9 @@ import ChessUniswap from "@/public/chess-uniswap.png";
 import CrowdFront from "@/public/crowd-front.png";
 import HashHunterUni from "@/public/hash-hunter-uni.png";
 import ModulerBeliever from "@/public/moduler-believer.png";
+import EthereumBuilder from "@/public/ethereum-builder.png";
+import Wawa from "@/public/wawa.png";
+import Birthblock from "@/public/birthblock.png";
 
 function Sticker({ id, children }: { id: PuzzleKey | ArtworkKey; children: React.ReactNode }) {
   const { transform, attributes, listeners, isDragging, setNodeRef } = useDraggable({ id });
@@ -77,7 +80,14 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   ),
 };
 
-export type ArtworkKey = "chess-uniswap" | "crowd-front" | "hash-hunter-uni" | "moduler-believer";
+export type ArtworkKey =
+  | "chess-uniswap"
+  | "crowd-front"
+  | "hash-hunter-uni"
+  | "moduler-believer"
+  | "ethereum-builder"
+  | "wawa"
+  | "birthblock";
 
 export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   "chess-uniswap": (
@@ -98,6 +108,21 @@ export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   "moduler-believer": (
     <Sticker id="moduler-believer">
       <Image src={ModulerBeliever} height={320} alt="moduler-believer" priority />
+    </Sticker>
+  ),
+  "ethereum-builder": (
+    <Sticker id="ethereum-builder">
+      <Image src={EthereumBuilder} height={320} alt="ethereum-builder" priority />
+    </Sticker>
+  ),
+  wawa: (
+    <Sticker id="wawa">
+      <Image src={Wawa} height={320} alt="wawa" priority />
+    </Sticker>
+  ),
+  birthblock: (
+    <Sticker id="birthblock">
+      <Image src={Birthblock} height={320} alt="birthblock" priority />
     </Sticker>
   ),
 };

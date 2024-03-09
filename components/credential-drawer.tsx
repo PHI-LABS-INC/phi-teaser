@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
-import { flex, vstack } from "@/styled-system/patterns";
+import { center, flex, vstack } from "@/styled-system/patterns";
 import { ArtworkKey } from "./draggable";
 
 export default function CredentialDrawer({ artworkKey, children }: { artworkKey: ArtworkKey; children: React.ReactNode }) {
@@ -14,7 +14,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           className={cx(
             cva({
               variants: {
-                // open ? "translate(50vw, 50vh) scale(1) translate(-width/2 px, -height/2 px)" : "translate(pos-x px, pos-y px) scale(0.5)",
                 artworkKey: {
                   "chess-uniswap": {
                     transform: open ? "translate(50vw, 50vh) translate(-128px, -256px) scale(1)" : "translate(100px, 40px) scale(0.5)",
@@ -27,6 +26,15 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                   },
                   "moduler-believer": {
                     transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(800px, 450px) scale(0.5)",
+                  },
+                  "ethereum-builder": {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(1000px, 0) scale(0.5)",
+                  },
+                  wawa: {
+                    transform: open ? "translate(50vw, 50vh) translate(-100px, -256px) scale(1)" : "translate(200px, 200px) scale(0.5)",
+                  },
+                  birthblock: {
+                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(400px, 100px) scale(0.5)",
                   },
                 },
               },
@@ -49,7 +57,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
             zIndex: "drawer-overlay",
             position: "fixed",
             inset: 0,
-            // background: "rgba(24, 20, 18, 0.12)",
+            background: `url('/dot.png'), 50px 50px repeat, #FFF`,
           })}
         />
         <Content
@@ -89,7 +97,17 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               letterSpacing: "-0.01rem",
             })}
           >
-            Phi Logomark
+            {
+              {
+                "chess-uniswap": "Uniswap Newbie",
+                "crowd-front": "Governance Voter",
+                "hash-hunter-uni": "Hash Hunter - Uniswap",
+                "moduler-believer": "Moduler Believer",
+                "ethereum-builder": "Ethereum Builder",
+                wawa: "Wawa",
+                birthblock: "Birthblock",
+              }[artworkKey]
+            }
           </h2>
           <p
             className={css({
@@ -100,8 +118,83 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               letterSpacing: "-0.005rem",
             })}
           >
-            For the gift of Nouns we want to gift some custom artwork. Contest by The Noun Square.
+            {
+              {
+                "chess-uniswap": "Swap once on Uniswap V3",
+                "crowd-front": "Vote once in Arbitrum Governance",
+                "hash-hunter-uni": "xxxxx",
+                "moduler-believer": "Claim $TIA airdrop",
+                "ethereum-builder": "Participate ETH Global Hackathon",
+                wawa: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
+                birthblock: "An NFT with art and attributes based on the data from your first transaction on Ethereum",
+              }[artworkKey]
+            }
           </p>
+          <div
+            className={center({
+              p: "0.25rem 0.75rem",
+              gap: "0.25rem",
+              borderRadius: "3.5rem",
+              background: "bgWeaker",
+            })}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <g clip-path="url(#clip0_917_5645)">
+                <path
+                  d="M6.66669 8.66672C6.95299 9.04948 7.31826 9.36618 7.73772 9.59535C8.15718 9.82452 8.62103 9.9608 9.09779 9.99495C9.57455 10.0291 10.0531 9.9603 10.5009 9.79325C10.9488 9.62619 11.3554 9.36477 11.6934 9.02672L13.6934 7.02672C14.3005 6.39805 14.6365 5.55604 14.6289 4.68205C14.6213 3.80806 14.2708 2.97202 13.6527 2.354C13.0347 1.73597 12.1987 1.38541 11.3247 1.37781C10.4507 1.37022 9.60869 1.7062 8.98002 2.31339L7.83335 3.45339"
+                  stroke="#3C3837"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.33334 7.33332C9.04704 6.95057 8.68177 6.63387 8.26231 6.40469C7.84285 6.17552 7.37901 6.03924 6.90224 6.0051C6.42548 5.97095 5.94695 6.03974 5.49911 6.2068C5.05127 6.37386 4.6446 6.63527 4.30668 6.97332L2.30668 8.97332C1.69948 9.60199 1.3635 10.444 1.3711 11.318C1.37869 12.192 1.72926 13.028 2.34728 13.646C2.96531 14.2641 3.80135 14.6146 4.67534 14.6222C5.54933 14.6298 6.39134 14.2938 7.02001 13.6867L8.16001 12.5467"
+                  stroke="#3C3837"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_917_5645">
+                  <rect width="16" height="16" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            <a
+              className={css({
+                color: "text",
+                fontSize: "1rem",
+                fontWeight: 650,
+                lineHeight: "1.5rem",
+              })}
+              href={
+                {
+                  "chess-uniswap": "https://uniswap.org/",
+                  "crowd-front": "https://www.tally.xyz/gov/arbitrum/",
+                  "hash-hunter-uni": "https://uniswap.org/",
+                  "moduler-believer": "https://celestia.org/",
+                  "ethereum-builder": "https://app.airstack.xyz/query/qbCWxsxdyu/",
+                  wawa: "https://wawa.philand.xyz/",
+                  birthblock: "https://www.birthblock.art/",
+                }[artworkKey]
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
+              {
+                {
+                  "chess-uniswap": "uniswap.org",
+                  "crowd-front": "tally.xyz",
+                  "hash-hunter-uni": "uniswap.org",
+                  "moduler-believer": "celestia.org",
+                  "ethereum-builder": "airstack.xyz",
+                  wawa: "wawa.philand.xyz",
+                  birthblock: "birthblock.art",
+                }[artworkKey]
+              }
+            </a>
+          </div>
         </Content>
       </Portal>
     </Root>

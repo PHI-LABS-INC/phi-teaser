@@ -23,6 +23,9 @@ export function Canvas() {
         <CredentialDrawer artworkKey="crowd-front">{artworkSticker["crowd-front"]}</CredentialDrawer>
         <CredentialDrawer artworkKey="hash-hunter-uni">{artworkSticker["hash-hunter-uni"]}</CredentialDrawer>
         <CredentialDrawer artworkKey="moduler-believer">{artworkSticker["moduler-believer"]}</CredentialDrawer>
+        <CredentialDrawer artworkKey="ethereum-builder">{artworkSticker["ethereum-builder"]}</CredentialDrawer>
+        <CredentialDrawer artworkKey="wawa">{artworkSticker["wawa"]}</CredentialDrawer>
+        <CredentialDrawer artworkKey="birthblock">{artworkSticker["birthblock"]}</CredentialDrawer>
 
         <DragOverlay dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}>
           {activeId ? artworkSticker[activeId] : null}
