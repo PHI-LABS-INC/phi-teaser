@@ -21,6 +21,12 @@ export function Wallet() {
               bgColor: "gray.100",
               boxShadow: "0px 0px 1px 0px rgba(0, 0, 0, 0.10)",
               cursor: "pointer",
+              // _hover: {
+              //   bgColor: "gray.100",
+              // },
+              // _active: {
+              //   bgColor: "gray.200",
+              // },
             })}
           >
             <Image
@@ -57,6 +63,12 @@ export function Wallet() {
               bgColor: "gray.900",
               boxShadow: "0px 0px 1px 0px rgba(0, 0, 0, 0.10)",
               cursor: "pointer",
+              _hover: {
+                bgColor: "gray.800",
+              },
+              _active: {
+                bgColor: "gray.700",
+              },
             })}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
