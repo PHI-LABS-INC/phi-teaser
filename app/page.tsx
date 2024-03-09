@@ -22,7 +22,7 @@ export default function Page() {
           top: "calc(1rem + 1rem)",
           justify: "space-between",
           w: "calc(100vw - 2 * (1rem + 1.25rem))",
-          scrollBehavior: "smooth",
+          p: "0.5rem",
         })}
       >
         <Image src={Logo} alt="phi-logo" />
@@ -36,6 +36,7 @@ export default function Page() {
           bgColor: "bg",
           border: "1px solid rgba(0, 0, 0, 0.06)",
           borderRadius: "1rem",
+          scrollBehavior: "smooth",
         })}
       >
         <Canvas />

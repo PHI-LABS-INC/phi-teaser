@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useAccount } from "wagmi";
+import { base } from "viem/chains";
+import { useAccount, useSwitchChain } from "wagmi";
 import { useModal } from "connectkit";
 import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
@@ -69,7 +70,8 @@ const mintCva = cva({
 });
 
 export function Mint({ disabled }: { disabled?: boolean }) {
-  const { address } = useAccount();
+  const { address, chainId } = useAccount();
+  const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
   const [open, setOpen] = useState(false);
   const { writeContractAsync } = useWritePhiTetherNftMint();
@@ -268,6 +270,10 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                 onClick={async () => {
                   if (!address) {
                     setOpenpenWalletModal(true);
+                    return;
+                  }
+                  if (chainId !== base.id) {
+                    switchChain({ chainId: base.id });
                     return;
                   }
                   await writeContractAsync({ args: [address] });
