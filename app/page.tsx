@@ -37,7 +37,6 @@ export default function Page() {
           border: "1px solid",
           borderColor: "border",
           borderRadius: "1rem",
-          scrollBehavior: "smooth",
           background: `url('/dot.png'), 50px 50px repeat, #FFF`,
         })}
       >
