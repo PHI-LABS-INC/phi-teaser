@@ -99,9 +99,9 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           >
             {
               {
-                "chess-uniswap": "Chess Uniswap",
-                "crowd-front": "Crowd Front",
-                "hash-hunter-uni": "Hash Hunter Uni",
+                "chess-uniswap": "Uniswap Newbie",
+                "crowd-front": "Governance Voter",
+                "hash-hunter-uni": "Hash Hunter - Uniswap",
                 "moduler-believer": "Moduler Believer",
                 "ethereum-builder": "Ethereum Builder",
                 wawa: "Wawa",
@@ -120,13 +120,13 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           >
             {
               {
-                "chess-uniswap": "A decentralized chess game on Uniswap.",
-                "crowd-front": "A decentralized crowdfunding platform.",
-                "hash-hunter-uni": "A decentralized hash hunting game on Uniswap.",
-                "moduler-believer": "A decentralized modular belief system.",
-                "ethereum-builder": "A decentralized Ethereum builder.",
-                wawa: "A decentralized Wawa.",
-                birthblock: "A decentralized birthblock.",
+                "chess-uniswap": "Swap once on Uniswap V3",
+                "crowd-front": "Vote once in Arbitrum Governance",
+                "hash-hunter-uni": "xxxxx",
+                "moduler-believer": "Claim $TIA airdrop",
+                "ethereum-builder": "Participate ETH Global Hackathon",
+                wawa: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
+                birthblock: "An NFT with art and attributes based on the data from your first transaction on Ethereum",
               }[artworkKey]
             }
           </p>
@@ -170,25 +170,27 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               })}
               href={
                 {
-                  "chess-uniswap": "https://chess-uniswap.vercel.app",
-                  "crowd-front": "https://crowd-front.vercel.app",
-                  "hash-hunter-uni": "https://hash-hunter-uni.vercel.app",
-                  "moduler-believer": "https://moduler-believer.vercel.app",
-                  "ethereum-builder": "https://ethereum-builder.vercel.app",
-                  wawa: "https://wawa.vercel.app",
-                  birthblock: "https://birthblock.vercel.app",
+                  "chess-uniswap": "https://uniswap.org/",
+                  "crowd-front": "https://www.tally.xyz/gov/arbitrum/",
+                  "hash-hunter-uni": "https://uniswap.org/",
+                  "moduler-believer": "https://celestia.org/",
+                  "ethereum-builder": "https://app.airstack.xyz/query/qbCWxsxdyu/",
+                  wawa: "https://wawa.philand.xyz/",
+                  birthblock: "https://www.birthblock.art/",
                 }[artworkKey]
               }
+              target="_blank"
+              rel="noreferrer"
             >
               {
                 {
-                  "chess-uniswap": "chess-uniswap.vercel.app",
-                  "crowd-front": "crowd-front.vercel.app",
-                  "hash-hunter-uni": "hash-hunter-uni.vercel.app",
-                  "moduler-believer": "moduler-believer.vercel.app",
-                  "ethereum-builder": "ethereum-builder.vercel.app",
-                  wawa: "wawa.vercel.app",
-                  birthblock: "birthblock.vercel.app",
+                  "chess-uniswap": "uniswap.org",
+                  "crowd-front": "tally.xyz",
+                  "hash-hunter-uni": "uniswap.org",
+                  "moduler-believer": "celestia.org",
+                  "ethereum-builder": "airstack.xyz",
+                  wawa: "wawa.philand.xyz",
+                  birthblock: "birthblock.art",
                 }[artworkKey]
               }
             </a>
