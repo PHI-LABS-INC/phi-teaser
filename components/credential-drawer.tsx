@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
-import { flex, vstack } from "@/styled-system/patterns";
+import { center, flex, vstack } from "@/styled-system/patterns";
 import { ArtworkKey } from "./draggable";
 
 export default function CredentialDrawer({ artworkKey, children }: { artworkKey: ArtworkKey; children: React.ReactNode }) {
@@ -97,7 +97,17 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               letterSpacing: "-0.01rem",
             })}
           >
-            Phi Logomark
+            {
+              {
+                "chess-uniswap": "Chess Uniswap",
+                "crowd-front": "Crowd Front",
+                "hash-hunter-uni": "Hash Hunter Uni",
+                "moduler-believer": "Moduler Believer",
+                "ethereum-builder": "Ethereum Builder",
+                wawa: "Wawa",
+                birthblock: "Birthblock",
+              }[artworkKey]
+            }
           </h2>
           <p
             className={css({
@@ -108,8 +118,81 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               letterSpacing: "-0.005rem",
             })}
           >
-            For the gift of Nouns we want to gift some custom artwork. Contest by The Noun Square.
+            {
+              {
+                "chess-uniswap": "A decentralized chess game on Uniswap.",
+                "crowd-front": "A decentralized crowdfunding platform.",
+                "hash-hunter-uni": "A decentralized hash hunting game on Uniswap.",
+                "moduler-believer": "A decentralized modular belief system.",
+                "ethereum-builder": "A decentralized Ethereum builder.",
+                wawa: "A decentralized Wawa.",
+                birthblock: "A decentralized birthblock.",
+              }[artworkKey]
+            }
           </p>
+          <div
+            className={center({
+              p: "0.25rem 0.75rem",
+              gap: "0.25rem",
+              borderRadius: "3.5rem",
+              background: "bgWeaker",
+            })}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <g clip-path="url(#clip0_917_5645)">
+                <path
+                  d="M6.66669 8.66672C6.95299 9.04948 7.31826 9.36618 7.73772 9.59535C8.15718 9.82452 8.62103 9.9608 9.09779 9.99495C9.57455 10.0291 10.0531 9.9603 10.5009 9.79325C10.9488 9.62619 11.3554 9.36477 11.6934 9.02672L13.6934 7.02672C14.3005 6.39805 14.6365 5.55604 14.6289 4.68205C14.6213 3.80806 14.2708 2.97202 13.6527 2.354C13.0347 1.73597 12.1987 1.38541 11.3247 1.37781C10.4507 1.37022 9.60869 1.7062 8.98002 2.31339L7.83335 3.45339"
+                  stroke="#3C3837"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.33334 7.33332C9.04704 6.95057 8.68177 6.63387 8.26231 6.40469C7.84285 6.17552 7.37901 6.03924 6.90224 6.0051C6.42548 5.97095 5.94695 6.03974 5.49911 6.2068C5.05127 6.37386 4.6446 6.63527 4.30668 6.97332L2.30668 8.97332C1.69948 9.60199 1.3635 10.444 1.3711 11.318C1.37869 12.192 1.72926 13.028 2.34728 13.646C2.96531 14.2641 3.80135 14.6146 4.67534 14.6222C5.54933 14.6298 6.39134 14.2938 7.02001 13.6867L8.16001 12.5467"
+                  stroke="#3C3837"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_917_5645">
+                  <rect width="16" height="16" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+            <a
+              className={css({
+                color: "text",
+                fontSize: "1rem",
+                fontWeight: 650,
+                lineHeight: "1.5rem",
+              })}
+              href={
+                {
+                  "chess-uniswap": "https://chess-uniswap.vercel.app",
+                  "crowd-front": "https://crowd-front.vercel.app",
+                  "hash-hunter-uni": "https://hash-hunter-uni.vercel.app",
+                  "moduler-believer": "https://moduler-believer.vercel.app",
+                  "ethereum-builder": "https://ethereum-builder.vercel.app",
+                  wawa: "https://wawa.vercel.app",
+                  birthblock: "https://birthblock.vercel.app",
+                }[artworkKey]
+              }
+            >
+              {
+                {
+                  "chess-uniswap": "chess-uniswap.vercel.app",
+                  "crowd-front": "crowd-front.vercel.app",
+                  "hash-hunter-uni": "hash-hunter-uni.vercel.app",
+                  "moduler-believer": "moduler-believer.vercel.app",
+                  "ethereum-builder": "ethereum-builder.vercel.app",
+                  wawa: "wawa.vercel.app",
+                  birthblock: "birthblock.vercel.app",
+                }[artworkKey]
+              }
+            </a>
+          </div>
         </Content>
       </Portal>
     </Root>
