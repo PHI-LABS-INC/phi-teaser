@@ -51,7 +51,7 @@ export default function Page() {
         <div
           className={flex({
             direction: { base: "column-reverse", md: "row" },
-            align: { base: "flex-start", md: "center" },
+            align: { md: "center" },
             w: "100%",
             h: { md: "16rem" },
             borderRadius: "0.75rem",
@@ -107,7 +107,13 @@ export default function Page() {
             </a>
           </div>
           <Image src="/philand.png" width={512} height={256} alt="philand" className={css({ display: { base: "none", md: "block" } })} />
-          <Image src="/philand-2.png" width={537} height={585} alt="philand" className={css({ display: { base: "block", md: "none" } })} />
+          <Image
+            src="/philand-2.png"
+            width={537}
+            height={585}
+            alt="philand"
+            className={css({ display: { base: "block", md: "none" }, w: "100%" })}
+          />
         </div>
         <div
           className={flex({

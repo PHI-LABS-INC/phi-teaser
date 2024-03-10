@@ -19,7 +19,9 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
         boxShadow: "0px -1px 1px 0px rgba(0, 0, 0, 0.07)",
       })}
     >
-      <div className={flex({ justify: "space-between", w: "100%", maxW: "48rem" })}>
+      <div
+        className={flex({ direction: { base: "column", md: "row" }, justify: "space-between", gap: "0.5rem", w: "100%", maxW: "48rem" })}
+      >
         <div
           className={flex({
             gap: "0.5rem",
@@ -105,7 +107,7 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
             </Tooltip.Root>
           </Tooltip.Provider>
         </div>
-        <div className={flex({ align: "center", gap: "1rem" })}>
+        <div className={flex({ justify: "space-between", align: "center", gap: "1rem" })}>
           <div className={flex({ align: "center", gap: "0.5rem" })}>
             <div
               className={flex({

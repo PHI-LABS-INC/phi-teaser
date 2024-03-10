@@ -168,7 +168,7 @@ export function WhyPhi() {
           bottom: { base: "5.56rem", md: "calc(1rem + 72px)" },
           left: { base: 0, md: "calc(1rem + 1rem)" },
           transform: { base: "translateX(-0.5rem)", md: "none" },
-          w: "fit-content",
+          w: { base: "100%", md: "fit-content" },
           transition: "opacity .1s",
           mb: { md: "1rem" },
         })}
