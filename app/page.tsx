@@ -37,19 +37,23 @@ export default function Page() {
           border: "1px solid",
           borderColor: "border",
           borderRadius: "1rem",
-          background: `url('/dot.png'), 50px 50px repeat, #FFF`,
+          // TODO
+          background: { base: "url('/dot.png'), 25px 25px repeat, #FFF", md: "url('/dot.png'), 50px 50px repeat, #FFF" },
         })}
       >
         <Canvas />
         <WhyPhi />
       </div>
 
-      <div className={flex({ direction: "column", align: "center", p: "3rem 0", gap: "2.5rem", w: "100%", maxW: "48rem" })}>
+      <div
+        className={vstack({ gap: { base: "1rem", md: "2.5rem" }, p: { base: "1.5rem 0", md: "3rem 0" }, w: "100%", maxW: { md: "48rem" } })}
+      >
         <div
           className={flex({
+            direction: { base: "column-reverse", md: "row" },
+            align: { base: "flex-start", md: "center" },
             w: "100%",
-            h: "16rem",
-            align: "center",
+            h: { md: "16rem" },
             borderRadius: "0.75rem",
             bgColor: "philandSky",
             overflow: "hidden",
@@ -57,19 +61,18 @@ export default function Page() {
         >
           <div
             className={vstack({
-              h: "10.9375rem",
-              pl: "2.5rem",
-              justify: "space-between",
+              justify: { md: "space-between" },
               alignItems: "flex-start",
               flex: "1 0 0",
+              p: { base: "0 1.5rem 1.5rem", md: "0 0 0 2.5rem" },
+              h: { md: "10.9375rem" },
             })}
           >
             <p
               className={css({
                 color: "bg",
-                fontSize: "2.5rem",
+                fontSize: { base: "2rem", md: "2.5rem" },
                 fontWeight: 700,
-                lineHeight: "2.5rem",
                 letterSpacing: "-0.01563rem",
               })}
             >
@@ -89,11 +92,9 @@ export default function Page() {
               className={center({
                 h: "3rem",
                 p: "0.5rem 1rem",
-                gap: "0.25rem",
                 flexShrink: 0,
                 borderRadius: "8rem",
                 bgColor: "bg",
-                //
                 color: "philandSky",
                 fontSize: "1rem",
                 fontWeight: 650,
@@ -105,19 +106,21 @@ export default function Page() {
               OPEN APP
             </a>
           </div>
-          <Image src="/philand.png" width={512} height={256} alt="philand" />
+          <Image src="/philand.png" width={512} height={256} alt="philand" className={css({ display: { base: "none", md: "block" } })} />
+          <Image src="/philand-2.png" width={537} height={585} alt="philand" className={css({ display: { base: "block", md: "none" } })} />
         </div>
         <div
           className={flex({
+            direction: { base: "column", md: "row" },
+            align: "center",
+            gap: { base: "1rem", md: "1.5rem" },
             w: "100%",
-            gap: "1.5rem",
             "& a": {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              flex: "1 0 0",
-              gap: "0.5rem",
-              p: "2.5rem",
+              flex: { md: "1 0 0" },
+              w: "100%",
               h: "5rem",
               borderRadius: "0.75rem",
             },
@@ -150,38 +153,20 @@ export default function Page() {
             <Link
               href="https://twitter.com/phi_xyz"
               target="_blank"
-              className={css({
-                color: "textWeaker",
-                fontSize: "0.875rem",
-                fontWeight: 650,
-                lineHeight: "1.25rem",
-              })}
+              className={css({ color: "textWeaker", fontSize: "0.875rem", fontWeight: 650 })}
             >
               Privacy Policy
             </Link>
             <Link
               href="https://twitter.com/phi_xyz"
               target="_blank"
-              className={css({
-                color: "textWeaker",
-                fontSize: "0.875rem",
-                fontWeight: 650,
-                lineHeight: "1.25rem",
-              })}
+              className={css({ color: "textWeaker", fontSize: "0.875rem", fontWeight: 650 })}
             >
               Terms & Conditions
             </Link>
           </div>
           <Image src={LogoGray} alt="phi-logo-gray" />
-          <p
-            className={css({
-              color: "textWeakest",
-              fontSize: "0.75rem",
-              fontWeight: 400,
-              lineHeight: "1rem",
-              letterSpacing: "0.0025rem",
-            })}
-          >
+          <p className={css({ color: "textWeakest", fontSize: "0.75rem", fontWeight: 400, letterSpacing: { md: "0.0025rem" } })}>
             © 2024 DELTA LAB.
           </p>
         </div>
