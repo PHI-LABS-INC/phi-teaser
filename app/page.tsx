@@ -18,11 +18,11 @@ export default function Page() {
         className={flex({
           zIndex: "header",
           position: "fixed",
-          left: "calc(1rem + 1.25rem)",
-          top: "calc(1rem + 1rem)",
+          left: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem)" },
+          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem)" },
           justify: "space-between",
-          w: "calc(100vw - 2 * (1rem + 1.25rem))",
-          p: "0.5rem",
+          p: { base: "0.75rem", md: "0.5rem" },
+          w: { base: "calc(100vw - 2 * (1rem + 0.75rem))", md: "calc(100vw - 2 * (1rem + 1.25rem))" },
         })}
       >
         <Image src={Logo} alt="phi-logo" />
