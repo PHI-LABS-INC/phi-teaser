@@ -72,7 +72,6 @@ export function WhyPhi() {
               letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
             },
             "& p": {
-              verticalAlign: "middle",
               color: "gray.800",
               fontSize: { base: "1.25rem", md: "1.75rem" },
               fontWeight: 650,

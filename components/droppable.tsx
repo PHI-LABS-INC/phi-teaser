@@ -26,13 +26,7 @@ export function BlankSpace({ id, children }: { id: Exclude<DroppableArea, "inven
   const { isOver, setNodeRef } = useDroppable({ id });
 
   return (
-    <span
-      ref={setNodeRef}
-      className={css({
-        verticalAlign: "middle",
-        "& > *": { transform: "translateY(0.2rem)" },
-      })}
-    >
+    <span ref={setNodeRef} className={css({ verticalAlign: "text-top" })}>
       {children || (
         <span
           className={cx(
