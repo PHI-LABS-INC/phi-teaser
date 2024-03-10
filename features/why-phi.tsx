@@ -11,7 +11,7 @@ import { useScroll } from "@/hooks/use-scroll";
 
 export function WhyPhi() {
   const dndCtxId = useId();
-  const isScrolled = useScroll({ pos: window.innerHeight / 1.8 });
+  const isScrolled = useScroll();
   const [openInventory, setOpenInventory] = useState(true);
   const [activeKey, setActiveKey] = useState<PuzzleKey | null>(null);
   // TODO: localstorage
