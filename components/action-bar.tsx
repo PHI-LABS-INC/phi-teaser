@@ -8,6 +8,7 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
   return (
     <div
       className={flex({
+        zIndex: "action-bar",
         position: "sticky",
         bottom: "0",
         justify: "center",

@@ -28,6 +28,10 @@ export function WhyPhi() {
     setActiveKey(event.active.id as PuzzleKey);
   }
 
+  function handleDragCancel() {
+    setActiveKey(null);
+  }
+
   function handleDragEnd(event: DragEndEvent) {
     setActiveKey(null);
     const { active, over } = event;
@@ -45,7 +49,7 @@ export function WhyPhi() {
   }
 
   return (
-    <DndContext id={dndCtxId} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+    <DndContext id={dndCtxId} onDragStart={handleDragStart} onDragCancel={handleDragCancel} onDragEnd={handleDragEnd}>
       <div className={flex({ justify: "center", p: { base: "0 1rem", md: "0 2rem" }, w: "100%" })}>
         <div
           className={flex({
@@ -68,6 +72,7 @@ export function WhyPhi() {
               letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
             },
             "& p": {
+              verticalAlign: "middle",
               color: "gray.800",
               fontSize: { base: "1.25rem", md: "1.75rem" },
               fontWeight: 650,
@@ -102,8 +107,8 @@ export function WhyPhi() {
             <div
               className={flex({
                 align: "center",
-                p: "1rem",
-                gap: "1rem",
+                p: { base: "0.5rem", md: "1rem" },
+                gap: { base: "0.5rem", md: "1rem" },
                 borderRadius: "0.5rem",
                 border: "1px solid",
                 borderColor: "gray.200",
@@ -140,8 +145,8 @@ export function WhyPhi() {
             <div
               className={flex({
                 align: "center",
-                p: "1rem",
-                gap: "1rem",
+                p: { base: "0.5rem", md: "1rem" },
+                gap: { base: "0.5rem", md: "1rem" },
                 borderRadius: "0.5rem",
                 border: "1px solid",
                 borderColor: "gray.200",
@@ -166,6 +171,8 @@ export function WhyPhi() {
 
       <div
         className={css({
+          zIndex: "inventory",
+          visibility: { base: !!activeKey ? "hidden" : "visible", md: "visible" },
           opacity: isScrolled && openInventory ? 1 : 0,
           pointerEvents: isScrolled && openInventory ? "auto" : "none",
           position: "sticky",

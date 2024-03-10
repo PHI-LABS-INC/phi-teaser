@@ -140,6 +140,8 @@ export default defineConfig({
       zIndex: {
         root: { value: 0 },
         header: { value: 10 },
+        "action-bar": { value: 20 },
+        inventory: { value: 30 },
         tooltip: { value: 100 },
         "modal-overlay": { value: 900 },
         "modal-content": { value: 901 },
