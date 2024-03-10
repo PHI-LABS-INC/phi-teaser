@@ -51,6 +51,7 @@ export function WhyPhi() {
           className={flex({
             direction: "column",
             gap: { base: "1rem", md: "3rem" },
+            w: "100%",
             maxW: { md: "48rem" },
             "& h1": {
               color: "gray.800",
@@ -164,18 +165,19 @@ export function WhyPhi() {
           opacity: isScrolled && openInventory ? 1 : 0,
           pointerEvents: isScrolled && openInventory ? "auto" : "none",
           position: "sticky",
-          bottom: "calc(1rem + 72px)",
-          left: "calc(1rem + 1rem)",
+          bottom: { base: "5.56rem", md: "calc(1rem + 72px)" },
+          left: { base: 0, md: "calc(1rem + 1rem)" },
+          transform: { base: "translateX(-0.5rem)", md: "none" },
           w: "fit-content",
           transition: "opacity .1s",
-          mb: "1rem",
+          mb: { md: "1rem" },
         })}
       >
         <Inventory>
           <div
             className={flex({
               direction: "column",
-              w: "366px",
+              w: { base: "calc(100% + (0.5rem * 2))", md: "366px" },
               borderRadius: "1rem",
               border: "0.5px solid rgba(0, 0, 0, 0.16)",
               background: "rgba(255, 255, 255, 0.80)",
@@ -198,8 +200,7 @@ export function WhyPhi() {
                 align: "center",
                 justify: "center",
                 gap: "0.5rem",
-                p: "0.5rem 1rem",
-                h: "198px",
+                p: { base: "0 1rem", md: "0.5rem 1rem" },
               })}
             >
               {stickers["red"] === "inventory" && puzzleSticker["red"]}
