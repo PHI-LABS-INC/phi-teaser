@@ -46,32 +46,33 @@ export function WhyPhi() {
 
   return (
     <DndContext id={dndCtxId} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-      <div className={flex({ justify: "center", w: "100%" })}>
+      <div className={flex({ justify: "center", p: { base: "0 1rem", md: "0 2rem" }, w: "100%" })}>
         <div
           className={flex({
             direction: "column",
-            gap: "3rem",
-            maxW: "48rem",
+            gap: { base: "1rem", md: "3rem" },
+            w: "100%",
+            maxW: { md: "48rem" },
             "& h1": {
               color: "gray.800",
-              fontSize: "3.75rem",
+              fontSize: { base: "2.1875rem", md: "3.75rem" },
               fontWeight: 750,
-              lineHeight: "3.75rem",
-              letterSpacing: "-0.025rem",
+              lineHeight: { base: "2.5rem", md: "3.75rem" },
+              letterSpacing: { base: "-0.01rem", md: "-0.025rem" },
             },
             "& h2": {
               color: "gray.800",
-              fontSize: "2.1875rem",
+              fontSize: { base: "1.5rem", md: "2.1875rem" },
               fontWeight: 750,
-              lineHeight: "2.5rem",
-              letterSpacing: "-0.01rem",
+              lineHeight: { base: "1.875rem", md: "2.5rem" },
+              letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
             },
             "& p": {
               color: "gray.800",
-              fontSize: "1.75rem",
+              fontSize: { base: "1.25rem", md: "1.75rem" },
               fontWeight: 650,
-              lineHeight: "2.625rem",
-              letterSpacing: "-0.0075rem",
+              lineHeight: { base: "1.875rem", md: "2.625rem" },
+              letterSpacing: { base: "-0.005rem", md: "-0.0075rem" },
             },
           })}
         >
@@ -164,18 +165,19 @@ export function WhyPhi() {
           opacity: isScrolled && openInventory ? 1 : 0,
           pointerEvents: isScrolled && openInventory ? "auto" : "none",
           position: "sticky",
-          bottom: "calc(1rem + 72px)",
-          left: "calc(1rem + 1rem)",
-          w: "fit-content",
+          bottom: { base: "5.56rem", md: "calc(1rem + 72px)" },
+          left: { base: 0, md: "calc(1rem + 1rem)" },
+          transform: { base: "translateX(-0.5rem)", md: "none" },
+          w: { base: "100%", md: "fit-content" },
           transition: "opacity .1s",
-          mb: "1rem",
+          mb: { md: "1rem" },
         })}
       >
         <Inventory>
           <div
             className={flex({
               direction: "column",
-              w: "366px",
+              w: { base: "calc(100% + (0.5rem * 2))", md: "366px" },
               borderRadius: "1rem",
               border: "0.5px solid rgba(0, 0, 0, 0.16)",
               background: "rgba(255, 255, 255, 0.80)",
@@ -198,8 +200,7 @@ export function WhyPhi() {
                 align: "center",
                 justify: "center",
                 gap: "0.5rem",
-                p: "0.5rem 1rem",
-                h: "198px",
+                p: { base: "0 1rem", md: "0.5rem 1rem" },
               })}
             >
               {stickers["red"] === "inventory" && puzzleSticker["red"]}
