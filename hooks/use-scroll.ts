@@ -2,12 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-export function useScroll({ pos }: { pos: number }) {
+export function useScroll() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScroll = () => {
-    // TODO: mobile
-    setIsScrolled(window.scrollY > pos);
+    setIsScrolled(window.scrollY > window.innerHeight / 1.8);
   };
 
   useEffect(() => {
