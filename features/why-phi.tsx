@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
 import { center, flex } from "@/styled-system/patterns";
@@ -23,6 +23,7 @@ export function WhyPhi() {
     red: "inventory",
     blue: "inventory",
   });
+  const progress = useMemo(() => 6 - Object.values(stickers).filter((area) => area === "inventory").length, [stickers]);
 
   function handleDragStart(event: DragStartEvent) {
     setActiveKey(event.active.id as PuzzleKey);
@@ -171,7 +172,7 @@ export function WhyPhi() {
       <div
         className={css({
           zIndex: "inventory",
-          visibility: { base: !!activeKey ? "hidden" : "visible", md: "visible" },
+          visibility: progress === 6 ? "hidden" : { base: !!activeKey ? "hidden" : "visible", md: "visible" },
           opacity: isScrolled && openInventory ? 1 : 0,
           pointerEvents: isScrolled && openInventory ? "auto" : "none",
           position: "sticky",
@@ -195,15 +196,6 @@ export function WhyPhi() {
               backdropFilter: "blur(34px)",
             })}
           >
-            <div className={flex({ justify: "space-between" })}>
-              <div />
-              <button onClick={() => setOpenInventory(false)} className={css({ p: "0.5rem", cursor: "pointer" })}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18" stroke="#B3B2B1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M6 6L18 18" stroke="#B3B2B1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
             <div
               className={flex({
                 wrap: "wrap",
@@ -238,10 +230,7 @@ export function WhyPhi() {
         </Inventory>
       </div>
 
-      <ActionBar
-        progress={6 - Object.values(stickers).filter((area) => area === "inventory").length}
-        openInventory={() => setOpenInventory(true)}
-      />
+      <ActionBar progress={progress} openInventory={() => setOpenInventory(true)} />
 
       <DragOverlay
         dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}

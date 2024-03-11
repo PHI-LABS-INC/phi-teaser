@@ -33,7 +33,7 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
             bgColor: "bg",
           })}
         >
-          <button className={css({ cursor: "pointer" })} onClick={openInventory}>
+          {/* <button className={css({ cursor: "pointer" })} onClick={openInventory}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 fillRule="evenodd"
@@ -42,7 +42,7 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
                 fill="#605D5C"
               />
             </svg>
-          </button>
+          </button> */}
           <Tooltip.Provider>
             <Tooltip.Root delayDuration={0}>
               <Tooltip.Trigger asChild>
