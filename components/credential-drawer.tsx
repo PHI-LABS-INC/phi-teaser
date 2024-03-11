@@ -33,9 +33,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                   wawa: {
                     transform: open ? "translate(50vw, 50vh) translate(-100px, -256px) scale(1)" : "translate(200px, 200px) scale(0.5)",
                   },
-                  birthblock: {
-                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(400px, 100px) scale(0.5)",
-                  },
                 },
               },
             })({ artworkKey }),
@@ -105,7 +102,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                 "moduler-believer": "Moduler Believer",
                 "ethereum-builder": "Ethereum Builder",
                 wawa: "Wawa",
-                birthblock: "Birthblock",
               }[artworkKey]
             }
           </h2>
@@ -126,7 +122,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                 "moduler-believer": "Claim $TIA airdrop",
                 "ethereum-builder": "Participate ETH Global Hackathon",
                 wawa: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
-                birthblock: "An NFT with art and attributes based on the data from your first transaction on Ethereum",
               }[artworkKey]
             }
           </p>
@@ -176,7 +171,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                   "moduler-believer": "https://celestia.org/",
                   "ethereum-builder": "https://app.airstack.xyz/query/qbCWxsxdyu/",
                   wawa: "https://wawa.philand.xyz/",
-                  birthblock: "https://www.birthblock.art/",
                 }[artworkKey]
               }
               target="_blank"
@@ -190,7 +184,6 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                   "moduler-believer": "celestia.org",
                   "ethereum-builder": "airstack.xyz",
                   wawa: "wawa.philand.xyz",
-                  birthblock: "birthblock.art",
                 }[artworkKey]
               }
             </a>
