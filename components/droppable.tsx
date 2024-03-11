@@ -12,12 +12,12 @@ export function Inventory({ children }: { children: React.ReactNode }) {
 const sizeCva = cva({
   variants: {
     id: {
-      visualize: { w: "103px", h: "36px" },
-      decentralized: { w: "156px", h: "36px" },
-      community: { w: "132px", h: "36px" },
-      creators: { w: "102px", h: "36px" },
-      blue: { w: { base: "46px", md: "62px" }, h: { base: "46px", md: "62px" } },
-      red: { w: { base: "46px", md: "62px" }, h: { base: "46px", md: "62px" } },
+      visualize: { w: "103px", h: "38px" },
+      decentralized: { w: "156px", h: "38px" },
+      community: { w: "132px", h: "38px" },
+      creators: { w: "102px", h: "38px" },
+      blue: { w: { base: "48px", md: "64px" }, h: { base: "48px", md: "64px" } },
+      red: { w: { base: "48px", md: "64px" }, h: { base: "48px", md: "64px" } },
     },
   },
 });

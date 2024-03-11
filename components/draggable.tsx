@@ -54,8 +54,7 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   ),
   creators: (
     <Sticker id="creators">
-      {/* TODO */}
-      <Image src={PuzzleCreators} alt="creators" height={38} />
+      <Image src={PuzzleCreators} height={38} alt="creators" />
     </Sticker>
   ),
   visualize: (
