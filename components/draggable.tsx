@@ -49,32 +49,32 @@ export type PuzzleKey = "creators" | "decentralized" | "community" | "visualize"
 export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   red: (
     <Sticker id="red">
-      <Image src={PuzzleRed} alt="red" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
+      <Image src={PuzzleRed} style={{ objectFit: "contain" }} alt="red" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
     </Sticker>
   ),
   creators: (
     <Sticker id="creators">
-      <Image src={PuzzleCreators} height={38} alt="creators" />
+      <Image src={PuzzleCreators} alt="creators" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
     </Sticker>
   ),
   visualize: (
     <Sticker id="visualize">
-      <Image src={PuzzleVisualize} height={38} alt="visualize" />
+      <Image src={PuzzleVisualize} alt="visualize" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
     </Sticker>
   ),
   blue: (
     <Sticker id="blue">
-      <Image src={PuzzleBlue} alt="blue" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
+      <Image src={PuzzleBlue} style={{ objectFit: "contain" }} alt="blue" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
     </Sticker>
   ),
   decentralized: (
     <Sticker id="decentralized">
-      <Image src={PuzzleDecentralized} height={38} alt="decentralized" />
+      <Image src={PuzzleDecentralized} alt="decentralized" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
     </Sticker>
   ),
   community: (
     <Sticker id="community">
-      <Image src={PuzzleCommunity} height={38} alt="community" />
+      <Image src={PuzzleCommunity} alt="community" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
     </Sticker>
   ),
 };

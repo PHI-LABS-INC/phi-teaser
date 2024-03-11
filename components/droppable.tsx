@@ -12,10 +12,10 @@ export function Inventory({ children }: { children: React.ReactNode }) {
 const sizeCva = cva({
   variants: {
     id: {
-      visualize: { w: "103px", h: "38px" },
-      decentralized: { w: "156px", h: "38px" },
-      community: { w: "132px", h: "38px" },
-      creators: { w: "102px", h: "38px" },
+      visualize: { w: { base: "70px", md: "103px" }, h: { base: "26px", md: "38px" } },
+      decentralized: { w: { base: "106px", md: "155px" }, h: { base: "26px", md: "38px" } },
+      community: { w: { base: "90px", md: "132px" }, h: { base: "26px", md: "38px" } },
+      creators: { w: { base: "70px", md: "102px" }, h: { base: "26px", md: "38px" } },
       blue: { w: { base: "48px", md: "64px" }, h: { base: "48px", md: "64px" } },
       red: { w: { base: "48px", md: "64px" }, h: { base: "48px", md: "64px" } },
     },
@@ -24,9 +24,16 @@ const sizeCva = cva({
 
 export function BlankSpace({ id, children }: { id: Exclude<DroppableArea, "inventory">; children: React.ReactNode }) {
   const { isOver, setNodeRef } = useDroppable({ id });
+  const isIcon = id === "blue" || id === "red";
 
   return (
-    <span ref={setNodeRef} className={css({ verticalAlign: "text-top" })}>
+    <span
+      ref={setNodeRef}
+      className={css({
+        verticalAlign: "text-top",
+        h: isIcon ? { base: "48px", md: "64px" } : "fit-content",
+      })}
+    >
       {children || (
         <span
           className={cx(
