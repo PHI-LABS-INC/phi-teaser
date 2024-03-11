@@ -30,6 +30,7 @@ export default function RootLayout(props: { children: ReactNode }) {
             direction: "column",
             align: "center",
             p: "1rem !important", // for radix-ui/dialog overlay
+            w: "100%",
             bgColor: "bgWeak",
             scrollBehavior: "smooth",
           })
