@@ -196,6 +196,7 @@ export function WhyPhi() {
               backdropFilter: "blur(34px)",
             })}
           >
+            <div className={css({ h: "1.5rem" })} />
             <div
               className={flex({
                 wrap: "wrap",

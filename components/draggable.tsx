@@ -49,7 +49,7 @@ export type PuzzleKey = "creators" | "decentralized" | "community" | "visualize"
 export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   red: (
     <Sticker id="red">
-      <Image src={PuzzleRed} style={{ objectFit: "contain" }} alt="red" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
+      <Image src={PuzzleRed} alt="red" className={css({ w: "auto", minH: { base: "48px", md: "64px" } })} />
     </Sticker>
   ),
   creators: (
@@ -64,7 +64,7 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   ),
   blue: (
     <Sticker id="blue">
-      <Image src={PuzzleBlue} style={{ objectFit: "contain" }} alt="blue" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
+      <Image src={PuzzleBlue} alt="blue" className={css({ w: "auto", minH: { base: "48px", md: "64px" } })} />
     </Sticker>
   ),
   decentralized: (
