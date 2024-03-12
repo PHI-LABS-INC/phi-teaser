@@ -83,32 +83,32 @@ export type ArtworkKey = "chess-uniswap" | "crowd-front" | "hash-hunter-uni" | "
 export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   "chess-uniswap": (
     <Sticker id="chess-uniswap">
-      <Image src={ChessUniswap} height={320} alt="chess-uniswap" priority />
+      <Image src={ChessUniswap} height={460} alt="chess-uniswap" priority />
     </Sticker>
   ),
   "crowd-front": (
     <Sticker id="crowd-front">
-      <Image src={CrowdFront} height={320} alt="crowd-front" priority />
+      <Image src={CrowdFront} height={460} alt="crowd-front" priority />
     </Sticker>
   ),
   "hash-hunter-uni": (
     <Sticker id="hash-hunter-uni">
-      <Image src={HashHunterUni} height={320} alt="hash-hunter-uni" priority />
+      <Image src={HashHunterUni} height={460} alt="hash-hunter-uni" priority />
     </Sticker>
   ),
   "moduler-believer": (
     <Sticker id="moduler-believer">
-      <Image src={ModulerBeliever} height={320} alt="moduler-believer" priority />
+      <Image src={ModulerBeliever} height={460} alt="moduler-believer" priority />
     </Sticker>
   ),
   "ethereum-builder": (
     <Sticker id="ethereum-builder">
-      <Image src={EthereumBuilder} height={320} alt="ethereum-builder" priority />
+      <Image src={EthereumBuilder} height={460} alt="ethereum-builder" priority />
     </Sticker>
   ),
   wawa: (
     <Sticker id="wawa">
-      <Image src={Wawa} height={320} alt="wawa" priority />
+      <Image src={Wawa} height={460} alt="wawa" priority />
     </Sticker>
   ),
 };

@@ -4,11 +4,14 @@ import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { ArtworkKey } from "./draggable";
 
-const openTransform = "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(1)";
+const openTransform = {
+  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.5)",
+  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(1)",
+};
 
 const defaultTransform = (position: { base: string; md: string }) => {
   return {
-    base: "translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%)" + " " + position.base + " " + "scale(0.5)",
+    base: "translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%)" + " " + position.base + " " + "scale(0.25)",
     md: "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position.md + " " + "scale(0.5)",
   };
 };
@@ -21,7 +24,7 @@ const transformCva = (open: boolean) => {
           transform: open ? openTransform : defaultTransform({ base: "translate(8rem, 0)", md: "translate(16rem, 0)" }),
         },
         "crowd-front": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(-10rem, -2.5rem)", md: "translate(-20rem, -5rem)" }),
+          transform: open ? openTransform : defaultTransform({ base: "translate(-5rem, -2.5rem)", md: "translate(-10rem, -5rem)" }),
         },
         "hash-hunter-uni": {
           transform: open ? openTransform : defaultTransform({ base: "translate(-1.5rem, -5rem)", md: "translate(-3rem, -10rem)" }),
