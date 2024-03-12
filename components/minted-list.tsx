@@ -61,7 +61,7 @@ export function MintedList() {
             w: { base: "100vw", md: "40rem" },
             maxH: { base: "calc(100dvh - 6rem)", md: "40rem" },
             bgColor: "bg",
-            borderRadius: "1rem",
+            borderRadius: { base: "1rem 1rem 0 0", md: "1rem" },
             _focus: { outline: "none" },
             '&[data-state="open"]': {
               animation: "modalIn 200ms ease-out",
