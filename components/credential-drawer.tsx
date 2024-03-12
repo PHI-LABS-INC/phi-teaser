@@ -67,7 +67,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           className={vstack({
             zIndex: "drawer-content",
             position: "fixed",
-            bottom: { base: "3rem", md: "4rem" },
+            bottom: { base: "1rem", md: "4rem" },
             left: "50%",
             translate: "-50%",
             alignItems: "flex-start",
