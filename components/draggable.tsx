@@ -9,12 +9,12 @@ import PuzzleVisualize from "@/public/puzzle/visualize.png";
 import PuzzleRed from "@/public/puzzle/red.png";
 import PuzzleBlue from "@/public/puzzle/blue.png";
 //
-import ChessUniswap from "@/public/chess-uniswap.png";
-import CrowdFront from "@/public/crowd-front.png";
-import HashHunterUni from "@/public/hash-hunter-uni.png";
-import ModulerBeliever from "@/public/moduler-believer.png";
-import EthereumBuilder from "@/public/ethereum-builder.png";
-import Wawa from "@/public/wawa.png";
+import ChessUniswap from "@/public/artwork/chess-uniswap.png";
+import CrowdFront from "@/public/artwork/crowd-front.png";
+import HashHunterUni from "@/public/artwork/hash-hunter-aave.png";
+import ModulerBeliever from "@/public/artwork/moduler-believer.png";
+import EthereumBuilder from "@/public/artwork/ethereum-builder.png";
+import Wawa from "@/public/artwork/wawa.png";
 
 function Sticker({ id, children }: { id: PuzzleKey | ArtworkKey; children: React.ReactNode }) {
   const { transform, attributes, listeners, isDragging, setNodeRef } = useDraggable({ id });
