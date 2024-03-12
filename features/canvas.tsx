@@ -12,7 +12,7 @@ export function Canvas() {
   const [activeId, setActiveId] = useState<ArtworkKey | null>(null);
 
   return (
-    <div className={css({ position: "relative", w: "100%", h: { base: "calc(374px + 60px)", md: "calc(64rem - 2 * 1rem)" } })}>
+    <div className={css({ position: "relative", w: "100%", h: { base: "calc(374px + 60px)", md: "64rem" } })}>
       <DndContext
         id={dndCtxId}
         sensors={sensors}

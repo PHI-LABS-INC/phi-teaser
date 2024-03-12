@@ -6,27 +6,31 @@ import { ArtworkKey } from "./draggable";
 
 const openTransform = "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(1)";
 
+const defaultTransform = (position: string) => {
+  return "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position + " " + "scale(0.5)";
+};
+
 const transformCva = (open: boolean) => {
   return cva({
     variants: {
       artworkKey: {
         "chess-uniswap": {
-          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+          transform: open ? openTransform : defaultTransform("translate(16rem, 0)"),
         },
         "crowd-front": {
-          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+          transform: open ? openTransform : defaultTransform("translate(-20rem, -5rem)"),
         },
         "hash-hunter-uni": {
-          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+          transform: open ? openTransform : defaultTransform("translate(-3rem, -10rem)"),
         },
         "moduler-believer": {
-          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+          transform: open ? openTransform : defaultTransform("translate(0, -2rem)"),
         },
         "ethereum-builder": {
-          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+          transform: open ? openTransform : defaultTransform("translate(6rem, 6rem)"),
         },
         wawa: {
-          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+          transform: open ? openTransform : defaultTransform("translate(2rem, 2rem)"),
         },
       },
     },
