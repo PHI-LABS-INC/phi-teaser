@@ -4,6 +4,35 @@ import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { ArtworkKey } from "./draggable";
 
+const openTransform = "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(1)";
+
+const transformCva = (open: boolean) => {
+  return cva({
+    variants: {
+      artworkKey: {
+        "chess-uniswap": {
+          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+        },
+        "crowd-front": {
+          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+        },
+        "hash-hunter-uni": {
+          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+        },
+        "moduler-believer": {
+          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+        },
+        "ethereum-builder": {
+          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+        },
+        wawa: {
+          transform: open ? openTransform : "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.5)",
+        },
+      },
+    },
+  });
+};
+
 export default function CredentialDrawer({ artworkKey, children }: { artworkKey: ArtworkKey; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
@@ -12,30 +41,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
       <Trigger asChild className={css({ _focus: { outline: "none" } })} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
         <span
           className={cx(
-            cva({
-              variants: {
-                artworkKey: {
-                  "chess-uniswap": {
-                    transform: open ? "translate(50vw, 50vh) translate(-128px, -256px) scale(1)" : "translate(100px, 40px) scale(0.5)",
-                  },
-                  "crowd-front": {
-                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(600px, 256px) scale(0.5)",
-                  },
-                  "hash-hunter-uni": {
-                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(300px, 600px) scale(0.5)",
-                  },
-                  "moduler-believer": {
-                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(800px, 450px) scale(0.5)",
-                  },
-                  "ethereum-builder": {
-                    transform: open ? "translate(50vw, 50vh) translate(-200px, -256px) scale(1)" : "translate(1000px, 0) scale(0.5)",
-                  },
-                  wawa: {
-                    transform: open ? "translate(50vw, 50vh) translate(-100px, -256px) scale(1)" : "translate(200px, 200px) scale(0.5)",
-                  },
-                },
-              },
-            })({ artworkKey }),
+            transformCva(open)({ artworkKey }),
             css({
               zIndex: open ? "draggable-active" : undefined,
               position: "absolute",
