@@ -6,8 +6,11 @@ import { ArtworkKey } from "./draggable";
 
 const openTransform = "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(1)";
 
-const defaultTransform = (position: string) => {
-  return "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position + " " + "scale(0.5)";
+const defaultTransform = (position: { base: string; md: string }) => {
+  return {
+    base: "translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%)" + " " + position.base + " " + "scale(0.5)",
+    md: "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position.md + " " + "scale(0.5)",
+  };
 };
 
 const transformCva = (open: boolean) => {
@@ -15,22 +18,22 @@ const transformCva = (open: boolean) => {
     variants: {
       artworkKey: {
         "chess-uniswap": {
-          transform: open ? openTransform : defaultTransform("translate(16rem, 0)"),
+          transform: open ? openTransform : defaultTransform({ base: "translate(8rem, 0)", md: "translate(16rem, 0)" }),
         },
         "crowd-front": {
-          transform: open ? openTransform : defaultTransform("translate(-20rem, -5rem)"),
+          transform: open ? openTransform : defaultTransform({ base: "translate(-10rem, -2.5rem)", md: "translate(-20rem, -5rem)" }),
         },
         "hash-hunter-uni": {
-          transform: open ? openTransform : defaultTransform("translate(-3rem, -10rem)"),
+          transform: open ? openTransform : defaultTransform({ base: "translate(-1.5rem, -5rem)", md: "translate(-3rem, -10rem)" }),
         },
         "moduler-believer": {
-          transform: open ? openTransform : defaultTransform("translate(0, -2rem)"),
+          transform: open ? openTransform : defaultTransform({ base: "translate(0, -1rem)", md: "translate(0, -2rem)" }),
         },
         "ethereum-builder": {
-          transform: open ? openTransform : defaultTransform("translate(6rem, 6rem)"),
+          transform: open ? openTransform : defaultTransform({ base: "translate(3rem, 3rem)", md: "translate(6rem, 6rem)" }),
         },
         wawa: {
-          transform: open ? openTransform : defaultTransform("translate(2rem, 2rem)"),
+          transform: open ? openTransform : defaultTransform({ base: "translate(1rem, 1rem)", md: "translate(2rem, 2rem)" }),
         },
       },
     },
