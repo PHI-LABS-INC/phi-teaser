@@ -32,7 +32,7 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     url: "https://wawa.philand.xyz/",
   },
   "ethereum-space-station": {
-    title: "Ethereum Space Station",
+    title: "Weekend Degen",
     requirement: "Have 10 tx on Ethereum over the weekend",
     url: "https://etherscan.io/",
   },
@@ -42,7 +42,7 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     url: "https://phi-teaser.vercel.app/",
   },
   "ds-planet": {
-    title: "DS Planet",
+    title: "Degenscore Planet",
     requirement: "Mint a Degenscore Beacon NFT",
     url: "https://degenscore.com/",
   },
@@ -72,50 +72,48 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     url: "https://heartbeat.themetagame.xyz/",
   },
   gitcoin: {
-    title: "Gitcoin",
+    title: "Gitcoin Donor",
     requirement: "Donate once on Gitcoin",
     url: "https://gitcoin.co/",
   },
-
-  // ------------------------------------------------
+  "op-airdrop": {
+    title: "OP Airdrop Recipient",
+    requirement: "Number of $OP airdrop",
+    url: "https://op.com/",
+  },
   "ethereum-first-tx-date": {
-    title: "Ethereum First Tx Date",
-    requirement: "xxxxx",
+    title: "Ethereum 20XX",
+    requirement: "Date of first tx on Ethereum",
     url: "https://etherscan.io/",
   },
   "shib-profit": {
-    title: "Shib Profit",
-    requirement: "xxxxx",
-    url: "https://shibainu.io/",
+    title: "$SHIB HODLer",
+    requirement: "All-time profit of $SHIB",
+    url: "https://coinmarketcap.com/currencies/shiba-inu/",
   },
-  "op-airdrop": {
-    title: "OP Airdrop",
-    requirement: "xxxxx",
-    url: "https://op.com/",
+  "farcaster-blush": {
+    title: "Farcaster Ink",
+    requirement: "Cast once on Warpcast",
+    url: "https://farcaster.xyz/",
+  },
+  "basepaint-nouns-base": {
+    title: "The Yellow Collective on BASE",
+    requirement: "Mint a Collective Nouns on Base",
+    url: "https://www.yellowcollective.xyz/",
+  },
+  "basepaint-mickymouse-cc0": {
+    title: "celebrate Mickey Mouse CC0",
+    requirement: "mint Day #146 on Basepaint",
+    url: "https://basepaint.xyz/canvas/146",
   },
   "piggy-bank": {
     title: "Piggy Bank",
-    requirement: "xxxxx",
-    url: "https://piggybank.com/",
-  },
-  "farcaster-blush": {
-    title: "Farcaster Blush",
-    requirement: "xxxxx",
-    url: "https://farcaster.io/",
+    requirement: "Hold $wBTC for over a year",
+    url: "https://wbtc.network/",
   },
   "gnosis-owl": {
-    title: "Gnosis Owl",
-    requirement: "xxxxx",
-    url: "https://gnosis.io/",
-  },
-  "basepaint-nouns-base": {
-    title: "Basepaint Nouns Base",
-    requirement: "xxxxx",
-    url: "https://basepaint.io/",
-  },
-  "basepaint-mickymouse-cc0": {
-    title: "Basepaint Mickymouse CC0",
-    requirement: "xxxxx",
-    url: "https://basepaint.io/",
+    title: "Safe Owl",
+    requirement: "Setup a multi-sig wallet with Gnosis Safe with at least 2 signers",
+    url: "https://safe.global/",
   },
 };
