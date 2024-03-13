@@ -6,41 +6,237 @@ import { ArtworkKey } from "./draggable";
 
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.5)",
-  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(1)",
+  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.7)",
 };
 
-const defaultTransform = (position: { base: string; md: string }) => {
-  return {
-    base: "translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%)" + " " + position.base + " " + "scale(0.25)",
-    md: "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position.md + " " + "scale(0.5)",
-  };
+const farcasterBlushTransform = {
+  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.125)",
+  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.25)",
 };
+
+const defaultTransform = (position: { base: string; md: string }) => ({
+  base: "translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%)" + " " + position.base + " " + "scale(0.166)",
+  md: "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position.md + " " + "scale(0.5)",
+});
 
 const transformCva = (open: boolean) => {
   return cva({
     variants: {
       artworkKey: {
         "chess-uniswap": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(8rem, 0)", md: "translate(16rem, 0)" }),
+          transform: open ? openTransform : defaultTransform({ base: "translate(0, calc(16rem/3))", md: "translate(0, 16rem)" }),
         },
         "crowd-front": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(-5rem, -2.5rem)", md: "translate(-10rem, -5rem)" }),
+          transform: open ? openTransform : defaultTransform({ base: "translate(0, calc(-7rem/3))", md: "translate(0rem, -7rem)" }),
         },
-        "hash-hunter-uni": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(-1.5rem, -5rem)", md: "translate(-3rem, -10rem)" }),
+        "hash-hunter-aave": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-5rem/3), calc(8rem/3))", md: "translate(-5rem, 8rem)" }),
         },
         "moduler-believer": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(0, -1rem)", md: "translate(0, -2rem)" }),
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-10rem/3), calc(4rem/3))", md: "translate(-10rem, 4rem)" }),
         },
         "ethereum-builder": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(3rem, 3rem)", md: "translate(6rem, 6rem)" }),
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(1rem/3), calc(6rem/3))", md: "translate(1rem, 6rem)" }),
         },
         wawa: {
-          transform: open ? openTransform : defaultTransform({ base: "translate(1rem, 1rem)", md: "translate(2rem, 2rem)" }),
+          transform: open ? openTransform : defaultTransform({ base: "translate(0, calc(-16rem/3))", md: "translate(0, -16rem)" }),
+        },
+        "ethereum-space-station": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-7rem/3), calc(-15rem/3))", md: "translate(-7rem, -15rem)" }),
+        },
+        "gnosis-owl": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(6rem/3), calc(12rem/3))", md: "translate(6rem, 12rem)" }),
+        },
+        "ds-planet": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(9rem/3), calc(-12rem/3))", md: "translate(9rem, -12rem)" }),
+        },
+        "arb-game": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(17rem/3), calc(6rem/3))", md: "translate(17rem, 6rem)" }),
+        },
+        "op-game": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(11rem/3), calc(-2rem/3))", md: "translate(11rem, -2rem)" }),
+        },
+        "basepaint-nouns-base": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-14rem/3), calc(-10rem/3))", md: "translate(-14rem, -10rem)" }),
+        },
+        "basepaint-mickymouse-cc0": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(16rem/3), calc(-5rem/3))", md: "translate(16rem, -5rem)" }),
+        },
+        "ens-newbie": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(7rem/3), calc(5rem/3))", md: "translate(7rem, 5rem)" }),
+        },
+        "ethereum-first-tx-date": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-10rem/3), calc(20rem/3))", md: "translate(-10rem, 20rem)" }),
+        },
+        "shib-profit": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-20rem/3), calc(-11rem/3))", md: "translate(-20rem, -11rem)" }),
+        },
+        "op-airdrop": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(11rem/3), calc(-23rem/3))", md: "translate(11rem, -23rem)" }),
+        },
+        heartbeat: {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-4rem/3), calc(16rem/3))", md: "translate(-4rem, 16rem)" }),
+        },
+        "piggy-bank": {
+          transform: open
+            ? openTransform
+            : defaultTransform({ base: "translate(calc(-14rem/3), calc(14rem/3))", md: "translate(-14rem, 14rem)" }),
+        },
+        "sepolia-builder": {
+          transform: open ? openTransform : defaultTransform({ base: "translate(calc(-17rem/3), 0)", md: "translate(-17rem, 0)" }),
+        },
+        "farcaster-blush": {
+          transform: open ? farcasterBlushTransform : defaultTransform({ base: "translate(0, 0)", md: "translate(0, 0)" }),
+        },
+        phi: {
+          transform: open ? openTransform : defaultTransform({ base: "translate(0, 0)", md: "translate(0, 0)" }),
         },
       },
     },
   });
+};
+
+const credentialAttributes: Record<ArtworkKey, { title: string; requirement: string; url: string }> = {
+  "chess-uniswap": {
+    title: "Uniswap Newbie",
+    requirement: "Swap once on Uniswap V3",
+    url: "https://uniswap.org/",
+  },
+  "crowd-front": {
+    title: "Governance Voter",
+    requirement: "Vote once in Arbitrum Governance",
+    url: "https://www.tally.xyz/gov/arbitrum/",
+  },
+  "hash-hunter-aave": {
+    title: "Hash Hunter - Uniswap",
+    requirement: "xxxxx",
+    url: "https://uniswap.org/",
+  },
+  "moduler-believer": {
+    title: "Moduler Believer",
+    requirement: "Claim $TIA airdrop",
+    url: "https://celestia.org/",
+  },
+  "ethereum-builder": {
+    title: "Ethereum Builder",
+    requirement: "Participate ETH Global Hackathon",
+    url: "https://app.airstack.xyz/query/qbCWxsxdyu/",
+  },
+  wawa: {
+    title: "Wawa",
+    requirement: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
+    url: "https://wawa.philand.xyz/",
+  },
+  "ethereum-space-station": {
+    title: "Ethereum Space Station",
+    requirement: "xxxxx",
+    url: "https://etherscan.io/",
+  },
+  "gnosis-owl": {
+    title: "Gnosis Owl",
+    requirement: "xxxxx",
+    url: "https://gnosis.io/",
+  },
+  "ds-planet": {
+    title: "DS Planet",
+    requirement: "xxxxx",
+    url: "https://dsplanet.io/",
+  },
+  "arb-game": {
+    title: "Arb Game",
+    requirement: "xxxxx",
+    url: "https://arbgame.com/",
+  },
+  "op-game": {
+    title: "OP Game",
+    requirement: "xxxxx",
+    url: "https://opgame.io/",
+  },
+  "basepaint-nouns-base": {
+    title: "Basepaint Nouns Base",
+    requirement: "xxxxx",
+    url: "https://basepaint.io/",
+  },
+  "basepaint-mickymouse-cc0": {
+    title: "Basepaint Mickymouse CC0",
+    requirement: "xxxxx",
+    url: "https://basepaint.io/",
+  },
+  "ens-newbie": {
+    title: "ENS Newbie",
+    requirement: "xxxxx",
+    url: "https://app.ens.domains/",
+  },
+  "ethereum-first-tx-date": {
+    title: "Ethereum First Tx Date",
+    requirement: "xxxxx",
+    url: "https://etherscan.io/",
+  },
+  "shib-profit": {
+    title: "Shib Profit",
+    requirement: "xxxxx",
+    url: "https://shibainu.io/",
+  },
+  "op-airdrop": {
+    title: "OP Airdrop",
+    requirement: "xxxxx",
+    url: "https://op.com/",
+  },
+  heartbeat: {
+    title: "Heartbeat",
+    requirement: "xxxxx",
+    url: "https://heartbeat.com/",
+  },
+  "piggy-bank": {
+    title: "Piggy Bank",
+    requirement: "xxxxx",
+    url: "https://piggybank.com/",
+  },
+  "sepolia-builder": {
+    title: "Sepolia Builder",
+    requirement: "xxxxx",
+    url: "https://sepolia.io/",
+  },
+  "farcaster-blush": {
+    title: "Farcaster Blush",
+    requirement: "xxxxx",
+    url: "https://farcaster.io/",
+  },
+  phi: {
+    title: "Phi",
+    requirement: "xxxxx",
+    url: "https://phi.com/",
+  },
 };
 
 export default function CredentialDrawer({ artworkKey, children }: { artworkKey: ArtworkKey; children: React.ReactNode }) {
@@ -110,16 +306,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               letterSpacing: "-0.01rem",
             })}
           >
-            {
-              {
-                "chess-uniswap": "Uniswap Newbie",
-                "crowd-front": "Governance Voter",
-                "hash-hunter-uni": "Hash Hunter - Uniswap",
-                "moduler-believer": "Moduler Believer",
-                "ethereum-builder": "Ethereum Builder",
-                wawa: "Wawa",
-              }[artworkKey]
-            }
+            {credentialAttributes[artworkKey].title}
           </h2>
           <p
             className={css({
@@ -130,16 +317,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
               letterSpacing: "-0.005rem",
             })}
           >
-            {
-              {
-                "chess-uniswap": "Swap once on Uniswap V3",
-                "crowd-front": "Vote once in Arbitrum Governance",
-                "hash-hunter-uni": "xxxxx",
-                "moduler-believer": "Claim $TIA airdrop",
-                "ethereum-builder": "Participate ETH Global Hackathon",
-                wawa: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
-              }[artworkKey]
-            }
+            {credentialAttributes[artworkKey].requirement}
           </p>
           <div
             className={center({
@@ -179,29 +357,11 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
                 fontWeight: 650,
                 lineHeight: "1.5rem",
               })}
-              href={
-                {
-                  "chess-uniswap": "https://uniswap.org/",
-                  "crowd-front": "https://www.tally.xyz/gov/arbitrum/",
-                  "hash-hunter-uni": "https://uniswap.org/",
-                  "moduler-believer": "https://celestia.org/",
-                  "ethereum-builder": "https://app.airstack.xyz/query/qbCWxsxdyu/",
-                  wawa: "https://wawa.philand.xyz/",
-                }[artworkKey]
-              }
+              href={credentialAttributes[artworkKey].url}
               target="_blank"
               rel="noreferrer"
             >
-              {
-                {
-                  "chess-uniswap": "uniswap.org",
-                  "crowd-front": "tally.xyz",
-                  "hash-hunter-uni": "uniswap.org",
-                  "moduler-believer": "celestia.org",
-                  "ethereum-builder": "airstack.xyz",
-                  wawa: "wawa.philand.xyz",
-                }[artworkKey]
-              }
+              {new URL(credentialAttributes[artworkKey].url).hostname}
             </a>
           </div>
         </Content>
