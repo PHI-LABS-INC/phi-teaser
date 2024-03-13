@@ -116,7 +116,7 @@ export function WhyPhi() {
               })}
             >
               <BlankSpace id="blue">{stickers["blue"] === "blue" ? puzzleSticker["blue"] : null}</BlankSpace>
-              <p className={css({ fontSize: { base: "1rem !important", md: "1.5rem !important" } })}>
+              <p className={css({ flexGrow: 1, fontSize: { base: "1rem !important", md: "1.5rem !important" } })}>
                 Phi Protocol → Decentralized Credential Protocol
               </p>
             </div>
@@ -154,7 +154,7 @@ export function WhyPhi() {
               })}
             >
               <BlankSpace id="red">{stickers["red"] === "red" ? puzzleSticker["red"] : null}</BlankSpace>
-              <p className={css({ fontSize: { base: "1rem !important", md: "1.5rem !important" } })}>
+              <p className={css({ flexGrow: 1, fontSize: { base: "1rem !important", md: "1.5rem !important" } })}>
                 The Board → A place to shape onchain yourself
               </p>
             </div>

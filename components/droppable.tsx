@@ -14,13 +14,7 @@ export function BlankSpace({ id, children }: { id: Exclude<DroppableArea, "inven
   const isIcon = id === "blue" || id === "red";
 
   return (
-    <span
-      ref={setNodeRef}
-      className={css({
-        verticalAlign: "text-top",
-        h: isIcon ? { base: "48px", md: "64px" } : "fit-content",
-      })}
-    >
+    <span ref={setNodeRef} className={css({ verticalAlign: "text-top" })}>
       {children || (
         <span
           className={cx(
