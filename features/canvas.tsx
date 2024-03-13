@@ -1,17 +1,14 @@
 "use client";
 
 import { useId, useState } from "react";
-import { DndContext, DragOverlay, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { DndContext, DragOverlay, MouseSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
 import CredentialSticker from "@/components/credential-sticker";
 import { ArtworkKey, artworkSticker } from "@/components/draggable";
 
 export function Canvas() {
   const dndCtxId = useId();
-  const sensors = useSensors(
-    useSensor(MouseSensor, { activationConstraint: { distance: 10 } }),
-    useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 5 } })
-  );
+  const sensors = useSensors(useSensor(MouseSensor, { activationConstraint: { distance: 10 } }));
   const [activeId, setActiveId] = useState<ArtworkKey | null>(null);
 
   return (
