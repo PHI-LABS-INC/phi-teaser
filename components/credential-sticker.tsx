@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
-import { ArtworkKey } from "./draggable";
+import { ArtworkKey, artworkSticker } from "./draggable";
 
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.5)",
@@ -239,7 +239,7 @@ const credentialAttributes: Record<ArtworkKey, { title: string; requirement: str
   },
 };
 
-export default function CredentialDrawer({ artworkKey, children }: { artworkKey: ArtworkKey; children: React.ReactNode }) {
+export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkKey }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -257,7 +257,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
             })
           )}
         >
-          {children}
+          {artworkSticker[artworkKey]}
         </span>
       </Trigger>
       <Portal>
@@ -279,7 +279,7 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
             alignItems: "flex-start",
             w: { base: "calc(100vw - 4rem)", md: "40rem" },
             p: { base: "1rem", md: "1.5rem" },
-            gap: "1rem",
+            gap: { base: "0.5rem", md: "1rem" },
             animation: open ? "drawerIn .4s forwards" : "drawerOut .4s forwards",
             borderRadius: "0.5rem",
             border: "1px solid",
@@ -300,10 +300,10 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           <h2
             className={css({
               color: "gray.800",
-              fontSize: "2.1875rem",
+              fontSize: { base: "1.5rem", md: "2.1875rem" },
               fontWeight: 750,
-              lineHeight: "2.5rem",
-              letterSpacing: "-0.01rem",
+              lineHeight: { base: "1.875rem", md: "2.5rem" },
+              letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
             })}
           >
             {credentialAttributes[artworkKey].title}
@@ -311,10 +311,10 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
           <p
             className={css({
               color: "textWeak",
-              fontSize: "1.25rem",
+              fontSize: { base: "1rem", md: "1.25rem" },
               fontWeight: 500,
-              lineHeight: "1.75rem",
-              letterSpacing: "-0.005rem",
+              lineHeight: { base: "1.5rem", md: "1.75rem" },
+              letterSpacing: { md: "-0.005rem" },
             })}
           >
             {credentialAttributes[artworkKey].requirement}
@@ -353,9 +353,9 @@ export default function CredentialDrawer({ artworkKey, children }: { artworkKey:
             <a
               className={css({
                 color: "text",
-                fontSize: "1rem",
+                fontSize: { base: "0.875rem", md: "1rem" },
                 fontWeight: 650,
-                lineHeight: "1.5rem",
+                lineHeight: { base: "1.25rem", md: "1.5rem" },
               })}
               href={credentialAttributes[artworkKey].url}
               target="_blank"
