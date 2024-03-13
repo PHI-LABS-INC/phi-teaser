@@ -7,8 +7,8 @@ import { ArtworkKey, artworkSticker } from "./draggable";
 
 // refactor: openTransformCva
 const openTransform = {
-  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -6.5rem) scale(0.45)",
-  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.7)",
+  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
+  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
@@ -98,7 +98,13 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
 
   return (
     <Root open={open} onOpenChange={setOpen}>
-      <Trigger asChild className={css({ _focus: { outline: "none" } })} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+      <Trigger
+        asChild
+        className={css({ _focus: { outline: "none" } })}
+        onClick={() => {
+          window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
+        }}
+      >
         <span
           className={cx(
             open
