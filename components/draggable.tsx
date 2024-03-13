@@ -45,7 +45,7 @@ function Sticker({ id, children }: { id: PuzzleKey | ArtworkKey; children: React
         h: "max-content",
         opacity: isDragging ? 0.5 : 1,
         _hover: {
-          transform: "scale(1.075)",
+          transform: id !== "farcaster-blush" ? "scale(1.075)" : undefined,
           transition: "cubic-bezier(0.175,0.885,0.32,1.1)",
           transitionProperty: "transform",
           transitionDuration: "0.2s",

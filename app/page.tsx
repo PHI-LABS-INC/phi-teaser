@@ -15,17 +15,24 @@ export default function Page() {
   return (
     <>
       <div
-        className={flex({
+        className={center({
           zIndex: "header",
           position: "fixed",
-          left: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem)" },
-          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem)" },
-          justify: "space-between",
-          p: { base: "0.75rem", md: "0.5rem" },
-          w: { base: "calc(100vw - 2 * (1rem + 0.75rem))", md: "calc(100vw - 2 * (1rem + 1.25rem))" },
+          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem + 0.5rem)" },
+          left: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem + 0.5rem)" },
+          h: { base: "2.25rem", md: "3rem" },
         })}
       >
         <Image src={Logo} alt="phi-logo" />
+      </div>
+      <div
+        className={css({
+          zIndex: "header",
+          position: "fixed",
+          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem + 0.5rem)" },
+          right: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem + 0.5rem)" },
+        })}
+      >
         <Wallet />
       </div>
 
@@ -37,8 +44,7 @@ export default function Page() {
           border: "1px solid",
           borderColor: "border",
           borderRadius: "1rem",
-          // TODO
-          background: { base: "url('/dot.png'), 25px 25px repeat, #FFF", md: "url('/dot.png'), 50px 50px repeat, #FFF" },
+          background: "url('/dot.png'), 50px 50px repeat, #FFF",
         })}
       >
         <Canvas />
