@@ -21,64 +21,64 @@ const defaultTransformCva = cva({
   variants: {
     artworkKey: {
       "chess-uniswap": {
-        transform: defaultTransform({ x: 0, y: 16 }),
+        transform: defaultTransform({ x: 1.25, y: 15.5 }),
       },
       "crowd-front": {
-        transform: defaultTransform({ x: 0, y: -7 }),
+        transform: defaultTransform({ x: 1.625, y: -8.25 }),
       },
       "hash-hunter-aave": {
-        transform: defaultTransform({ x: -5, y: 8 }),
+        transform: defaultTransform({ x: -5, y: 9 }),
       },
       "moduler-believer": {
-        transform: defaultTransform({ x: -10, y: 4 }),
+        transform: defaultTransform({ x: -9, y: 3.25 }),
       },
       "ethereum-builder": {
-        transform: defaultTransform({ x: 1, y: 6 }),
+        transform: defaultTransform({ x: 1.5, y: 7.25 }),
       },
       wawa: {
-        transform: defaultTransform({ x: 0, y: -16 }),
+        transform: defaultTransform({ x: 0, y: -18 }),
       },
       "ethereum-space-station": {
-        transform: defaultTransform({ x: -7, y: -15 }, "rotate(-15deg)"),
+        transform: defaultTransform({ x: -4.5, y: -16.5 }, "rotate(-15deg)"),
       },
       "gnosis-owl": {
-        transform: defaultTransform({ x: 6, y: 12 }),
+        transform: defaultTransform({ x: 11, y: 15.25 }),
       },
       "ds-planet": {
-        transform: defaultTransform({ x: 9, y: -12 }),
+        transform: defaultTransform({ x: 12.125, y: -13 }),
       },
       "arb-game": {
-        transform: defaultTransform({ x: 17, y: 6 }, "rotate(19deg)"),
+        transform: defaultTransform({ x: 16, y: 6 }, "rotate(19deg)"),
       },
       "op-game": {
-        transform: defaultTransform({ x: 11, y: -2 }, "rotate(19deg)"),
+        transform: defaultTransform({ x: 10.25, y: -1 }, "rotate(19deg)"),
       },
       "basepaint-nouns-base": {
-        transform: defaultTransform({ x: -14, y: -10 }, "rotate(-19deg)"),
+        transform: defaultTransform({ x: -11, y: -5.5 }, "rotate(-19deg)"),
       },
       "basepaint-mickymouse-cc0": {
-        transform: defaultTransform({ x: 16, y: -5 }, "rotate(30deg)"),
+        transform: defaultTransform({ x: 13.5, y: -4 }, "rotate(30deg)"),
       },
       "ens-newbie": {
-        transform: defaultTransform({ x: 7, y: 5 }),
+        transform: defaultTransform({ x: 10, y: 5.8 }),
       },
       "ethereum-first-tx-date": {
-        transform: defaultTransform({ x: -10, y: 20 }),
+        transform: defaultTransform({ x: -7.5, y: 19.75 }),
       },
       "shib-profit": {
-        transform: defaultTransform({ x: -20, y: -11 }),
+        transform: defaultTransform({ x: -16.5, y: -11 }),
       },
       "op-airdrop": {
-        transform: defaultTransform({ x: 11, y: -23 }),
+        transform: defaultTransform({ x: 12, y: -23 }),
       },
       heartbeat: {
-        transform: defaultTransform({ x: -4, y: 16 }),
+        transform: defaultTransform({ x: -2.75, y: 14.75 }),
       },
       "piggy-bank": {
-        transform: defaultTransform({ x: -14, y: 14 }),
+        transform: defaultTransform({ x: -12.75, y: 13.25 }),
       },
       "sepolia-builder": {
-        transform: defaultTransform({ x: -17, y: 0 }, "rotate(-19deg)"),
+        transform: defaultTransform({ x: -12.125, y: 2 }, "rotate(-19deg)"),
       },
       "farcaster-blush": {
         transform: defaultTransform({ x: 0, y: 0 }, "rotate(-23deg)"),

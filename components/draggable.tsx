@@ -127,7 +127,7 @@ export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   ),
   "crowd-front": (
     <Sticker id="crowd-front">
-      <Image src={CrowdFront} height={256 * 2} alt="crowd-front" priority />
+      <Image src={CrowdFront} height={216 * 2} alt="crowd-front" priority />
     </Sticker>
   ),
   "hash-hunter-aave": (
