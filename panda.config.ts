@@ -188,6 +188,14 @@ export default defineConfig({
           "0%": { opacity: 1, transform: "translate(-50%, -50%) scale(1)" },
           "100%": { opacity: 0, transform: "translate(-50%, -50%) scale(0.9)" },
         },
+        modalInBottom: {
+          "0%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+          "100%": { opacity: 1, transform: "translate(0, 0)" },
+        },
+        modalOutBottom: {
+          "0%": { opacity: 1, transform: "translate(0, 0)" },
+          "100%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+        },
       },
     },
   },
