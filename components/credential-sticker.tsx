@@ -2,242 +2,93 @@ import { useState } from "react";
 import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
+import { credentialAttributes } from "@/lib/credential-attributes";
 import { ArtworkKey, artworkSticker } from "./draggable";
 
+// refactor: openTransformCva
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.5)",
   md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.7)",
 };
+const openTransformfarcaster = { base: openTransform.base + " scale(0.5)", md: openTransform.md + " scale(0.5)" };
 
-const farcasterBlushTransform = {
-  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.125)",
-  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.25)",
-};
-
-const defaultTransform = (position: { base: string; md: string }) => ({
-  base: "translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%)" + " " + position.base + " " + "scale(0.166)",
-  md: "translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%)" + " " + position.md + " " + "scale(0.5)",
+const defaultTransform = (position: { x: number; y: number }, opt?: string) => ({
+  base: `translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%) translate(${position.x / 3}rem, ${position.y / 3}rem) scale(0.166) ${opt || ""}`,
+  md: `translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%) translate(${position.x}rem, ${position.y}rem) scale(0.5) ${opt || ""}`,
 });
 
-const transformCva = (open: boolean) => {
-  return cva({
-    variants: {
-      artworkKey: {
-        "chess-uniswap": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(0, calc(16rem/3))", md: "translate(0, 16rem)" }),
-        },
-        "crowd-front": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(0, calc(-7rem/3))", md: "translate(0rem, -7rem)" }),
-        },
-        "hash-hunter-aave": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-5rem/3), calc(8rem/3))", md: "translate(-5rem, 8rem)" }),
-        },
-        "moduler-believer": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-10rem/3), calc(4rem/3))", md: "translate(-10rem, 4rem)" }),
-        },
-        "ethereum-builder": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(1rem/3), calc(6rem/3))", md: "translate(1rem, 6rem)" }),
-        },
-        wawa: {
-          transform: open ? openTransform : defaultTransform({ base: "translate(0, calc(-16rem/3))", md: "translate(0, -16rem)" }),
-        },
-        "ethereum-space-station": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-7rem/3), calc(-15rem/3))", md: "translate(-7rem, -15rem)" }),
-        },
-        "gnosis-owl": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(6rem/3), calc(12rem/3))", md: "translate(6rem, 12rem)" }),
-        },
-        "ds-planet": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(9rem/3), calc(-12rem/3))", md: "translate(9rem, -12rem)" }),
-        },
-        "arb-game": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(17rem/3), calc(6rem/3))", md: "translate(17rem, 6rem)" }),
-        },
-        "op-game": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(11rem/3), calc(-2rem/3))", md: "translate(11rem, -2rem)" }),
-        },
-        "basepaint-nouns-base": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-14rem/3), calc(-10rem/3))", md: "translate(-14rem, -10rem)" }),
-        },
-        "basepaint-mickymouse-cc0": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(16rem/3), calc(-5rem/3))", md: "translate(16rem, -5rem)" }),
-        },
-        "ens-newbie": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(7rem/3), calc(5rem/3))", md: "translate(7rem, 5rem)" }),
-        },
-        "ethereum-first-tx-date": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-10rem/3), calc(20rem/3))", md: "translate(-10rem, 20rem)" }),
-        },
-        "shib-profit": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-20rem/3), calc(-11rem/3))", md: "translate(-20rem, -11rem)" }),
-        },
-        "op-airdrop": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(11rem/3), calc(-23rem/3))", md: "translate(11rem, -23rem)" }),
-        },
-        heartbeat: {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-4rem/3), calc(16rem/3))", md: "translate(-4rem, 16rem)" }),
-        },
-        "piggy-bank": {
-          transform: open
-            ? openTransform
-            : defaultTransform({ base: "translate(calc(-14rem/3), calc(14rem/3))", md: "translate(-14rem, 14rem)" }),
-        },
-        "sepolia-builder": {
-          transform: open ? openTransform : defaultTransform({ base: "translate(calc(-17rem/3), 0)", md: "translate(-17rem, 0)" }),
-        },
-        "farcaster-blush": {
-          transform: open ? farcasterBlushTransform : defaultTransform({ base: "translate(0, 0)", md: "translate(0, 0)" }),
-        },
-        phi: {
-          transform: open ? openTransform : defaultTransform({ base: "translate(0, 0)", md: "translate(0, 0)" }),
-        },
+const defaultTransformCva = cva({
+  variants: {
+    artworkKey: {
+      "chess-uniswap": {
+        transform: defaultTransform({ x: 0, y: 16 }),
+      },
+      "crowd-front": {
+        transform: defaultTransform({ x: 0, y: -7 }),
+      },
+      "hash-hunter-aave": {
+        transform: defaultTransform({ x: -5, y: 8 }),
+      },
+      "moduler-believer": {
+        transform: defaultTransform({ x: -10, y: 4 }),
+      },
+      "ethereum-builder": {
+        transform: defaultTransform({ x: 1, y: 6 }),
+      },
+      wawa: {
+        transform: defaultTransform({ x: 0, y: -16 }),
+      },
+      "ethereum-space-station": {
+        transform: defaultTransform({ x: -7, y: -15 }, "rotate(-15deg)"),
+      },
+      "gnosis-owl": {
+        transform: defaultTransform({ x: 6, y: 12 }),
+      },
+      "ds-planet": {
+        transform: defaultTransform({ x: 9, y: -12 }),
+      },
+      "arb-game": {
+        transform: defaultTransform({ x: 17, y: 6 }, "rotate(19deg)"),
+      },
+      "op-game": {
+        transform: defaultTransform({ x: 11, y: -2 }, "rotate(19deg)"),
+      },
+      "basepaint-nouns-base": {
+        transform: defaultTransform({ x: -14, y: -10 }, "rotate(-19deg)"),
+      },
+      "basepaint-mickymouse-cc0": {
+        transform: defaultTransform({ x: 16, y: -5 }, "rotate(30deg)"),
+      },
+      "ens-newbie": {
+        transform: defaultTransform({ x: 7, y: 5 }),
+      },
+      "ethereum-first-tx-date": {
+        transform: defaultTransform({ x: -10, y: 20 }),
+      },
+      "shib-profit": {
+        transform: defaultTransform({ x: -20, y: -11 }),
+      },
+      "op-airdrop": {
+        transform: defaultTransform({ x: 11, y: -23 }),
+      },
+      heartbeat: {
+        transform: defaultTransform({ x: -4, y: 16 }),
+      },
+      "piggy-bank": {
+        transform: defaultTransform({ x: -14, y: 14 }),
+      },
+      "sepolia-builder": {
+        transform: defaultTransform({ x: -17, y: 0 }, "rotate(-19deg)"),
+      },
+      "farcaster-blush": {
+        transform: defaultTransform({ x: 0, y: 0 }, "rotate(-23deg)"),
+      },
+      phi: {
+        transform: defaultTransform({ x: 0, y: 0 }),
       },
     },
-  });
-};
-
-const credentialAttributes: Record<ArtworkKey, { title: string; requirement: string; url: string }> = {
-  "chess-uniswap": {
-    title: "Uniswap Newbie",
-    requirement: "Swap once on Uniswap V3",
-    url: "https://uniswap.org/",
   },
-  "crowd-front": {
-    title: "Governance Voter",
-    requirement: "Vote once in Arbitrum Governance",
-    url: "https://www.tally.xyz/gov/arbitrum/",
-  },
-  "hash-hunter-aave": {
-    title: "Hash Hunter - Uniswap",
-    requirement: "xxxxx",
-    url: "https://uniswap.org/",
-  },
-  "moduler-believer": {
-    title: "Moduler Believer",
-    requirement: "Claim $TIA airdrop",
-    url: "https://celestia.org/",
-  },
-  "ethereum-builder": {
-    title: "Ethereum Builder",
-    requirement: "Participate ETH Global Hackathon",
-    url: "https://app.airstack.xyz/query/qbCWxsxdyu/",
-  },
-  wawa: {
-    title: "Wawa",
-    requirement: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
-    url: "https://wawa.philand.xyz/",
-  },
-  "ethereum-space-station": {
-    title: "Ethereum Space Station",
-    requirement: "xxxxx",
-    url: "https://etherscan.io/",
-  },
-  "gnosis-owl": {
-    title: "Gnosis Owl",
-    requirement: "xxxxx",
-    url: "https://gnosis.io/",
-  },
-  "ds-planet": {
-    title: "DS Planet",
-    requirement: "xxxxx",
-    url: "https://dsplanet.io/",
-  },
-  "arb-game": {
-    title: "Arb Game",
-    requirement: "xxxxx",
-    url: "https://arbgame.com/",
-  },
-  "op-game": {
-    title: "OP Game",
-    requirement: "xxxxx",
-    url: "https://opgame.io/",
-  },
-  "basepaint-nouns-base": {
-    title: "Basepaint Nouns Base",
-    requirement: "xxxxx",
-    url: "https://basepaint.io/",
-  },
-  "basepaint-mickymouse-cc0": {
-    title: "Basepaint Mickymouse CC0",
-    requirement: "xxxxx",
-    url: "https://basepaint.io/",
-  },
-  "ens-newbie": {
-    title: "ENS Newbie",
-    requirement: "xxxxx",
-    url: "https://app.ens.domains/",
-  },
-  "ethereum-first-tx-date": {
-    title: "Ethereum First Tx Date",
-    requirement: "xxxxx",
-    url: "https://etherscan.io/",
-  },
-  "shib-profit": {
-    title: "Shib Profit",
-    requirement: "xxxxx",
-    url: "https://shibainu.io/",
-  },
-  "op-airdrop": {
-    title: "OP Airdrop",
-    requirement: "xxxxx",
-    url: "https://op.com/",
-  },
-  heartbeat: {
-    title: "Heartbeat",
-    requirement: "xxxxx",
-    url: "https://heartbeat.com/",
-  },
-  "piggy-bank": {
-    title: "Piggy Bank",
-    requirement: "xxxxx",
-    url: "https://piggybank.com/",
-  },
-  "sepolia-builder": {
-    title: "Sepolia Builder",
-    requirement: "xxxxx",
-    url: "https://sepolia.io/",
-  },
-  "farcaster-blush": {
-    title: "Farcaster Blush",
-    requirement: "xxxxx",
-    url: "https://farcaster.io/",
-  },
-  phi: {
-    title: "Phi",
-    requirement: "xxxxx",
-    url: "https://phi.com/",
-  },
-};
+});
 
 export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkKey }) {
   const [open, setOpen] = useState(false);
@@ -247,7 +98,9 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
       <Trigger asChild className={css({ _focus: { outline: "none" } })} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
         <span
           className={cx(
-            transformCva(open)({ artworkKey }),
+            open
+              ? css({ transform: artworkKey === "farcaster-blush" ? openTransformfarcaster : openTransform })
+              : defaultTransformCva({ artworkKey }),
             css({
               zIndex: open ? "draggable-active" : undefined,
               position: "absolute",
