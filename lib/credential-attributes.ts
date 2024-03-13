@@ -91,18 +91,18 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     requirement: "All-time profit of $SHIB",
     url: "https://coinmarketcap.com/currencies/shiba-inu/",
   },
-  "farcaster-blush": {
+  "farcaster-ink": {
     title: "Farcaster Ink",
     requirement: "Cast once on Warpcast",
     url: "https://farcaster.xyz/",
   },
   "basepaint-nouns-base": {
-    title: "The Yellow Collective on BASE",
+    title: "The Yellow Collective on Base",
     requirement: "Mint a Collective Nouns on Base",
     url: "https://www.yellowcollective.xyz/",
   },
   "basepaint-mickymouse-cc0": {
-    title: "celebrate Mickey Mouse CC0",
+    title: "Celebrate Mickey Mouse CC0",
     requirement: "mint Day #146 on Basepaint",
     url: "https://basepaint.xyz/canvas/146",
   },

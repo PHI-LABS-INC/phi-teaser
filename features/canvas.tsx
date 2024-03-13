@@ -1,14 +1,17 @@
 "use client";
 
 import { useId, useState } from "react";
-import { DndContext, DragOverlay, MouseSensor, useSensor, useSensors } from "@dnd-kit/core";
+import { DndContext, DragOverlay, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
 import CredentialSticker from "@/components/credential-sticker";
 import { ArtworkKey, artworkSticker } from "@/components/draggable";
 
 export function Canvas() {
   const dndCtxId = useId();
-  const sensors = useSensors(useSensor(MouseSensor, { activationConstraint: { distance: 5 } }));
+  const sensors = useSensors(
+    useSensor(MouseSensor, { activationConstraint: { distance: 10 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 250, tolerance: 5 } })
+  );
   const [activeId, setActiveId] = useState<ArtworkKey | null>(null);
 
   return (
@@ -19,7 +22,7 @@ export function Canvas() {
         onDragStart={(event) => setActiveId(event.active.id as ArtworkKey)}
         onDragEnd={() => setActiveId(null)}
       >
-        <CredentialSticker artworkKey="farcaster-blush" />
+        <CredentialSticker artworkKey="farcaster-ink" />
         <CredentialSticker artworkKey="basepaint-nouns-base" />
         <CredentialSticker artworkKey="shib-profit" />
         <CredentialSticker artworkKey="basepaint-mickymouse-cc0" />

@@ -34,7 +34,7 @@ import OpAirdrop from "@/public/artwork/op-airdrop.png";
 import Heartbeat from "@/public/artwork/heartbeat.png";
 import PiggyBank from "@/public/artwork/piggy-bank.png";
 import SepoliaBuilder from "@/public/artwork/sepolia-builder.png";
-import FarcasterBlush from "@/public/artwork/farcaster-blush.png";
+import FarcasterInk from "@/public/artwork/farcaster-ink.png";
 import Phi from "@/public/artwork/phi.png";
 import Gitcoin from "@/public/artwork/gitcoin.png";
 
@@ -45,11 +45,10 @@ function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey
     <button
       ref={setNodeRef}
       className={css({
-        userSelect: "none",
-        touchAction: "none",
+        touchAction: "manipulation",
+        opacity: isDragging ? 0.5 : 1,
         w: "max-content",
         h: "max-content",
-        opacity: isDragging ? 0.5 : 1,
         _hover: {
           transform: "scale(1.075)",
           transition: "cubic-bezier(0.175,0.885,0.32,1.1)",
@@ -147,7 +146,7 @@ export type ArtworkKey =
   | "heartbeat"
   | "piggy-bank"
   | "sepolia-builder"
-  | "farcaster-blush"
+  | "farcaster-ink"
   | "phi"
   | "gitcoin";
 
@@ -252,9 +251,9 @@ export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
       <Image src={SepoliaBuilder} height={236 * 2} alt="sepolia-builder" priority />
     </Sticker>
   ),
-  "farcaster-blush": (
-    <Sticker id="farcaster-blush">
-      <Image src={FarcasterBlush} height={638 * 2} alt="farcaster-blush" priority />
+  "farcaster-ink": (
+    <Sticker id="farcaster-ink">
+      <Image src={FarcasterInk} height={638 * 2} alt="farcaster-ink" priority />
     </Sticker>
   ),
   phi: (

@@ -7,10 +7,10 @@ import { ArtworkKey, artworkSticker } from "./draggable";
 
 // refactor: openTransformCva
 const openTransform = {
-  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.5)",
+  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -6.5rem) scale(0.45)",
   md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) translate(0, -8rem) scale(0.7)",
 };
-const openTransformfarcaster = { base: openTransform.base + " scale(0.5)", md: openTransform.md + " scale(0.5)" };
+const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
 const defaultTransform = (position: { x: number; y: number }, opt?: string) => ({
   base: `translate(calc(50vw - 1rem * 2), calc(434px / 2)) translate(-50%, -50%) translate(${position.x / 3}rem, ${position.y / 3}rem) scale(0.166) ${opt || ""}`,
@@ -80,7 +80,7 @@ const defaultTransformCva = cva({
       "sepolia-builder": {
         transform: defaultTransform({ x: -12.125, y: 2 }, "rotate(-19deg)"),
       },
-      "farcaster-blush": {
+      "farcaster-ink": {
         transform: defaultTransform({ x: 0, y: 0 }, "rotate(-23deg)"),
       },
       phi: {
@@ -102,7 +102,7 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
         <span
           className={cx(
             open
-              ? css({ transform: artworkKey === "farcaster-blush" ? openTransformfarcaster : openTransform })
+              ? css({ transform: artworkKey === "farcaster-ink" ? openTransformfarcaster : openTransform })
               : defaultTransformCva({ artworkKey }),
             css({
               zIndex: open ? "draggable-active" : undefined,
@@ -146,7 +146,7 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
         >
           <div className={flex({ justify: "space-between", w: "100%" })}>
             <div />
-            <Close className={css({ cursor: "pointer" })}>
+            <Close className={css({ cursor: "pointer", _focus: { outline: "none" } })}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M18 6L6 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M6 6L18 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
