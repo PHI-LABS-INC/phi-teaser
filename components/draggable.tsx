@@ -8,6 +8,11 @@ import PuzzleCommunity from "@/public/puzzle/community.png";
 import PuzzleVisualize from "@/public/puzzle/visualize.png";
 import PuzzleRed from "@/public/puzzle/red.png";
 import PuzzleBlue from "@/public/puzzle/blue.png";
+// free-artworks
+import CredentialOwner from "@/public/free-artwork/credential-owner.png";
+import Curator from "@/public/free-artwork/curator.png";
+import Verifier from "@/public/free-artwork/verifier.png";
+import Artist from "@/public/free-artwork/artist.png";
 // artworks
 import ChessUniswap from "@/public/artwork/chess-uniswap.png";
 import CrowdFront from "@/public/artwork/crowd-front.png";
@@ -33,7 +38,7 @@ import FarcasterBlush from "@/public/artwork/farcaster-blush.png";
 import Phi from "@/public/artwork/phi.png";
 import Gitcoin from "@/public/artwork/gitcoin.png";
 
-function Sticker({ id, children }: { id: PuzzleKey | ArtworkKey; children: React.ReactNode }) {
+function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey; children: React.ReactNode }) {
   const { attributes, listeners, isDragging, setNodeRef } = useDraggable({ id });
 
   return (
@@ -92,6 +97,31 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   community: (
     <Sticker id="community">
       <Image src={PuzzleCommunity} alt="community" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
+    </Sticker>
+  ),
+};
+
+export type FreeArtworkKey = "credential-owner" | "curator" | "verifier" | "artist";
+
+export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
+  "credential-owner": (
+    <Sticker id="credential-owner">
+      <Image src={CredentialOwner} alt="credential-owner" height={70.86 * 2} priority />
+    </Sticker>
+  ),
+  curator: (
+    <Sticker id="curator">
+      <Image src={Curator} alt="curator" height={70.86 * 2} priority />
+    </Sticker>
+  ),
+  verifier: (
+    <Sticker id="verifier">
+      <Image src={Verifier} alt="verifier" height={70.86 * 2} priority />
+    </Sticker>
+  ),
+  artist: (
+    <Sticker id="artist">
+      <Image src={Artist} alt="artist" height={70.86 * 2} priority />
     </Sticker>
   ),
 };
