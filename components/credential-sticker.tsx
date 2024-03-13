@@ -86,6 +86,9 @@ const defaultTransformCva = cva({
       phi: {
         transform: defaultTransform({ x: 0, y: 0 }),
       },
+      gitcoin: {
+        transform: defaultTransform({ x: -20, y: 10 }),
+      },
     },
   },
 });

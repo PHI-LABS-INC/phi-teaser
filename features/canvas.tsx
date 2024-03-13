@@ -41,6 +41,7 @@ export function Canvas() {
         <CredentialSticker artworkKey="chess-uniswap" />
         <CredentialSticker artworkKey="ethereum-first-tx-date" />
         <CredentialSticker artworkKey="phi" />
+        <CredentialSticker artworkKey="gitcoin" />
         <DragOverlay dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}>
           {activeId ? artworkSticker[activeId] : null}
         </DragOverlay>

@@ -71,6 +71,11 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     requirement: "A beating heart based on your on-chain activity",
     url: "https://heartbeat.themetagame.xyz/",
   },
+  gitcoin: {
+    title: "Gitcoin",
+    requirement: "Donate once on Gitcoin",
+    url: "https://gitcoin.co/",
+  },
 
   // ------------------------------------------------
   "ethereum-first-tx-date": {

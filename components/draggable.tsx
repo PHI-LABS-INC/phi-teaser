@@ -31,6 +31,7 @@ import PiggyBank from "@/public/artwork/piggy-bank.png";
 import SepoliaBuilder from "@/public/artwork/sepolia-builder.png";
 import FarcasterBlush from "@/public/artwork/farcaster-blush.png";
 import Phi from "@/public/artwork/phi.png";
+import Gitcoin from "@/public/artwork/gitcoin.png";
 
 function Sticker({ id, children }: { id: PuzzleKey | ArtworkKey; children: React.ReactNode }) {
   const { attributes, listeners, isDragging, setNodeRef } = useDraggable({ id });
@@ -117,7 +118,8 @@ export type ArtworkKey =
   | "piggy-bank"
   | "sepolia-builder"
   | "farcaster-blush"
-  | "phi";
+  | "phi"
+  | "gitcoin";
 
 export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   "chess-uniswap": (
@@ -228,6 +230,11 @@ export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   phi: (
     <Sticker id="phi">
       <Image src={Phi} alt="phi" height={151 * 2} priority />
+    </Sticker>
+  ),
+  gitcoin: (
+    <Sticker id="gitcoin">
+      <Image src={Gitcoin} alt="gitcoin" height={192 * 2} priority />
     </Sticker>
   ),
 };
