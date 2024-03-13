@@ -45,7 +45,7 @@ function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey
     <button
       ref={setNodeRef}
       className={css({
-        touchAction: "manipulation",
+        touchAction: isPuzzleKey(id) ? "none" : "manipulation",
         opacity: isDragging ? 0.5 : 1,
         w: "max-content",
         h: "max-content",
@@ -66,6 +66,10 @@ function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey
 }
 
 export type PuzzleKey = "creators" | "decentralized" | "community" | "visualize" | "red" | "blue";
+
+function isPuzzleKey(key: string): key is PuzzleKey {
+  return ["creators", "decentralized", "community", "visualize", "red", "blue"].includes(key);
+}
 
 export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   red: (
