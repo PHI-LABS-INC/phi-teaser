@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { base, sepolia } from "viem/chains";
-import { useAccount, useSwitchChain, useWriteContract } from "wagmi";
+import { useAccount, useReadContract, useSwitchChain, useWriteContract } from "wagmi";
 import { useModal } from "connectkit";
 import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
@@ -80,12 +80,14 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
   const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
   const [open, setOpen] = useState(false);
+  const { data: tokenId, isFetched } = useReadContract({ abi, address: phiTeaserNFTContract, functionName: "addressToTokenId" });
   const { data: hash, status, writeContractAsync } = useWriteContract();
+  const minted = isFetched && tokenId !== BigInt(0);
 
   return (
     <Root open={open} onOpenChange={setOpen}>
       <Trigger asChild>
-        <button className={mintCva({ size: "md" })} disabled={disabled}>
+        <button className={mintCva({ size: "md" })} disabled={disabled || minted}>
           {disabled && (
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -104,7 +106,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
               />
             </svg>
           )}
-          {disabled ? "Mint" : "Mint For Free"}
+          {minted ? "Minted" : disabled ? "Mint" : "Mint For Free"}
         </button>
       </Trigger>
       <Portal>
