@@ -8,7 +8,7 @@ import { ArtworkKey, artworkSticker } from "./draggable";
 // refactor: openTransformCva
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
-  md: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
+  md: "translate(50vw, 50vh) translate(calc(-25rem / 2), calc(1024px / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
@@ -135,14 +135,20 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
           className={vstack({
             zIndex: "drawer-content",
             position: "fixed",
-            bottom: { base: "1rem", md: "4rem" },
-            left: "50%",
-            translate: "-50%",
+            bottom: { base: "1rem", md: "auto" },
+            left: { base: "50%", md: "auto" },
+            top: { md: "1rem" },
+            right: { md: "1rem" },
+            translate: { base: "-50%", md: "none" },
             alignItems: "flex-start",
-            w: { base: "calc(100vw - 4rem)", md: "40rem" },
+            w: { base: "calc(100vw - 4rem)", md: "25rem" },
+            h: { md: "calc(100dvh - 2rem)" },
             p: { base: "1rem", md: "1.5rem" },
             gap: { base: "0.5rem", md: "1rem" },
-            animation: open ? "drawerIn .4s forwards" : "drawerOut .4s forwards",
+            animation: {
+              base: open ? "modalInBottom .4s forwards" : "modalOutBottom .4s forwards",
+              md: open ? "drawerIn .4s forwards" : "drawerOut .4s forwards",
+            },
             borderRadius: "0.5rem",
             border: "1px solid",
             borderColor: "border",

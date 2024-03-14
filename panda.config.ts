@@ -173,12 +173,12 @@ export default defineConfig({
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
         drawerIn: {
-          "0%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+          "0%": { opacity: 0, transform: "translate(12.5rem, 0)" },
           "100%": { opacity: 1, transform: "translate(0, 0)" },
         },
         drawerOut: {
           "0%": { opacity: 1, transform: "translate(0, 0)" },
-          "100%": { opacity: 0, transform: "translate(0, 12.5rem)" },
+          "100%": { opacity: 0, transform: "translate(12.5rem, 0)" },
         },
         modalIn: {
           "0%": { opacity: 0, transform: "translate(-50%, -50%) scale(0.9)" },
