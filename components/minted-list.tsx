@@ -31,7 +31,7 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
             zIndex: "modal-overlay",
             position: "fixed",
             inset: 0,
-            background: "rgba(24, 20, 18, 0.12)",
+            background: "rgba(24, 20, 18, 0.32)",
           })}
         />
         <Content
