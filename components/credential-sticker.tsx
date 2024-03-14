@@ -181,6 +181,19 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
           >
             {credentialAttributes[artworkKey].requirement}
           </p>
+          {credentialAttributes[artworkKey].description && (
+            <p
+              className={css({
+                color: "textWeaker",
+                fontSize: { base: "0.75rem", md: "1rem" },
+                fontWeight: 500,
+                lineHeight: { base: "1rem", md: "1.5rem" },
+                letterSpacing: { md: "-0.005rem" },
+              })}
+            >
+              {credentialAttributes[artworkKey].description}
+            </p>
+          )}
           <div
             className={center({
               p: "0.25rem 0.75rem",

@@ -1,6 +1,6 @@
 import { ArtworkKey } from "@/components/draggable";
 
-export const credentialAttributes: Record<ArtworkKey, { title: string; requirement: string; url: string }> = {
+export const credentialAttributes: Record<ArtworkKey, { title: string; requirement: string; url: string; description?: string }> = {
   "chess-uniswap": {
     title: "Uniswap Newbie",
     requirement: "Swap once on Uniswap V3",
@@ -28,7 +28,8 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
   },
   wawa: {
     title: "Wawa",
-    requirement: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
+    requirement: "First Tx Date / Tx Counts / Phi Active Rank / Max Gas Price",
+    description: "An NFT collection like no other — with NFTs generated based on crypto community members' wallet activity.",
     url: "https://wawa.philand.xyz/",
   },
   "ethereum-space-station": {
