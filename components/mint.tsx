@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { base, sepolia } from "viem/chains";
@@ -10,6 +11,8 @@ import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import abi from "@/lib/abi";
 import { phiTeaserNFTContract } from "@/lib/config";
+import X from "@/public/x.svg";
+import Warpcast from "@/public/warpcast.svg";
 
 const mintCva = cva({
   base: {
@@ -271,7 +274,9 @@ export function Mint({ disabled }: { disabled?: boolean }) {
             </div>
             {hash && status === "success" ? (
               <div className={vstack({ gap: { base: "1rem", md: "1.5rem" } })}>
-                <a
+                <Link
+                  href={`https://basescan.org/tx/${hash}`}
+                  target="_blank"
                   className={flex({
                     align: "center",
                     gap: "0.5rem",
@@ -280,10 +285,8 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                     border: "1px solid",
                     borderColor: "border",
                     bgColor: "bg",
-                    cursor: "pointer",
                     _hover: { bgColor: "gray.100" },
                     _active: { bgColor: "gray.200" },
-
                     color: "text",
                     textAlign: "center",
                     fontSize: "1rem",
@@ -303,8 +306,36 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                       stroke-linejoin="round"
                     />
                   </svg>
-                </a>
-                {/* TODO: social icons */}
+                </Link>
+                <div
+                  className={center({
+                    gap: "0.5rem",
+                    "& a": {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      w: "3rem",
+                      h: "3rem",
+                      padding: "0.75rem",
+                      borderRadius: "4rem",
+                    },
+                  })}
+                >
+                  <Link
+                    href="https://twitter.com/phi_xyz"
+                    target="_blank"
+                    className={css({ bgColor: "xBrandPrimary", _hover: { bgColor: "#2F2723" } })}
+                  >
+                    <Image src={X} width={24} height={24} alt="logo-x" />
+                  </Link>
+                  <Link
+                    href="https://twitter.com/phi_xyz"
+                    target="_blank"
+                    className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
+                  >
+                    <Image src={Warpcast} width={24} height={24} alt="logo-warpcast" />
+                  </Link>
+                </div>
               </div>
             ) : (
               <div className={vstack({ gap: "1rem" })}>
