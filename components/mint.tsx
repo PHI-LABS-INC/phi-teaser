@@ -275,7 +275,7 @@ export function Mint({ disabled }: { disabled?: boolean }) {
             {hash && status === "success" ? (
               <div className={vstack({ gap: { base: "1rem", md: "1.5rem" } })}>
                 <Link
-                  href={`https://basescan.org/tx/${hash}`}
+                  href={sepolia.blockExplorers.default.url + "/tx/" + hash}
                   target="_blank"
                   className={flex({
                     align: "center",
