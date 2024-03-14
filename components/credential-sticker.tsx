@@ -161,7 +161,7 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
           </div>
           <h2
             className={css({
-              color: "gray.800",
+              color: "text",
               fontSize: { base: "1.5rem", md: "2.1875rem" },
               fontWeight: 750,
               lineHeight: { base: "1.875rem", md: "2.5rem" },
@@ -172,7 +172,7 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
           </h2>
           <p
             className={css({
-              color: "textWeak",
+              color: "text",
               fontSize: { base: "1rem", md: "1.25rem" },
               fontWeight: 500,
               lineHeight: { base: "1.5rem", md: "1.75rem" },
@@ -184,10 +184,10 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
           {credentialAttributes[artworkKey].description && (
             <p
               className={css({
-                color: "textWeaker",
-                fontSize: { base: "0.75rem", md: "1rem" },
+                color: "textWeak",
+                fontSize: { base: "0.75rem", md: "0.875rem" },
                 fontWeight: 500,
-                lineHeight: { base: "1rem", md: "1.5rem" },
+                lineHeight: { base: "1rem", md: "1.25rem" },
                 letterSpacing: { md: "-0.005rem" },
               })}
             >
