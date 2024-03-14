@@ -1,8 +1,8 @@
-import Image from "next/image";
 import { useState } from "react";
 import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { flex, hstack, vstack } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 
 export function MintedList({ mintedList }: { mintedList: string[] }) {
   const [open, setOpen] = useState(false);
@@ -11,20 +11,12 @@ export function MintedList({ mintedList }: { mintedList: string[] }) {
     <Root open={open} onOpenChange={setOpen}>
       <Trigger asChild>
         <div className={flex({ align: "center", gap: "0.5rem", cursor: "pointer" })}>
-          <div
-            className={flex({
-              "& img": { borderRadius: "1rem", border: "2px solid", borderColor: "bg" },
-              "& :not(:first-child)": { ml: "-0.5rem" },
-            })}
-          >
+          <div className={flex({ "& :not(:first-child)": { ml: "-0.5rem" } })}>
             {mintedList.slice(0, 3).map((name) => (
-              <Image
-                key={name}
-                src={"https://metadata.ens.domains/mainnet/avatar/" + name}
-                width={24}
-                height={24}
-                alt={"ens-icon-" + name}
-              />
+              <Avatar key={name} className={css({ w: "1.5rem", h: "1.5rem", border: "2px solid", borderColor: "bg" })}>
+                <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + name} alt={"ens-icon-" + name} />
+                <AvatarFallback />
+              </Avatar>
             ))}
           </div>
           <div className={flex({ gap: "0.25rem", "& p": { fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" } })}>
@@ -98,13 +90,10 @@ export function MintedList({ mintedList }: { mintedList: string[] }) {
             {mintedList.map((name, i) => (
               <div key={name} className={flex({ justify: "space-between", align: "center", w: "100%" })}>
                 <div className={hstack({ gap: "0.5rem" })}>
-                  <Image
-                    src={"https://metadata.ens.domains/mainnet/avatar/" + name}
-                    width={32}
-                    height={32}
-                    alt="ens-icon"
-                    className={css({ borderRadius: "1rem", border: "2px solid", borderColor: "bg" })}
-                  />
+                  <Avatar key={name} className={css({ w: "2rem", h: "2rem", border: "2px solid", borderColor: "bg" })}>
+                    <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + name} alt={"ens-icon-" + name} />
+                    <AvatarFallback />
+                  </Avatar>
                   <p>{name}</p>
                 </div>
                 <p>#{i + 1}</p>

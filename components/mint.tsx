@@ -13,6 +13,7 @@ import abi from "@/lib/abi";
 import { phiTeaserNFTContract } from "@/lib/config";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 
 const mintCva = cva({
   base: {
@@ -259,13 +260,10 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             <div className={flex({ align: "center", gap: "0.5rem" })}>
               <div className={flex({ "& img": { borderRadius: "1rem" }, "& :not(:first-child)": { ml: "-0.5rem" } })}>
                 {mintedList.slice(0, 3).map((name) => (
-                  <Image
-                    key={name}
-                    src={"https://metadata.ens.domains/mainnet/avatar/" + name}
-                    width={24}
-                    height={24}
-                    alt={"ens-icon-" + name}
-                  />
+                  <Avatar key={name} className={css({ w: "1.5rem", h: "1.5rem", border: "2px solid", borderColor: "bg" })}>
+                    <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + name} alt={"ens-icon-" + name} />
+                    <AvatarFallback />
+                  </Avatar>
                 ))}
               </div>
               <div

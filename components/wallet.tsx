@@ -5,6 +5,7 @@ import { ConnectKitButton } from "connectkit";
 import { css } from "@/styled-system/css";
 import { flex } from "@/styled-system/patterns";
 import WalletIcon from "@/public/icon/wallet.svg";
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 
 export function Wallet() {
   return (
@@ -24,13 +25,10 @@ export function Wallet() {
               cursor: "pointer",
             })}
           >
-            <Image
-              src={"https://metadata.ens.domains/mainnet/avatar/" + ensName}
-              width={32}
-              height={32}
-              alt="ens-icon"
-              className={css({ borderRadius: "1.5rem", border: "2px solid", borderColor: "gray.200" })}
-            />
+            <Avatar className={css({ w: "2rem", h: "2rem", border: "2px solid", borderColor: "gray.200" })}>
+              <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + ensName} alt={"ens-icon-" + ensName} />
+              <AvatarFallback />
+            </Avatar>
             <p className={css({ color: "gray.800", fontSize: { base: "0.875rem", md: "1rem" }, fontWeight: 650 })}>
               {ensName || address?.slice(0, 6) + "..." + address?.slice(-4)}
             </p>
