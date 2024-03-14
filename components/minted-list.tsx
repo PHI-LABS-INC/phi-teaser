@@ -4,7 +4,7 @@ import { flex, hstack, vstack } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 
-export function MintedList({ mintedList }: { mintedList: string[] }) {
+export function MintedList({ totalSupply, mintedList }: { totalSupply: string; mintedList: string[] }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,7 +20,7 @@ export function MintedList({ mintedList }: { mintedList: string[] }) {
             ))}
           </div>
           <div className={flex({ gap: "0.25rem", "& p": { fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" } })}>
-            <p className={css({ color: "gray.900" })}>256</p>
+            <p className={css({ color: "gray.900" })}>{totalSupply}</p>
             <p className={css({ color: "gray.600" })}>Minted</p>
           </div>
         </div>

@@ -46,6 +46,21 @@ export default [
   },
   {
     anonymous: false,
+    inputs: [{ indexed: true, internalType: "address", name: "owner", type: "address" }],
+    name: "Initialized",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "address", name: "to", type: "address" },
+      { indexed: true, internalType: "uint256", name: "tokenId", type: "uint256" },
+    ],
+    name: "Minted",
+    type: "event",
+  },
+  {
+    anonymous: false,
     inputs: [{ indexed: true, internalType: "address", name: "pendingOwner", type: "address" }],
     name: "OwnershipHandoverCanceled",
     type: "event",
@@ -68,12 +83,28 @@ export default [
   {
     anonymous: false,
     inputs: [
+      { indexed: true, internalType: "address", name: "user", type: "address" },
+      { indexed: true, internalType: "uint256", name: "roles", type: "uint256" },
+    ],
+    name: "RolesUpdated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
       { indexed: true, internalType: "address", name: "from", type: "address" },
       { indexed: true, internalType: "address", name: "to", type: "address" },
       { indexed: true, internalType: "uint256", name: "id", type: "uint256" },
     ],
     name: "Transfer",
     type: "event",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "addressToTokenId",
+    outputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
@@ -99,13 +130,6 @@ export default [
     stateMutability: "view",
     type: "function",
   },
-  {
-    inputs: [{ internalType: "uint256", name: "_tokenId", type: "uint256" }],
-    name: "burn",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
   { inputs: [], name: "cancelOwnershipHandover", outputs: [], stateMutability: "payable", type: "function" },
   {
     inputs: [{ internalType: "address", name: "pendingOwner", type: "address" }],
@@ -118,6 +142,36 @@ export default [
     inputs: [{ internalType: "uint256", name: "id", type: "uint256" }],
     name: "getApproved",
     outputs: [{ internalType: "address", name: "result", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "user", type: "address" },
+      { internalType: "uint256", name: "roles", type: "uint256" },
+    ],
+    name: "grantRoles",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "user", type: "address" },
+      { internalType: "uint256", name: "roles", type: "uint256" },
+    ],
+    name: "hasAllRoles",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "user", type: "address" },
+      { internalType: "uint256", name: "roles", type: "uint256" },
+    ],
+    name: "hasAnyRole",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
@@ -142,7 +196,7 @@ export default [
     inputs: [{ internalType: "address", name: "to", type: "address" }],
     name: "mint",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
   { inputs: [], name: "name", outputs: [{ internalType: "string", name: "", type: "string" }], stateMutability: "pure", type: "function" },
@@ -169,7 +223,32 @@ export default [
   },
   { inputs: [], name: "queued", outputs: [{ internalType: "bool", name: "", type: "bool" }], stateMutability: "view", type: "function" },
   { inputs: [], name: "renounceOwnership", outputs: [], stateMutability: "payable", type: "function" },
+  {
+    inputs: [{ internalType: "uint256", name: "roles", type: "uint256" }],
+    name: "renounceRoles",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
   { inputs: [], name: "requestOwnershipHandover", outputs: [], stateMutability: "payable", type: "function" },
+  { inputs: [], name: "reveal", outputs: [{ internalType: "bool", name: "", type: "bool" }], stateMutability: "view", type: "function" },
+  {
+    inputs: [
+      { internalType: "address", name: "user", type: "address" },
+      { internalType: "uint256", name: "roles", type: "uint256" },
+    ],
+    name: "revokeRoles",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "rolesOf",
+    outputs: [{ internalType: "uint256", name: "roles", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
   {
     inputs: [
       { internalType: "address", name: "from", type: "address" },
@@ -218,6 +297,13 @@ export default [
     type: "function",
   },
   {
+    inputs: [{ internalType: "bool", name: "_reveal", type: "bool" }],
+    name: "setReveal",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "bytes4", name: "interfaceId", type: "bytes4" }],
     name: "supportsInterface",
     outputs: [{ internalType: "bool", name: "result", type: "bool" }],
@@ -229,6 +315,13 @@ export default [
     name: "symbol",
     outputs: [{ internalType: "string", name: "", type: "string" }],
     stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "tokenIdCounter",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
     type: "function",
   },
   {

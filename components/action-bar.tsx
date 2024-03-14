@@ -120,7 +120,7 @@ export function ActionBar({
           </Tooltip.Provider>
         </div>
         <div className={flex({ justify: "space-between", align: "center", gap: "1rem" })}>
-          <MintedList mintedList={mintedList} />
+          <MintedList totalSupply={totalSupply} mintedList={mintedList} />
           <Mint disabled={progress < 6} totalSupply={totalSupply} mintedList={mintedList} />
         </div>
       </div>
