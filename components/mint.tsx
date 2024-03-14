@@ -120,7 +120,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             zIndex: "modal-overlay",
             position: "fixed",
             inset: 0,
-            background: "rgba(24, 20, 18, 0.12)",
+            background: "rgba(24, 20, 18, 0.32)",
           })}
         />
         <Content
