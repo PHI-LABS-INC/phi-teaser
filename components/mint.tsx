@@ -80,7 +80,12 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
   const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
   const [open, setOpen] = useState(false);
-  const { data: tokenId, isFetched } = useReadContract({ abi, address: phiTeaserNFTContract, functionName: "addressToTokenId" });
+  const { data: tokenId, isFetched } = useReadContract({
+    abi,
+    address: phiTeaserNFTContract,
+    functionName: "addressToTokenId",
+    args: address ? [address] : undefined,
+  });
   const { data: hash, status, writeContractAsync } = useWriteContract();
   const minted = isFetched && tokenId !== BigInt(0);
 
