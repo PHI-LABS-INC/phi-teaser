@@ -16,7 +16,7 @@ export function Wallet() {
             className={flex({
               align: "center",
               gap: "0.5rem",
-              p: { base: "0.5rem 1rem", md: "0.75rem 1.5rem" },
+              p: { base: "0.375rem", md: "0.5rem" },
               borderRadius: "2.5rem",
               border: "1px solid rgba(0, 0, 0, 0.06)",
               bgColor: "gray.100",

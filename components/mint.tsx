@@ -1,14 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { base } from "viem/chains";
-import { useAccount, useSwitchChain } from "wagmi";
+import { base, sepolia } from "viem/chains";
+import { useAccount, useSwitchChain, useWriteContract } from "wagmi";
 import { useModal } from "connectkit";
 import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
-import { useWritePhiTetherNftMint } from "@/hooks/generated";
+import abi from "@/lib/abi";
+import { phiTeaserNFTContract } from "@/lib/config";
+import X from "@/public/x.svg";
+import Warpcast from "@/public/warpcast.svg";
 
 const mintCva = cva({
   base: {
@@ -75,7 +79,7 @@ export function Mint({ disabled }: { disabled?: boolean }) {
   const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
   const [open, setOpen] = useState(false);
-  const { writeContractAsync } = useWritePhiTetherNftMint();
+  const { data: hash, status, writeContractAsync } = useWriteContract();
 
   return (
     <Root open={open} onOpenChange={setOpen}>
@@ -268,38 +272,125 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                 <p className={css({ color: "gray.600" })}>Minted</p>
               </div>
             </div>
-            <div className={vstack({ gap: "1rem" })}>
-              <button
-                className={mintCva({ size: "md" })}
-                onClick={async () => {
-                  if (!address) {
-                    setOpenpenWalletModal(true);
-                    return;
-                  }
-                  if (chainId !== base.id) {
-                    switchChain({ chainId: base.id });
-                    return;
-                  }
-                  await writeContractAsync({ args: [address] });
-                  alert("Minted!");
-                }}
-                disabled={disabled}
-              >
-                {disabled ? "Mint" : "Mint For Free"}
-              </button>
-              <p
-                className={css({
-                  color: "gray.400",
-                  textAlign: "center",
-                  fontSize: "0.75rem",
-                  fontWeight: 650,
-                  lineHeight: "0.75rem",
-                  letterSpacing: "0.00375rem",
-                })}
-              >
-                Mint this page as an NFT to add it to your wallet.
-              </p>
-            </div>
+            {hash && status === "success" ? (
+              <div className={vstack({ gap: { base: "1rem", md: "1.5rem" } })}>
+                <Link
+                  href={sepolia.blockExplorers.default.url + "/tx/" + hash}
+                  target="_blank"
+                  className={flex({
+                    align: "center",
+                    gap: "0.5rem",
+                    p: { base: "0.5rem 1rem", md: "0.5rem 1rem" },
+                    borderRadius: "0.5rem",
+                    border: "1px solid",
+                    borderColor: "border",
+                    bgColor: "bg",
+                    _hover: { bgColor: "gray.100" },
+                    _active: { bgColor: "gray.200" },
+                    color: "text",
+                    textAlign: "center",
+                    fontSize: "1rem",
+                    fontWeight: 650,
+                    lineHeight: "1.5rem",
+                  })}
+                >
+                  View on explorer
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M10 2H14V6" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6.6665 9.33333L13.9998 2" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                      d="M12 8.66667V12.6667C12 13.0203 11.8595 13.3594 11.6095 13.6095C11.3594 13.8595 11.0203 14 10.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V5.33333C2 4.97971 2.14048 4.64057 2.39052 4.39052C2.64057 4.14048 2.97971 4 3.33333 4H7.33333"
+                      stroke="#3C3837"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </Link>
+                <div
+                  className={center({
+                    gap: "0.5rem",
+                    "& a": {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      w: "3rem",
+                      h: "3rem",
+                      padding: "0.75rem",
+                      borderRadius: "4rem",
+                    },
+                  })}
+                >
+                  <Link
+                    href="https://twitter.com/phi_xyz"
+                    target="_blank"
+                    className={css({ bgColor: "xBrandPrimary", _hover: { bgColor: "#2F2723" } })}
+                  >
+                    <Image src={X} width={24} height={24} alt="logo-x" />
+                  </Link>
+                  <Link
+                    href="https://twitter.com/phi_xyz"
+                    target="_blank"
+                    className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
+                  >
+                    <Image src={Warpcast} width={24} height={24} alt="logo-warpcast" />
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className={vstack({ gap: "1rem" })}>
+                <button
+                  className={mintCva({ size: "md" })}
+                  onClick={async () => {
+                    if (status === "pending") {
+                      return;
+                    }
+                    if (!address) {
+                      setOpenpenWalletModal(true);
+                      return;
+                    }
+                    if (chainId !== sepolia.id) {
+                      switchChain({ chainId: sepolia.id });
+                      return;
+                    }
+                    await writeContractAsync({ abi, address: phiTeaserNFTContract, functionName: "mint", args: [address] });
+                  }}
+                  disabled={disabled}
+                >
+                  {disabled ? (
+                    "Mint"
+                  ) : status === "pending" ? (
+                    <span className={css({ animation: "spin 2.5s linear infinite" })}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12Z"
+                          fill="white"
+                          fill-opacity="0.49"
+                        />
+                        <path
+                          d="M12 1.5C12 0.671573 11.3259 -0.00965653 10.5039 0.0936289C9.44209 0.227052 8.40064 0.502198 7.4078 0.913446C5.95189 1.5165 4.62902 2.40042 3.51472 3.51472C2.40041 4.62902 1.5165 5.95189 0.913445 7.4078C0.502197 8.40064 0.227051 9.44209 0.0936287 10.5039C-0.00965664 11.3259 0.671573 12 1.5 12C2.32843 12 2.98728 11.3239 3.12471 10.5069C3.23706 9.83908 3.4247 9.18448 3.68508 8.55585C4.13738 7.46392 4.80031 6.47177 5.63604 5.63604C6.47177 4.80031 7.46392 4.13738 8.55585 3.68508C9.18447 3.4247 9.83908 3.23706 10.5069 3.12471C11.3239 2.98728 12 2.32843 12 1.5Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </span>
+                  ) : (
+                    "Mint For Free"
+                  )}
+                </button>
+                <p
+                  className={css({
+                    color: "gray.400",
+                    textAlign: "center",
+                    fontSize: "0.75rem",
+                    fontWeight: 650,
+                    lineHeight: "0.75rem",
+                    letterSpacing: "0.00375rem",
+                  })}
+                >
+                  Mint this page as an NFT to add it to your wallet.
+                </p>
+              </div>
+            )}
           </div>
         </Content>
       </Portal>
