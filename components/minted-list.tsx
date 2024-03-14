@@ -52,10 +52,10 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
             borderRadius: { base: "1rem 1rem 0 0", md: "1rem" },
             _focus: { outline: "none" },
             '&[data-state="open"]': {
-              animation: "modalIn 200ms ease-out",
+              animation: { base: "modalInBottom 200ms ease-out", md: "modalIn 200ms ease-out" },
             },
             '&[data-state="closed"]': {
-              animation: "modalOut 200ms ease-in",
+              animation: { base: "modalOutBottom 200ms ease-in", md: "modalOut 200ms ease-in" },
             },
           })}
         >
