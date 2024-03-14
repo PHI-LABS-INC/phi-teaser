@@ -5,13 +5,19 @@ import { css } from "@/styled-system/css";
 import { Canvas } from "@/features/canvas";
 import { WhyPhi } from "@/features/why-phi";
 import { Wallet } from "@/components/wallet";
+import { fetchMintedList, fetchTotalSupply } from "@/lib/fetch";
 import Logo from "@/public/logo.svg";
 import LogoGray from "@/public/logo-gray.svg";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
 import Discord from "@/public/discord.svg";
 
-export default function Page() {
+export const revalidate = 60;
+
+export default async function Page() {
+  const totalSupply = await fetchTotalSupply();
+  const mintedList = await fetchMintedList();
+
   return (
     <>
       <div
@@ -48,7 +54,7 @@ export default function Page() {
         })}
       >
         <Canvas />
-        <WhyPhi />
+        <WhyPhi totalSupply={totalSupply} mintedList={mintedList} />
       </div>
 
       <div

@@ -4,18 +4,8 @@ import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog"
 import { flex, hstack, vstack } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
 
-export function MintedList() {
+export function MintedList({ mintedList }: { mintedList: string[] }) {
   const [open, setOpen] = useState(false);
-  const [list, setList] = useState([
-    "zak3939.eth",
-    "0xkashi.eth",
-    "philand🏝.eth",
-    "superdeveloper.eth",
-    "shugo.eth",
-    "peruvianBooby.eth",
-    "oji3.eth",
-    "okazu.eth",
-  ]);
 
   return (
     <Root open={open} onOpenChange={setOpen}>
@@ -27,9 +17,15 @@ export function MintedList() {
               "& :not(:first-child)": { ml: "-0.5rem" },
             })}
           >
-            <Image src="https://metadata.ens.domains/mainnet/avatar/shugo.eth" width={24} height={24} alt="ens-icon" />
-            <Image src="https://metadata.ens.domains/mainnet/avatar/zak3939.eth" width={24} height={24} alt="ens-icon" />
-            <Image src="https://metadata.ens.domains/mainnet/avatar/oji3.eth" width={24} height={24} alt="ens-icon" />
+            {mintedList.slice(0, 3).map((name) => (
+              <Image
+                key={name}
+                src={"https://metadata.ens.domains/mainnet/avatar/" + name}
+                width={24}
+                height={24}
+                alt={"ens-icon-" + name}
+              />
+            ))}
           </div>
           <div className={flex({ gap: "0.25rem", "& p": { fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" } })}>
             <p className={css({ color: "gray.900" })}>256</p>
@@ -99,8 +95,8 @@ export function MintedList() {
               "& p": { color: "gray.800", fontSize: "1rem", fontWeight: 600, lineHeight: "1rem" },
             })}
           >
-            {list.map((name, i) => (
-              <div key={i} className={flex({ justify: "space-between", align: "center", w: "100%" })}>
+            {mintedList.map((name, i) => (
+              <div key={name} className={flex({ justify: "space-between", align: "center", w: "100%" })}>
                 <div className={hstack({ gap: "0.5rem" })}>
                   <Image
                     src={"https://metadata.ens.domains/mainnet/avatar/" + name}

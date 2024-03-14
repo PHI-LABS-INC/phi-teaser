@@ -74,7 +74,7 @@ const mintCva = cva({
   },
 });
 
-export function Mint({ disabled }: { disabled?: boolean }) {
+export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: string; mintedList: string[]; disabled?: boolean }) {
   const { address, chainId } = useAccount();
   const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
@@ -258,9 +258,15 @@ export function Mint({ disabled }: { disabled?: boolean }) {
             </div>
             <div className={flex({ align: "center", gap: "0.5rem" })}>
               <div className={flex({ "& img": { borderRadius: "1rem" }, "& :not(:first-child)": { ml: "-0.5rem" } })}>
-                <Image src="https://metadata.ens.domains/mainnet/avatar/shugo.eth" width={24} height={24} alt="ens-icon" />
-                <Image src="https://metadata.ens.domains/mainnet/avatar/zak3939.eth" width={24} height={24} alt="ens-icon" />
-                <Image src="https://metadata.ens.domains/mainnet/avatar/oji3.eth" width={24} height={24} alt="ens-icon" />
+                {mintedList.slice(0, 3).map((name) => (
+                  <Image
+                    key={name}
+                    src={"https://metadata.ens.domains/mainnet/avatar/" + name}
+                    width={24}
+                    height={24}
+                    alt={"ens-icon-" + name}
+                  />
+                ))}
               </div>
               <div
                 className={flex({
@@ -268,7 +274,7 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                   "& p": { fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" },
                 })}
               >
-                <p className={css({ color: "gray.900" })}>256</p>
+                <p className={css({ color: "gray.900" })}>{totalSupply}</p>
                 <p className={css({ color: "gray.600" })}>Minted</p>
               </div>
             </div>

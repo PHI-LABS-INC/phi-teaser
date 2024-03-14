@@ -9,7 +9,7 @@ import { BlankSpace, Inventory, type DroppableArea } from "@/components/droppabl
 import { PuzzleKey, puzzleSticker } from "@/components/draggable";
 import { useScroll } from "@/hooks/use-scroll";
 
-export function WhyPhi() {
+export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; mintedList: string[] }) {
   const dndCtxId = useId();
   const isScrolled = useScroll();
   const [openInventory, setOpenInventory] = useState(true);
@@ -231,7 +231,7 @@ export function WhyPhi() {
         </Inventory>
       </div>
 
-      <ActionBar progress={progress} openInventory={() => setOpenInventory(true)} />
+      <ActionBar progress={progress} totalSupply={totalSupply} mintedList={mintedList} openInventory={() => setOpenInventory(true)} />
 
       <DragOverlay dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}>
         {activeKey && puzzleSticker[activeKey]}

@@ -5,7 +5,17 @@ import { flex } from "@/styled-system/patterns";
 import { Mint } from "./mint";
 import { MintedList } from "./minted-list";
 
-export function ActionBar({ progress, openInventory }: { progress: number; openInventory: () => void }) {
+export function ActionBar({
+  progress,
+  totalSupply,
+  mintedList,
+  openInventory,
+}: {
+  progress: number;
+  totalSupply: string;
+  mintedList: string[];
+  openInventory: () => void;
+}) {
   return (
     <div
       className={flex({
@@ -110,8 +120,8 @@ export function ActionBar({ progress, openInventory }: { progress: number; openI
           </Tooltip.Provider>
         </div>
         <div className={flex({ justify: "space-between", align: "center", gap: "1rem" })}>
-          <MintedList />
-          <Mint disabled={progress < 6} />
+          <MintedList mintedList={mintedList} />
+          <Mint disabled={progress < 6} totalSupply={totalSupply} mintedList={mintedList} />
         </div>
       </div>
     </div>
