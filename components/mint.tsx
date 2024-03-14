@@ -76,7 +76,7 @@ export function Mint({ disabled }: { disabled?: boolean }) {
   const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
   const [open, setOpen] = useState(false);
-  const { writeContractAsync } = useWriteContract();
+  const { data: hash, status, writeContractAsync } = useWriteContract();
 
   return (
     <Root open={open} onOpenChange={setOpen}>
@@ -273,6 +273,9 @@ export function Mint({ disabled }: { disabled?: boolean }) {
               <button
                 className={mintCva({ size: "md" })}
                 onClick={async () => {
+                  if (status === "pending") {
+                    return;
+                  }
                   if (!address) {
                     setOpenpenWalletModal(true);
                     return;
@@ -281,12 +284,29 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                     switchChain({ chainId: sepolia.id });
                     return;
                   }
-                  const txHash = await writeContractAsync({ abi, address: phiTeaserNFTContract, functionName: "mint", args: [address] });
-                  alert(txHash);
+                  await writeContractAsync({ abi, address: phiTeaserNFTContract, functionName: "mint", args: [address] });
                 }}
                 disabled={disabled}
               >
-                {disabled ? "Mint" : "Mint For Free"}
+                {disabled ? (
+                  "Mint"
+                ) : status === "pending" ? (
+                  <span className={css({ animation: "spin 2.5s linear infinite" })}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12Z"
+                        fill="white"
+                        fill-opacity="0.49"
+                      />
+                      <path
+                        d="M12 1.5C12 0.671573 11.3259 -0.00965653 10.5039 0.0936289C9.44209 0.227052 8.40064 0.502198 7.4078 0.913446C5.95189 1.5165 4.62902 2.40042 3.51472 3.51472C2.40041 4.62902 1.5165 5.95189 0.913445 7.4078C0.502197 8.40064 0.227051 9.44209 0.0936287 10.5039C-0.00965664 11.3259 0.671573 12 1.5 12C2.32843 12 2.98728 11.3239 3.12471 10.5069C3.23706 9.83908 3.4247 9.18448 3.68508 8.55585C4.13738 7.46392 4.80031 6.47177 5.63604 5.63604C6.47177 4.80031 7.46392 4.13738 8.55585 3.68508C9.18447 3.4247 9.83908 3.23706 10.5069 3.12471C11.3239 2.98728 12 2.32843 12 1.5Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                ) : (
+                  "Mint For Free"
+                )}
               </button>
               <p
                 className={css({

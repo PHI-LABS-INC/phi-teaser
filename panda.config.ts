@@ -196,6 +196,14 @@ export default defineConfig({
           "0%": { opacity: 1, transform: "translate(0, 0)" },
           "100%": { opacity: 0, transform: "translate(0, 12.5rem)" },
         },
+        spin: {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
       },
     },
   },
