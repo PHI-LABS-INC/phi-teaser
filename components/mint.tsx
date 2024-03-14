@@ -125,7 +125,6 @@ export function Mint({ disabled }: { disabled?: boolean }) {
             align: "center",
             p: { base: "1rem 1rem 2rem 1rem", md: "0 0 2rem 0" },
             w: { base: "100vw", md: "40rem" },
-            h: { base: "fit-content", md: "40rem" },
             maxH: "100dvh",
             overflowY: "scroll",
             bgColor: "bg",
