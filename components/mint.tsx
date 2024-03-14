@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { base } from "viem/chains";
-import { useAccount, useSwitchChain } from "wagmi";
+import { base, sepolia } from "viem/chains";
+import { useAccount, useSwitchChain, useWriteContract } from "wagmi";
 import { useModal } from "connectkit";
 import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
-import { useWritePhiTetherNftMint } from "@/hooks/generated";
+import abi from "@/lib/abi";
+import { phiTeaserNFTContract } from "@/lib/config";
 
 const mintCva = cva({
   base: {
@@ -75,7 +76,7 @@ export function Mint({ disabled }: { disabled?: boolean }) {
   const { switchChain } = useSwitchChain();
   const { setOpen: setOpenpenWalletModal } = useModal();
   const [open, setOpen] = useState(false);
-  const { writeContractAsync } = useWritePhiTetherNftMint();
+  const { writeContractAsync } = useWriteContract();
 
   return (
     <Root open={open} onOpenChange={setOpen}>
@@ -276,12 +277,12 @@ export function Mint({ disabled }: { disabled?: boolean }) {
                     setOpenpenWalletModal(true);
                     return;
                   }
-                  if (chainId !== base.id) {
-                    switchChain({ chainId: base.id });
+                  if (chainId !== sepolia.id) {
+                    switchChain({ chainId: sepolia.id });
                     return;
                   }
-                  await writeContractAsync({ args: [address] });
-                  alert("Minted!");
+                  const txHash = await writeContractAsync({ abi, address: phiTeaserNFTContract, functionName: "mint", args: [address] });
+                  alert(txHash);
                 }}
                 disabled={disabled}
               >
