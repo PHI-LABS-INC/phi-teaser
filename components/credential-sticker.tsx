@@ -1,4 +1,4 @@
-import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
+import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
@@ -103,31 +103,27 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
 
   return (
     <Root open={open}>
-      <Trigger
-        asChild
-        className={css({ _focus: { outline: "none" } })}
+      <span
         onClick={() => {
           focus(artworkKey);
           window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
         }}
+        className={cx(
+          open
+            ? css({ transform: artworkKey === "farcaster-ink" ? openTransformfarcaster : openTransform })
+            : defaultTransformCva({ artworkKey }),
+          css({
+            zIndex: open ? "draggable-active" : undefined,
+            position: "absolute",
+            transition: "cubic-bezier(0.19,1,0.22,1)",
+            transitionProperty: "transform",
+            transitionDuration: ".8s",
+            _focus: { outline: "none" },
+          })
+        )}
       >
-        <span
-          className={cx(
-            open
-              ? css({ transform: artworkKey === "farcaster-ink" ? openTransformfarcaster : openTransform })
-              : defaultTransformCva({ artworkKey }),
-            css({
-              zIndex: open ? "draggable-active" : undefined,
-              position: "absolute",
-              transition: "cubic-bezier(0.19,1,0.22,1)",
-              transitionProperty: "transform",
-              transitionDuration: ".8s",
-            })
-          )}
-        >
-          {artworkSticker[artworkKey]}
-        </span>
-      </Trigger>
+        {artworkSticker[artworkKey]}
+      </span>
       <Portal>
         <Overlay
           className={css({
