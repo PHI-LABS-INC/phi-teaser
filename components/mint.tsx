@@ -129,16 +129,15 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             zIndex: "modal-content",
             position: "fixed",
             top: { md: "50%" },
-            left: { base: 0, md: "50%" },
+            left: { md: "50%" },
             transform: { md: "translate(-50%, -50%)" },
             bottom: { base: 0, md: "auto" },
             direction: "column",
             justify: "center",
             align: "center",
-            p: { base: "1rem 1rem 2rem 1rem", md: "0 0 2rem 0" },
+            p: { base: "0 1rem 2rem 1rem", md: "0 0 2rem 0" },
             w: { base: "100vw", md: "40rem" },
             maxH: "100dvh",
-            overflowY: "scroll",
             bgColor: "bg",
             borderRadius: { base: "1rem 1rem 0 0", md: "1rem" },
             _focus: { outline: "none" },
@@ -164,14 +163,19 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             >
               NFT Details
             </p>
-            <button onClick={() => setOpen(false)} className={css({ cursor: "pointer", _hover: { "& svg path": { stroke: "gray.500" } } })}>
+            <button
+              onClick={() => setOpen(false)}
+              className={css({ cursor: "pointer", _hover: { "& svg path": { stroke: "gray.500" } }, _focus: { outline: "none" } })}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M18 6L6 18" stroke="#B3B2B1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M6 6L18 18" stroke="#B3B2B1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           </div>
-          <div className={vstack({ gap: "1.5rem" })}>
+          <div
+            className={vstack({ gap: "1.5rem", overflowY: "scroll", scrollbarWidth: "none", "&::-webkit-scrollbar": { display: "none" } })}
+          >
             <div
               className={flex({
                 direction: "column",
