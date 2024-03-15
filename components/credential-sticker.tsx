@@ -101,12 +101,16 @@ type ArtworkStickerProps = {
 export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
   const open = focusKey === artworkKey;
 
+  function centorize() {
+    window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
+  }
+
   return (
     <Root open={open}>
       <span
         onClick={() => {
           focus(artworkKey);
-          window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
+          centorize();
         }}
         className={cx(
           open
@@ -276,6 +280,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 _focus: { outline: "none" },
               })}
               onClick={(e) => {
+                centorize();
                 focus(artworks[(artworks.indexOf(artworkKey) + artworks.length - 1) % artworks.length]);
               }}
             >
@@ -292,6 +297,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 _focus: { outline: "none" },
               })}
               onClick={(e) => {
+                centorize();
                 focus(artworks[(artworks.indexOf(artworkKey) + 1) % artworks.length]);
               }}
             >
