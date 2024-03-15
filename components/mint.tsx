@@ -87,7 +87,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
     args: address ? [address] : undefined,
   });
   const { data: hash, status, writeContractAsync } = useWriteContract();
-  const minted = isFetched && tokenId !== BigInt(0);
+  const minted = address && isFetched && tokenId !== BigInt(0);
 
   return (
     <Root open={open} onOpenChange={setOpen}>
