@@ -123,7 +123,14 @@ export default async function Page() {
               OPEN APP
             </a>
           </div>
-          <Image src="/philand.png" width={512} height={256} alt="philand" className={css({ display: { base: "none", md: "block" } })} />
+          <Image
+            src="/philand.png"
+            width={512}
+            height={256}
+            quality={100}
+            alt="philand"
+            className={css({ display: { base: "none", md: "block" } })}
+          />
           <Image
             src="/philand-2.png"
             width={537}
