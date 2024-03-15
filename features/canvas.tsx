@@ -1,53 +1,75 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { DndContext, DragOverlay, MouseSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
 import CredentialSticker from "@/components/credential-sticker";
-import { ArtworkKey, artworkSticker } from "@/components/draggable";
+import { ArtworkKey, artworkSticker, artworks } from "@/components/draggable";
 
 export function Canvas() {
   const dndCtxId = useId();
   const sensors = useSensors(useSensor(MouseSensor, { activationConstraint: { distance: 10 } }));
-  const [activeId, setActiveId] = useState<ArtworkKey | null>(null);
+  const [activeKey, setActiveKey] = useState<ArtworkKey | null>(null);
+  const [focusKey, setfocusKey] = useState<ArtworkKey | null>(null);
+
+  function focus(id: ArtworkKey | null) {
+    setfocusKey(id);
+  }
+
+  function keydown(e: KeyboardEvent) {
+    if (!focusKey) return;
+
+    if (e.key === "ArrowRight") {
+      setfocusKey(artworks[(artworks.indexOf(focusKey) + 1) % artworks.length]);
+    } else if (e.key === "ArrowLeft") {
+      setfocusKey(artworks[(artworks.indexOf(focusKey) + artworks.length - 1) % artworks.length]);
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", keydown);
+    return () => {
+      window.removeEventListener("keydown", keydown);
+    };
+  }, [focusKey]);
 
   return (
     <div className={css({ position: "relative", w: "100%", h: { base: "434px", md: "64rem" } })}>
       <DndContext
         id={dndCtxId}
         sensors={sensors}
-        onDragStart={(event) => setActiveId(event.active.id as ArtworkKey)}
-        onDragEnd={() => setActiveId(null)}
+        onDragStart={(event) => setActiveKey(event.active.id as ArtworkKey)}
+        onDragEnd={() => setActiveKey(null)}
       >
-        <CredentialSticker artworkKey="farcaster-ink" />
-        <CredentialSticker artworkKey="basepaint-nouns-base" />
-        <CredentialSticker artworkKey="shib-profit" />
-        <CredentialSticker artworkKey="basepaint-mickymouse-cc0" />
-        <CredentialSticker artworkKey="sepolia-builder" />
-        <CredentialSticker artworkKey="piggy-bank" />
-        <CredentialSticker artworkKey="moduler-believer" />
-        <CredentialSticker artworkKey="hash-hunter-aave" />
-        <CredentialSticker artworkKey="crowd-front" />
-        <CredentialSticker artworkKey="ds-planet" />
-        <CredentialSticker artworkKey="arb-game" />
-        <CredentialSticker artworkKey="op-game" />
-        <CredentialSticker artworkKey="ethereum-builder" />
-        <CredentialSticker artworkKey="ethereum-space-station" />
-        <CredentialSticker artworkKey="wawa" />
-        <CredentialSticker artworkKey="gnosis-owl" />
-        <CredentialSticker artworkKey="ens-newbie" />
-        <CredentialSticker artworkKey="op-airdrop" />
-        <CredentialSticker artworkKey="heartbeat" />
-        <CredentialSticker artworkKey="chess-uniswap" />
-        <CredentialSticker artworkKey="ethereum-first-tx-date" />
-        <CredentialSticker artworkKey="phi" />
-        <CredentialSticker artworkKey="gitcoin" />
+        <CredentialSticker artworkKey="farcaster-ink" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="basepaint-nouns-base" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="shib-profit" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="basepaint-mickymouse-cc0" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="sepolia-builder" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="piggy-bank" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="moduler-believer" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="hash-hunter-aave" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="crowd-front" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="ds-planet" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="arb-game" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="op-game" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="ethereum-builder" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="ethereum-space-station" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="wawa" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="gnosis-owl" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="ens-newbie" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="op-airdrop" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="heartbeat" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="chess-uniswap" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="ethereum-first-tx-date" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="phi" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="gitcoin" focusKey={focusKey} focus={focus} />
 
         <DragOverlay
           dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}
           className={css({ "& button": { w: "fit-content", h: "fit-content" } })}
         >
-          {activeId ? artworkSticker[activeId] : null}
+          {activeKey ? artworkSticker[activeKey] : null}
         </DragOverlay>
       </DndContext>
     </div>

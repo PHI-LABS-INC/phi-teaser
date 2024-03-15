@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
@@ -93,15 +92,22 @@ const defaultTransformCva = cva({
   },
 });
 
-export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkKey }) {
-  const [open, setOpen] = useState(false);
+type ArtworkStickerProps = {
+  artworkKey: ArtworkKey;
+  focusKey: ArtworkKey | null;
+  focus: (key: ArtworkKey | null) => void;
+};
+
+export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
+  const open = focusKey === artworkKey;
 
   return (
-    <Root open={open} onOpenChange={setOpen}>
+    <Root open={open}>
       <Trigger
         asChild
         className={css({ _focus: { outline: "none" } })}
         onClick={() => {
+          focus(artworkKey);
           window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
         }}
       >
@@ -132,6 +138,9 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
           })}
         />
         <Content
+          onPointerDownOutside={() => {
+            focus(null);
+          }}
           className={vstack({
             zIndex: "drawer-content",
             position: "fixed",
@@ -209,7 +218,7 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
             })}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_917_5645)">
+              <g clipPath="url(#clip0_917_5645)">
                 <path
                   d="M6.66669 8.66672C6.95299 9.04948 7.31826 9.36618 7.73772 9.59535C8.15718 9.82452 8.62103 9.9608 9.09779 9.99495C9.57455 10.0291 10.0531 9.9603 10.5009 9.79325C10.9488 9.62619 11.3554 9.36477 11.6934 9.02672L13.6934 7.02672C14.3005 6.39805 14.6365 5.55604 14.6289 4.68205C14.6213 3.80806 14.2708 2.97202 13.6527 2.354C13.0347 1.73597 12.1987 1.38541 11.3247 1.37781C10.4507 1.37022 9.60869 1.7062 8.98002 2.31339L7.83335 3.45339"
                   stroke="#3C3837"
