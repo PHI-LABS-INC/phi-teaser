@@ -23,7 +23,7 @@ const sizeCva = cva({
 });
 
 export function BlankSpace({ id, children }: { id: Exclude<DroppableArea, "inventory">; children: React.ReactNode }) {
-  const { isOver, setNodeRef } = useDroppable({ id });
+  const { isOver, active, setNodeRef } = useDroppable({ id });
 
   return (
     <span
@@ -42,7 +42,7 @@ export function BlankSpace({ id, children }: { id: Exclude<DroppableArea, "inven
             css({
               display: "inline-block",
               border: "2px dashed",
-              borderColor: isOver ? "green.400" : "gray.300",
+              borderColor: isOver ? (id === active?.id ? "green.400" : "red.200") : "gray.300",
               borderRadius: "0.5rem",
               bgColor: "gray.100",
             }),
