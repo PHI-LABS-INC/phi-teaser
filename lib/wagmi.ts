@@ -8,7 +8,11 @@ export const config = createConfig({
     // base,
     sepolia,
   ],
-  connectors: [injected(), coinbaseWallet({ appName: "Phi", headlessMode: true }), walletConnect({ projectId: walletConnectProjectID })],
+  connectors: [
+    injected(),
+    coinbaseWallet({ appName: "Phi", headlessMode: true }),
+    walletConnect({ projectId: walletConnectProjectID, showQrModal: false }),
+  ],
   ssr: true,
   transports: {
     // [base.id]: http(),
