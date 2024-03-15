@@ -9,7 +9,7 @@ import { ArtworkKey, artworkSticker, artworks } from "@/components/draggable";
 export function Canvas() {
   const dndCtxId = useId();
   const sensors = useSensors(useSensor(MouseSensor, { activationConstraint: { distance: 10 } }));
-  const [activeKey, setActiveKey] = useState<ArtworkKey | null>(null);
+  const [draggingKey, setDraggingKey] = useState<ArtworkKey | null>(null);
   const [focusKey, setfocusKey] = useState<ArtworkKey | null>(null);
 
   function focus(id: ArtworkKey | null) {
@@ -38,8 +38,8 @@ export function Canvas() {
       <DndContext
         id={dndCtxId}
         sensors={sensors}
-        onDragStart={(event) => setActiveKey(event.active.id as ArtworkKey)}
-        onDragEnd={() => setActiveKey(null)}
+        onDragStart={(event) => setDraggingKey(event.active.id as ArtworkKey)}
+        onDragEnd={() => setDraggingKey(null)}
       >
         <CredentialSticker artworkKey="farcaster-ink" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="basepaint-nouns-base" focusKey={focusKey} focus={focus} />
@@ -69,7 +69,7 @@ export function Canvas() {
           dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}
           className={css({ "& button": { w: "fit-content", h: "fit-content" } })}
         >
-          {activeKey ? artworkSticker[activeKey] : null}
+          {draggingKey ? artworkSticker[draggingKey] : null}
         </DragOverlay>
       </DndContext>
     </div>
