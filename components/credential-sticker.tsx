@@ -246,6 +246,46 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
             </a>
           </div>
         </Content>
+
+        {/* <div
+          className={center({
+            zIndex: "drawer-content",
+            position: "fixed",
+            bottom: "2rem",
+            left: "calc((100vw - 2rem - 25rem) / 2)",
+            transform: "translateX(-50%)",
+            p: "0.25rem",
+            gap: "0.25rem",
+            borderRadius: "2.5rem",
+            border: "1px solid",
+            borderColor: "border",
+            background: "bg",
+            boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.16)",
+          })}
+        >
+          <button
+            className={center({ p: "0.5rem", gap: "0.5rem", cursor: "pointer", _focus: { outline: "none" } })}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button
+            className={center({ p: "0.5rem", gap: "0.5rem", cursor: "pointer", _focus: { outline: "none" } })}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div> */}
       </Portal>
     </Root>
   );
