@@ -13,7 +13,6 @@ import { usePuzzleState } from "@/hooks/use-puzzle";
 export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; mintedList: string[] }) {
   const dndCtxId = useId();
   const isScrolled = useScroll();
-  const [openInventory, setOpenInventory] = useState(true);
   const [activeKey, setActiveKey] = useState<PuzzleKey | null>(null);
   const { puzzle, setPuzzleState } = usePuzzleState();
   const progress = useMemo(() => 6 - Object.values(puzzle).filter((area) => area === "inventory").length, [puzzle]);
@@ -162,8 +161,8 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
         className={css({
           zIndex: "inventory",
           visibility: progress === 6 ? "hidden" : { base: !!activeKey ? "hidden" : "visible", md: "visible" },
-          opacity: isScrolled && openInventory ? 1 : 0,
-          pointerEvents: isScrolled && openInventory ? "auto" : "none",
+          opacity: isScrolled ? 1 : 0,
+          pointerEvents: isScrolled ? "auto" : "none",
           position: "sticky",
           bottom: { base: "5.56rem", md: "calc(1rem + 72px)" },
           left: { base: 0, md: "calc(1rem + 1rem)" },
@@ -220,7 +219,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
         </Inventory>
       </div>
 
-      <ActionBar progress={progress} totalSupply={totalSupply} mintedList={mintedList} openInventory={() => setOpenInventory(true)} />
+      <ActionBar progress={progress} totalSupply={totalSupply} mintedList={mintedList} />
 
       <DragOverlay dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}>
         {activeKey && puzzleSticker[activeKey]}

@@ -76,30 +76,34 @@ export default async function Page() {
               justify: { md: "space-between" },
               alignItems: "flex-start",
               flex: "1 0 0",
+              gap: { base: "1.5rem", md: 0 },
               p: { base: "0 1.5rem 1.5rem", md: "0 0 0 2.5rem" },
               h: { md: "10.9375rem" },
             })}
           >
-            <p
-              className={css({
-                color: "bg",
-                fontSize: { base: "2rem", md: "2.5rem" },
-                fontWeight: 700,
-                letterSpacing: "-0.01563rem",
-              })}
-            >
-              PHI LAND
-            </p>
-            <p
-              className={css({
-                color: "bg",
-                fontSize: "1.125rem",
-                fontWeight: 500,
-                lineHeight: "1.575rem",
-              })}
-            >
-              Build your web3 cities from your wallet activities
-            </p>
+            <div className={vstack({ alignItems: "flex-start", gap: "0.5rem" })}>
+              <p
+                className={css({
+                  color: "bg",
+                  fontSize: { base: "2rem", md: "2.5rem" },
+                  fontWeight: 700,
+                  lineHeight: "2rem",
+                  letterSpacing: "-0.01563rem",
+                })}
+              >
+                PHI LAND
+              </p>
+              <p
+                className={css({
+                  color: "bg",
+                  fontSize: "1.125rem",
+                  fontWeight: 500,
+                  lineHeight: "1.575rem",
+                })}
+              >
+                Build your web3 cities from your wallet activities
+              </p>
+            </div>
             <a
               className={center({
                 h: "3rem",
@@ -111,6 +115,7 @@ export default async function Page() {
                 fontSize: "1rem",
                 fontWeight: 650,
                 lineHeight: "1.5rem",
+                _hover: { bgColor: "rgba(255, 255, 255, 0.80)" },
               })}
               href="https://philand.xyz/"
               target="_blank"

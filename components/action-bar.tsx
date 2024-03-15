@@ -1,21 +1,11 @@
 import Image from "next/image";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { css } from "@/styled-system/css";
-import { flex } from "@/styled-system/patterns";
+import { center, flex } from "@/styled-system/patterns";
 import { Mint } from "./mint";
 import { MintedList } from "./minted-list";
 
-export function ActionBar({
-  progress,
-  totalSupply,
-  mintedList,
-  openInventory,
-}: {
-  progress: number;
-  totalSupply: string;
-  mintedList: string[];
-  openInventory: () => void;
-}) {
+export function ActionBar({ progress, totalSupply, mintedList }: { progress: number; totalSupply: string; mintedList: string[] }) {
   return (
     <div
       className={flex({
@@ -38,13 +28,13 @@ export function ActionBar({
           className={flex({
             gap: "0.5rem",
             p: "0.5rem 0.75rem",
-            borderRadius: "0.5rem",
+            borderRadius: "2rem",
             border: "1px solid",
             borderColor: "border",
             bgColor: "bg",
           })}
         >
-          {/* <button className={css({ cursor: "pointer" })} onClick={openInventory}>
+          <div className={center()}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 fillRule="evenodd"
@@ -53,7 +43,7 @@ export function ActionBar({
                 fill="#605D5C"
               />
             </svg>
-          </button> */}
+          </div>
           <Tooltip.Provider>
             <Tooltip.Root delayDuration={0}>
               <Tooltip.Trigger asChild>
