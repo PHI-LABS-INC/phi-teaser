@@ -89,7 +89,7 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
           >
             {mintedList.map((name, i) => (
               <div key={name} className={flex({ justify: "space-between", align: "center", w: "100%" })}>
-                <div className={hstack({ gap: "0.5rem", w: "100%" })}>
+                <div className={hstack({ gap: "0.5rem", w: "calc(100% - 2rem)" })}>
                   <Avatar key={name} className={css({ w: "2rem", h: "2rem", border: "2px solid", borderColor: "bg" })}>
                     <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + name} alt={"ens-icon-" + name} />
                     <AvatarFallback />
