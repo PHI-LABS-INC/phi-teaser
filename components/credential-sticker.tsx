@@ -7,7 +7,7 @@ import { ArtworkKey, artworkSticker, artworks } from "./draggable";
 // refactor: openTransformCva
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
-  md: "translate(50vw, 50vh) translate(calc(-25rem / 2), calc(1024px / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
+  md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc(1024px / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
