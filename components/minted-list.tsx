@@ -89,12 +89,12 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
           >
             {mintedList.map((name, i) => (
               <div key={name} className={flex({ justify: "space-between", align: "center", w: "100%" })}>
-                <div className={hstack({ gap: "0.5rem" })}>
+                <div className={hstack({ gap: "0.5rem", w: "100%" })}>
                   <Avatar key={name} className={css({ w: "2rem", h: "2rem", border: "2px solid", borderColor: "bg" })}>
                     <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + name} alt={"ens-icon-" + name} />
                     <AvatarFallback />
                   </Avatar>
-                  <p>{name}</p>
+                  <p className={css({ textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" })}>{name}</p>
                 </div>
                 <p>#{i + 1}</p>
               </div>

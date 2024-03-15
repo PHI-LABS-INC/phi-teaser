@@ -179,25 +179,25 @@ export default async function Page() {
           </Link>
         </div>
         <div className={flex({ direction: "column", align: "center", gap: "1.5rem" })}>
-          <div className={flex({ gap: "1rem" })}>
+          {/* <div className={flex({ gap: "1rem" })}>
             <Link
-              href="https://twitter.com/phi_xyz"
+              href=""
               target="_blank"
               className={css({ color: "textWeaker", fontSize: "0.875rem", fontWeight: 650 })}
             >
               Privacy Policy
             </Link>
             <Link
-              href="https://twitter.com/phi_xyz"
+              href=""
               target="_blank"
               className={css({ color: "textWeaker", fontSize: "0.875rem", fontWeight: 650 })}
             >
               Terms & Conditions
             </Link>
-          </div>
+          </div> */}
           <Image src={LogoGray} alt="phi-logo-gray" />
           <p className={css({ color: "textWeakest", fontSize: "0.75rem", fontWeight: 400, letterSpacing: { md: "0.0025rem" } })}>
-            © 2024 DELTA LAB.
+            © 2024 PHI-LABS-INC.
           </p>
         </div>
       </div>

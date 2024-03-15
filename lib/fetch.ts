@@ -36,5 +36,5 @@ async function getENSName(address: `0x${string}`) {
 export async function fetchMintedList() {
   // TODO
   const logs = (await client.getLogs(filterLogMint(BigInt(5470089)))).slice(0, 100);
-  return await Promise.all(logs.map((log) => getENSName(decodeEventLog({ ...log, abi }).args.to)));
+  return await Promise.all(logs.map((log) => getENSName(decodeEventLog({ ...log, abi }).args.to.toLowerCase() as `0x${string}`)));
 }
