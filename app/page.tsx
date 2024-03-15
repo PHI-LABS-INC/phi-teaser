@@ -164,14 +164,14 @@ export default async function Page() {
             <Image src={X} width={32} height={32} alt="logo-twitter" />
           </Link>
           <Link
-            href="https://twitter.com/phi_xyz"
+            href="https://warpcast.com/~/channel/phi"
             target="_blank"
             className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
           >
             <Image src={Warpcast} width={32} height={32} alt="logo-warpcast" />
           </Link>
           <Link
-            href="https://twitter.com/phi_xyz"
+            href="https://discord.gg/phi"
             target="_blank"
             className={css({ bgColor: "discordBrandPrimary", _hover: { bgColor: "#8A8AE5" } })}
           >

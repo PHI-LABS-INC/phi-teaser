@@ -252,7 +252,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                         letterSpacing: "0.00438rem",
                       })}
                     >
-                      By Shugo Tsuji
+                      By shugo.eth
                     </p>
                     <p
                       className={css({
@@ -263,7 +263,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                         letterSpacing: "0.00375rem",
                       })}
                     >
-                      JAN 31, 2024
+                      Mar 18, 2024
                     </p>
                   </div>
                 </div>
