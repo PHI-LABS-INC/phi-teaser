@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { Trigger, Content, Overlay, Portal, Root, Close } from "@radix-ui/react-dialog";
+import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
-import { ArtworkKey, artworkSticker } from "./draggable";
+import { ArtworkKey, artworkSticker, artworks } from "./draggable";
 
 // refactor: openTransformCva
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
-  md: "translate(50vw, 50vh) translate(calc(-25rem / 2), calc(1024px / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
+  md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc(1024px / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
@@ -93,35 +92,38 @@ const defaultTransformCva = cva({
   },
 });
 
-export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkKey }) {
-  const [open, setOpen] = useState(false);
+type ArtworkStickerProps = {
+  artworkKey: ArtworkKey;
+  focusKey: ArtworkKey | null;
+  focus: (key: ArtworkKey | null) => void;
+};
+
+export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
+  const open = focusKey === artworkKey;
 
   return (
-    <Root open={open} onOpenChange={setOpen}>
-      <Trigger
-        asChild
-        className={css({ _focus: { outline: "none" } })}
+    <Root open={open}>
+      <span
         onClick={() => {
+          focus(artworkKey);
           window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
         }}
+        className={cx(
+          open
+            ? css({ transform: artworkKey === "farcaster-ink" ? openTransformfarcaster : openTransform })
+            : defaultTransformCva({ artworkKey }),
+          css({
+            zIndex: open ? "draggable-active" : undefined,
+            position: "absolute",
+            transition: "cubic-bezier(0.19,1,0.22,1)",
+            transitionProperty: "transform",
+            transitionDuration: ".8s",
+            _focus: { outline: "none" },
+          })
+        )}
       >
-        <span
-          className={cx(
-            open
-              ? css({ transform: artworkKey === "farcaster-ink" ? openTransformfarcaster : openTransform })
-              : defaultTransformCva({ artworkKey }),
-            css({
-              zIndex: open ? "draggable-active" : undefined,
-              position: "absolute",
-              transition: "cubic-bezier(0.19,1,0.22,1)",
-              transitionProperty: "transform",
-              transitionDuration: ".8s",
-            })
-          )}
-        >
-          {artworkSticker[artworkKey]}
-        </span>
-      </Trigger>
+        {artworkSticker[artworkKey]}
+      </span>
       <Portal>
         <Overlay
           className={css({
@@ -131,161 +133,174 @@ export default function CredentialSticker({ artworkKey }: { artworkKey: ArtworkK
             background: `url('/dot.png'), 50px 50px repeat, #FFF`,
           })}
         />
-        <Content
-          className={vstack({
-            zIndex: "drawer-content",
-            position: "fixed",
-            bottom: { base: "1rem", md: "auto" },
-            left: { base: "50%", md: "auto" },
-            top: { md: "1rem" },
-            right: { md: "1rem" },
-            translate: { base: "-50%", md: "none" },
-            alignItems: "flex-start",
-            w: { base: "calc(100vw - 4rem)", md: "25rem" },
-            h: { md: "calc(100dvh - 2rem)" },
-            p: { base: "1rem", md: "1.5rem" },
-            gap: { base: "0.5rem", md: "1rem" },
-            animation: {
-              base: open ? "modalInBottom .4s forwards" : "modalOutBottom .4s forwards",
-              md: open ? "drawerIn .4s forwards" : "drawerOut .4s forwards",
-            },
-            borderRadius: "0.5rem",
-            border: "1px solid",
-            borderColor: "border",
-            bgColor: "bgWeak",
-            _focus: { outline: "none" },
-          })}
-        >
-          <div className={flex({ justify: "space-between", w: "100%" })}>
-            <div />
-            <Close className={css({ cursor: "pointer", _focus: { outline: "none" } })}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M18 6L6 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M6 6L18 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Close>
-          </div>
-          <h2
-            className={css({
-              color: "text",
-              fontSize: { base: "1.5rem", md: "2.1875rem" },
-              fontWeight: 750,
-              lineHeight: { base: "1.875rem", md: "2.5rem" },
-              letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
+        <Content onPointerDownOutside={() => focus(null)} className={css({ zIndex: "drawer-content" })}>
+          <div
+            className={vstack({
+              position: "fixed",
+              bottom: { base: "1rem", md: "auto" },
+              left: { base: "50%", md: "auto" },
+              top: { md: "1rem" },
+              right: { md: "1rem" },
+              translate: { base: "-50%", md: "none" },
+              alignItems: "flex-start",
+              w: { base: "calc(100vw - 4rem)", md: "25rem" },
+              h: { md: "calc(100dvh - 2rem)" },
+              p: { base: "1rem", md: "1.5rem" },
+              gap: { base: "0.5rem", md: "1rem" },
+              animation: {
+                base: open ? "modalInBottom .4s forwards" : "modalOutBottom .4s forwards",
+                md: open ? "drawerIn .4s forwards" : "drawerOut .4s forwards",
+              },
+              borderRadius: "0.5rem",
+              border: "1px solid",
+              borderColor: "border",
+              bgColor: "bgWeak",
             })}
           >
-            {credentialAttributes[artworkKey].title}
-          </h2>
-          <p
-            className={css({
-              color: "text",
-              fontSize: { base: "1rem", md: "1.25rem" },
-              fontWeight: 500,
-              lineHeight: { base: "1.5rem", md: "1.75rem" },
-              letterSpacing: { md: "-0.005rem" },
-            })}
-          >
-            {credentialAttributes[artworkKey].requirement}
-          </p>
-          {credentialAttributes[artworkKey].description && (
+            <div className={flex({ justify: "space-between", w: "100%" })}>
+              <div />
+              <button
+                onClick={() => focus(null)}
+                className={css({ cursor: "pointer", _hover: { "& svg path": { stroke: "gray.500" } }, _focus: { outline: "none" } })}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 6L18 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <h2
+              className={css({
+                color: "text",
+                fontSize: { base: "1.5rem", md: "2.1875rem" },
+                fontWeight: 750,
+                lineHeight: { base: "1.875rem", md: "2.5rem" },
+                letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
+              })}
+            >
+              {credentialAttributes[artworkKey].title}
+            </h2>
             <p
               className={css({
-                color: "textWeak",
-                fontSize: { base: "0.75rem", md: "0.875rem" },
+                color: "text",
+                fontSize: { base: "1rem", md: "1.25rem" },
                 fontWeight: 500,
-                lineHeight: { base: "1rem", md: "1.25rem" },
+                lineHeight: { base: "1.5rem", md: "1.75rem" },
                 letterSpacing: { md: "-0.005rem" },
               })}
             >
-              {credentialAttributes[artworkKey].description}
+              {credentialAttributes[artworkKey].requirement}
             </p>
-          )}
+            {credentialAttributes[artworkKey].description && (
+              <p
+                className={css({
+                  display: { base: "none", md: "block" },
+                  color: "textWeak",
+                  fontSize: { base: "0.75rem", md: "0.875rem" },
+                  fontWeight: 500,
+                  lineHeight: { base: "1rem", md: "1.25rem" },
+                  letterSpacing: { md: "-0.005rem" },
+                })}
+              >
+                {credentialAttributes[artworkKey].description}
+              </p>
+            )}
+            <div
+              className={center({
+                p: "0.25rem 0.75rem",
+                gap: "0.25rem",
+                borderRadius: "3.5rem",
+                background: "bgWeaker",
+              })}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <g clipPath="url(#clip0_917_5645)">
+                  <path
+                    d="M6.66669 8.66672C6.95299 9.04948 7.31826 9.36618 7.73772 9.59535C8.15718 9.82452 8.62103 9.9608 9.09779 9.99495C9.57455 10.0291 10.0531 9.9603 10.5009 9.79325C10.9488 9.62619 11.3554 9.36477 11.6934 9.02672L13.6934 7.02672C14.3005 6.39805 14.6365 5.55604 14.6289 4.68205C14.6213 3.80806 14.2708 2.97202 13.6527 2.354C13.0347 1.73597 12.1987 1.38541 11.3247 1.37781C10.4507 1.37022 9.60869 1.7062 8.98002 2.31339L7.83335 3.45339"
+                    stroke="#3C3837"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M9.33334 7.33332C9.04704 6.95057 8.68177 6.63387 8.26231 6.40469C7.84285 6.17552 7.37901 6.03924 6.90224 6.0051C6.42548 5.97095 5.94695 6.03974 5.49911 6.2068C5.05127 6.37386 4.6446 6.63527 4.30668 6.97332L2.30668 8.97332C1.69948 9.60199 1.3635 10.444 1.3711 11.318C1.37869 12.192 1.72926 13.028 2.34728 13.646C2.96531 14.2641 3.80135 14.6146 4.67534 14.6222C5.54933 14.6298 6.39134 14.2938 7.02001 13.6867L8.16001 12.5467"
+                    stroke="#3C3837"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_917_5645">
+                    <rect width="16" height="16" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <a
+                className={css({
+                  color: "text",
+                  fontSize: { base: "0.875rem", md: "1rem" },
+                  fontWeight: 650,
+                  lineHeight: { base: "1.25rem", md: "1.5rem" },
+                })}
+                href={credentialAttributes[artworkKey].url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {new URL(credentialAttributes[artworkKey].url).hostname}
+              </a>
+            </div>
+          </div>
+
           <div
             className={center({
-              p: "0.25rem 0.75rem",
+              position: "fixed",
+              bottom: "2rem",
+              left: { base: "50%", md: "calc((100vw - 2rem - 25rem) / 2)" },
+              transform: "translateX(-50%)",
+              p: "0.25rem",
               gap: "0.25rem",
-              borderRadius: "3.5rem",
-              background: "bgWeaker",
+              borderRadius: "2.5rem",
+              border: "1px solid",
+              borderColor: "border",
+              background: "bg",
+              boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.16)",
             })}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <g clip-path="url(#clip0_917_5645)">
-                <path
-                  d="M6.66669 8.66672C6.95299 9.04948 7.31826 9.36618 7.73772 9.59535C8.15718 9.82452 8.62103 9.9608 9.09779 9.99495C9.57455 10.0291 10.0531 9.9603 10.5009 9.79325C10.9488 9.62619 11.3554 9.36477 11.6934 9.02672L13.6934 7.02672C14.3005 6.39805 14.6365 5.55604 14.6289 4.68205C14.6213 3.80806 14.2708 2.97202 13.6527 2.354C13.0347 1.73597 12.1987 1.38541 11.3247 1.37781C10.4507 1.37022 9.60869 1.7062 8.98002 2.31339L7.83335 3.45339"
-                  stroke="#3C3837"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M9.33334 7.33332C9.04704 6.95057 8.68177 6.63387 8.26231 6.40469C7.84285 6.17552 7.37901 6.03924 6.90224 6.0051C6.42548 5.97095 5.94695 6.03974 5.49911 6.2068C5.05127 6.37386 4.6446 6.63527 4.30668 6.97332L2.30668 8.97332C1.69948 9.60199 1.3635 10.444 1.3711 11.318C1.37869 12.192 1.72926 13.028 2.34728 13.646C2.96531 14.2641 3.80135 14.6146 4.67534 14.6222C5.54933 14.6298 6.39134 14.2938 7.02001 13.6867L8.16001 12.5467"
-                  stroke="#3C3837"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_917_5645">
-                  <rect width="16" height="16" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            <a
-              className={css({
-                color: "text",
-                fontSize: { base: "0.875rem", md: "1rem" },
-                fontWeight: 650,
-                lineHeight: { base: "1.25rem", md: "1.5rem" },
+            <button
+              className={center({
+                p: "0.5rem",
+                gap: "0.5rem",
+                cursor: "pointer",
+                _hover: { "& svg path": { stroke: "gray.500" } },
+                _focus: { outline: "none" },
               })}
-              href={credentialAttributes[artworkKey].url}
-              target="_blank"
-              rel="noreferrer"
+              onClick={(e) => {
+                focus(artworks[(artworks.indexOf(artworkKey) + artworks.length - 1) % artworks.length]);
+              }}
             >
-              {new URL(credentialAttributes[artworkKey].url).hostname}
-            </a>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button
+              className={center({
+                p: "0.5rem",
+                gap: "0.5rem",
+                cursor: "pointer",
+                _hover: { "& svg path": { stroke: "gray.500" } },
+                _focus: { outline: "none" },
+              })}
+              onClick={(e) => {
+                focus(artworks[(artworks.indexOf(artworkKey) + 1) % artworks.length]);
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
           </div>
         </Content>
-
-        {/* <div
-          className={center({
-            zIndex: "drawer-content",
-            position: "fixed",
-            bottom: "2rem",
-            left: "calc((100vw - 2rem - 25rem) / 2)",
-            transform: "translateX(-50%)",
-            p: "0.25rem",
-            gap: "0.25rem",
-            borderRadius: "2.5rem",
-            border: "1px solid",
-            borderColor: "border",
-            background: "bg",
-            boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.16)",
-          })}
-        >
-          <button
-            className={center({ p: "0.5rem", gap: "0.5rem", cursor: "pointer", _focus: { outline: "none" } })}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-          <button
-            className={center({ p: "0.5rem", gap: "0.5rem", cursor: "pointer", _focus: { outline: "none" } })}
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M7.5 15L12.5 10L7.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div> */}
       </Portal>
     </Root>
   );

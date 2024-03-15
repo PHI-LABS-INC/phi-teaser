@@ -129,30 +129,33 @@ export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
   ),
 };
 
-export type ArtworkKey =
-  | "chess-uniswap"
-  | "crowd-front"
-  | "hash-hunter-aave"
-  | "moduler-believer"
-  | "ethereum-builder"
-  | "wawa"
-  | "ethereum-space-station"
-  | "gnosis-owl"
-  | "ds-planet"
-  | "arb-game"
-  | "op-game"
-  | "basepaint-nouns-base"
-  | "basepaint-mickymouse-cc0"
-  | "ens-newbie"
-  | "ethereum-first-tx-date"
-  | "shib-profit"
-  | "op-airdrop"
-  | "heartbeat"
-  | "piggy-bank"
-  | "sepolia-builder"
-  | "farcaster-ink"
-  | "phi"
-  | "gitcoin";
+export const artworks = [
+  "farcaster-ink",
+  "basepaint-nouns-base",
+  "shib-profit",
+  "basepaint-mickymouse-cc0",
+  "sepolia-builder",
+  "piggy-bank",
+  "moduler-believer",
+  "hash-hunter-aave",
+  "crowd-front",
+  "ds-planet",
+  "arb-game",
+  "op-game",
+  "ethereum-builder",
+  "ethereum-space-station",
+  "wawa",
+  "gnosis-owl",
+  "ens-newbie",
+  "op-airdrop",
+  "heartbeat",
+  "chess-uniswap",
+  "ethereum-first-tx-date",
+  "phi",
+  "gitcoin",
+] as const;
+
+export type ArtworkKey = (typeof artworks)[number];
 
 export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   "chess-uniswap": (
