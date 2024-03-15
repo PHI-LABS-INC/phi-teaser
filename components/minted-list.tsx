@@ -13,7 +13,7 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
         <div className={flex({ align: "center", gap: "0.5rem", cursor: "pointer" })}>
           <div className={flex({ "& :not(:first-child)": { ml: "-0.5rem" } })}>
             {mintedList.slice(0, 3).map((name) => (
-              <Avatar key={name} className={css({ w: "1.5rem", h: "1.5rem", border: "2px solid", borderColor: "bg" })}>
+              <Avatar key={name} className={css({ w: "1.75rem", h: "1.75rem", border: "2px solid", borderColor: "bg" })}>
                 <AvatarImage src={"https://metadata.ens.domains/mainnet/avatar/" + name} alt={"ens-icon-" + name} />
                 <AvatarFallback />
               </Avatar>
