@@ -33,6 +33,7 @@ export default function RootLayout(props: { children: ReactNode }) {
             w: "100%",
             bgColor: "bgWeak",
             scrollBehavior: "smooth",
+            "& h1, h2, p": { _selection: { color: "indigo.500", bgColor: "indigo.0" } },
           })
         )}
       >
