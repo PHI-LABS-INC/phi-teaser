@@ -194,6 +194,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             {credentialAttributes[artworkKey].description && (
               <p
                 className={css({
+                  display: { base: "none", md: "block" },
                   color: "textWeak",
                   fontSize: { base: "0.75rem", md: "0.875rem" },
                   fontWeight: 500,
