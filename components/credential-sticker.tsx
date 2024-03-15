@@ -259,7 +259,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             className={center({
               position: "fixed",
               bottom: "2rem",
-              left: "calc((100vw - 2rem - 25rem) / 2)",
+              left: { base: "50%", md: "calc((100vw - 2rem - 25rem) / 2)" },
               transform: "translateX(-50%)",
               p: "0.25rem",
               gap: "0.25rem",
@@ -271,7 +271,13 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             })}
           >
             <button
-              className={center({ p: "0.5rem", gap: "0.5rem", cursor: "pointer", _focus: { outline: "none" } })}
+              className={center({
+                p: "0.5rem",
+                gap: "0.5rem",
+                cursor: "pointer",
+                _hover: { "& svg path": { stroke: "gray.500" } },
+                _focus: { outline: "none" },
+              })}
               onClick={(e) => {
                 focus(artworks[(artworks.indexOf(artworkKey) + artworks.length - 1) % artworks.length]);
               }}
@@ -281,7 +287,13 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
               </svg>
             </button>
             <button
-              className={center({ p: "0.5rem", gap: "0.5rem", cursor: "pointer", _focus: { outline: "none" } })}
+              className={center({
+                p: "0.5rem",
+                gap: "0.5rem",
+                cursor: "pointer",
+                _hover: { "& svg path": { stroke: "gray.500" } },
+                _focus: { outline: "none" },
+              })}
               onClick={(e) => {
                 focus(artworks[(artworks.indexOf(artworkKey) + 1) % artworks.length]);
               }}
