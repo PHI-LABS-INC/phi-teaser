@@ -2,7 +2,7 @@ import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
-import { FreeArtworkKey, ArtworkKey, artworkSticker, artworks, freeArtworkSticker } from "./draggable";
+import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
 
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
