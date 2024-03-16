@@ -1,7 +1,7 @@
 import { http, createConfig } from "wagmi";
 import { base, sepolia } from "wagmi/chains";
 import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
-import { wcProjectID } from "./config";
+import { alchemyID, wcProjectID } from "./config";
 
 export const config = createConfig({
   chains: [
@@ -12,7 +12,7 @@ export const config = createConfig({
   ssr: true,
   transports: {
     // [base.id]: http(),
-    [sepolia.id]: http(),
+    [sepolia.id]: http("https://eth-sepolia.g.alchemy.com/v2/" + alchemyID),
   },
 });
 

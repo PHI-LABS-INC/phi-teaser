@@ -5,8 +5,8 @@ import abi from "./abi";
 
 export const client = createPublicClient({
   chain: sepolia,
-  transport: http(),
-  // transport: http("https://eth-sepolia.g.alchemy.com/v2/" + alchemyID)
+  // transport: http(),
+  transport: http("https://eth-sepolia.g.alchemy.com/v2/" + alchemyID),
 });
 
 export async function fetchTotalSupply() {
