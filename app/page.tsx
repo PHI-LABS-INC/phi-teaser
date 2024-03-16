@@ -24,19 +24,20 @@ export default async function Page() {
         className={center({
           zIndex: "header",
           position: "fixed",
-          top: { base: "calc(1rem + 0.75rem + 2px)", md: "calc(1rem + 1rem + 0.5rem)" },
+          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem + 0.5rem)" },
           left: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem + 0.5rem)" },
-          h: { base: "2.25rem", md: "3rem" },
+          h: { base: "2.5rem", md: "3rem" },
         })}
       >
         <Image src={Logo} alt="phi-logo" />
       </div>
       <div
-        className={css({
+        className={center({
           zIndex: "header",
           position: "fixed",
           top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem + 0.5rem)" },
           right: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem + 0.5rem)" },
+          h: { base: "2.5rem", md: "3rem" },
         })}
       >
         <Wallet />
