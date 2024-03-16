@@ -3,7 +3,7 @@
 import { useEffect, useId, useState } from "react";
 import { DndContext, DragOverlay, MouseSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
-import CredentialSticker from "@/components/credential-sticker";
+import CredentialSticker, { FreeSticker } from "@/components/credential-sticker";
 import { ArtworkKey, artworkSticker, artworks } from "@/components/draggable";
 
 export function Canvas() {
@@ -64,6 +64,14 @@ export function Canvas() {
         <CredentialSticker artworkKey="ethereum-first-tx-date" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="phi" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="gitcoin" focusKey={focusKey} focus={focus} />
+
+        <FreeSticker artworkKey="owner" />
+        <FreeSticker artworkKey="curator" />
+        <FreeSticker artworkKey="verifier" />
+        <FreeSticker artworkKey="artist" />
+        <FreeSticker artworkKey="pizza" />
+        <FreeSticker artworkKey="legit" />
+        <FreeSticker artworkKey="bull" />
 
         <DragOverlay
           dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}

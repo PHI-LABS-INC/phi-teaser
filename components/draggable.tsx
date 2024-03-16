@@ -13,6 +13,9 @@ import CredentialOwner from "@/public/free-artwork/credential-owner.png";
 import Curator from "@/public/free-artwork/curator.png";
 import Verifier from "@/public/free-artwork/verifier.png";
 import Artist from "@/public/free-artwork/artist.png";
+import Pizza from "@/public/free-artwork/pizza.png";
+import Legit from "@/public/free-artwork/legit.png";
+import Bull from "@/public/free-artwork/bull.png";
 // artworks
 import ChessUniswap from "@/public/artwork/chess-uniswap.png";
 import CrowdFront from "@/public/artwork/crowd-front.png";
@@ -49,13 +52,15 @@ function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey
         opacity: isDragging ? 0.5 : 1,
         w: "max-content",
         h: "max-content",
-        _hover: {
-          transform: "scale(1.075)",
-          transition: "cubic-bezier(0.175,0.885,0.32,1.1)",
-          transitionProperty: "transform",
-          transitionDuration: "0.2s",
-          cursor: "pointer",
-        },
+        _hover: isFreeArtworKey(id)
+          ? {}
+          : {
+              transform: "scale(1.075)",
+              transition: "cubic-bezier(0.175,0.885,0.32,1.1)",
+              transitionProperty: "transform",
+              transitionDuration: "0.2s",
+              cursor: "pointer",
+            },
       })}
       {...listeners}
       {...attributes}
@@ -104,27 +109,46 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   ),
 };
 
-export type FreeArtworkKey = "credential-owner" | "curator" | "verifier" | "artist";
+export type FreeArtworkKey = "owner" | "curator" | "verifier" | "artist" | "pizza" | "legit" | "bull";
+
+function isFreeArtworKey(key: string): key is FreeArtworkKey {
+  return ["owner", "curator", "verifier", "artist", "pizza", "legit", "bull"].includes(key);
+}
 
 export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
-  "credential-owner": (
-    <Sticker id="credential-owner">
-      <Image src={CredentialOwner} alt="credential-owner" height={70.86 * 2} priority />
+  owner: (
+    <Sticker id="owner">
+      <Image src={CredentialOwner} alt="owner" height={70.86 * 2} />
     </Sticker>
   ),
   curator: (
     <Sticker id="curator">
-      <Image src={Curator} alt="curator" height={70.86 * 2} priority />
+      <Image src={Curator} alt="curator" height={70.86 * 2} />
     </Sticker>
   ),
   verifier: (
     <Sticker id="verifier">
-      <Image src={Verifier} alt="verifier" height={70.86 * 2} priority />
+      <Image src={Verifier} alt="verifier" height={70.86 * 2} />
     </Sticker>
   ),
   artist: (
     <Sticker id="artist">
-      <Image src={Artist} alt="artist" height={70.86 * 2} priority />
+      <Image src={Artist} alt="artist" height={70.86 * 2} />
+    </Sticker>
+  ),
+  pizza: (
+    <Sticker id="pizza">
+      <Image src={Pizza} alt="pizza" height={220 * 2} />
+    </Sticker>
+  ),
+  legit: (
+    <Sticker id="legit">
+      <Image src={Legit} alt="legit" height={153 * 2} />
+    </Sticker>
+  ),
+  bull: (
+    <Sticker id="bull">
+      <Image src={Bull} alt="bull" height={145 * 2} />
     </Sticker>
   ),
 };

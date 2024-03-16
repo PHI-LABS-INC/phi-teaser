@@ -2,9 +2,8 @@ import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
-import { ArtworkKey, artworkSticker, artworks } from "./draggable";
+import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
 
-// refactor: openTransformCva
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
   md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc((1024px - 2rem) / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
@@ -19,75 +18,29 @@ const defaultTransform = (position: { x: number; y: number }, opt?: string) => (
 const defaultTransformCva = cva({
   variants: {
     artworkKey: {
-      "chess-uniswap": {
-        transform: defaultTransform({ x: 1.25, y: 15.5 }),
-      },
-      "crowd-front": {
-        transform: defaultTransform({ x: 1.625, y: -8.25 }),
-      },
-      "hash-hunter-aave": {
-        transform: defaultTransform({ x: -5, y: 9 }),
-      },
-      "moduler-believer": {
-        transform: defaultTransform({ x: -9, y: 3.25 }),
-      },
-      "ethereum-builder": {
-        transform: defaultTransform({ x: 1.5, y: 7.25 }),
-      },
-      wawa: {
-        transform: defaultTransform({ x: 0, y: -18 }),
-      },
-      "ethereum-space-station": {
-        transform: defaultTransform({ x: -4.5, y: -16.5 }, "rotate(-15deg)"),
-      },
-      "gnosis-owl": {
-        transform: defaultTransform({ x: 11, y: 15.25 }),
-      },
-      "ds-planet": {
-        transform: defaultTransform({ x: 12.125, y: -13 }),
-      },
-      "arb-game": {
-        transform: defaultTransform({ x: 16, y: 6 }, "rotate(19deg)"),
-      },
-      "op-game": {
-        transform: defaultTransform({ x: 10.25, y: -1 }, "rotate(19deg)"),
-      },
-      "basepaint-nouns-base": {
-        transform: defaultTransform({ x: -11, y: -5.5 }, "rotate(-19deg)"),
-      },
-      "basepaint-mickymouse-cc0": {
-        transform: defaultTransform({ x: 13.5, y: -4 }, "rotate(30deg)"),
-      },
-      "ens-newbie": {
-        transform: defaultTransform({ x: 10, y: 5.8 }),
-      },
-      "ethereum-first-tx-date": {
-        transform: defaultTransform({ x: -7.5, y: 19.75 }),
-      },
-      "shib-profit": {
-        transform: defaultTransform({ x: -16.5, y: -11 }),
-      },
-      "op-airdrop": {
-        transform: defaultTransform({ x: 12, y: -23 }),
-      },
-      heartbeat: {
-        transform: defaultTransform({ x: -2.75, y: 14.75 }),
-      },
-      "piggy-bank": {
-        transform: defaultTransform({ x: -12.75, y: 13.25 }),
-      },
-      "sepolia-builder": {
-        transform: defaultTransform({ x: -12.125, y: 2 }, "rotate(-19deg)"),
-      },
-      "farcaster-ink": {
-        transform: defaultTransform({ x: 0, y: 0 }, "rotate(-23deg)"),
-      },
-      phi: {
-        transform: defaultTransform({ x: 0, y: 0 }),
-      },
-      gitcoin: {
-        transform: defaultTransform({ x: -20, y: 10 }),
-      },
+      "chess-uniswap": { transform: defaultTransform({ x: 1.25, y: 15.5 }) },
+      "crowd-front": { transform: defaultTransform({ x: 1.625, y: -8.25 }) },
+      "hash-hunter-aave": { transform: defaultTransform({ x: -5, y: 9 }) },
+      "moduler-believer": { transform: defaultTransform({ x: -9, y: 3.25 }) },
+      "ethereum-builder": { transform: defaultTransform({ x: 1.5, y: 7.25 }) },
+      wawa: { transform: defaultTransform({ x: 0, y: -18 }) },
+      "ethereum-space-station": { transform: defaultTransform({ x: -4.5, y: -16.25 }, "rotate(-15deg)") },
+      "gnosis-owl": { transform: defaultTransform({ x: 11, y: 15.25 }) },
+      "ds-planet": { transform: defaultTransform({ x: 12.125, y: -13 }) },
+      "arb-game": { transform: defaultTransform({ x: 16, y: 6 }, "rotate(19deg)") },
+      "op-game": { transform: defaultTransform({ x: 10.25, y: -1 }, "rotate(19deg)") },
+      "basepaint-nouns-base": { transform: defaultTransform({ x: -11, y: -5.5 }, "rotate(-19deg)") },
+      "basepaint-mickymouse-cc0": { transform: defaultTransform({ x: 13.5, y: -4 }, "rotate(30deg)") },
+      "ens-newbie": { transform: defaultTransform({ x: 10, y: 5.8 }) },
+      "ethereum-first-tx-date": { transform: defaultTransform({ x: -7.5, y: 19.75 }) },
+      "shib-profit": { transform: defaultTransform({ x: -16.5, y: -11 }) },
+      "op-airdrop": { transform: defaultTransform({ x: 12, y: -24.5 }) },
+      heartbeat: { transform: defaultTransform({ x: -2.75, y: 14.75 }) },
+      "piggy-bank": { transform: defaultTransform({ x: -12.75, y: 13.25 }) },
+      "sepolia-builder": { transform: defaultTransform({ x: -12.125, y: 2 }, "rotate(-19deg)") },
+      "farcaster-ink": { transform: defaultTransform({ x: 0, y: 0 }, "rotate(-23deg)") },
+      phi: { transform: defaultTransform({ x: 0, y: 0 }) },
+      gitcoin: { transform: defaultTransform({ x: -20, y: 10 }) },
     },
   },
 });
@@ -309,5 +262,36 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
         </Content>
       </Portal>
     </Root>
+  );
+}
+
+export function FreeSticker({ artworkKey }: { artworkKey: FreeArtworkKey }) {
+  return (
+    <span
+      className={cx(
+        cva({
+          variants: {
+            artworkKey: {
+              owner: { transform: defaultTransform({ x: 26, y: -5 }) },
+              curator: { transform: defaultTransform({ x: 7.75, y: 23.75 }) },
+              verifier: { transform: defaultTransform({ x: -12.5, y: -23 }) },
+              artist: { transform: defaultTransform({ x: -24, y: -0.25 }) },
+              pizza: { transform: defaultTransform({ x: 17, y: 9.5 }) },
+              legit: { transform: defaultTransform({ x: 0, y: -14.25 }, "rotate(-19deg)") },
+              bull: { transform: defaultTransform({ x: 20.5, y: -21 }) },
+            },
+          },
+        })({ artworkKey }),
+        css({
+          position: "absolute",
+          transition: "cubic-bezier(0.19,1,0.22,1)",
+          transitionProperty: "transform",
+          transitionDuration: ".8s",
+          _focus: { outline: "none" },
+        })
+      )}
+    >
+      {freeArtworkSticker[artworkKey]}
+    </span>
   );
 }
