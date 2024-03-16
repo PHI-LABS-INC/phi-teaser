@@ -87,6 +87,9 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
             className={vstack({
               p: "0 1rem",
               w: "100%",
+              overflowY: "scroll",
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": { display: "none" },
               "& p": { color: "gray.800", fontSize: "1rem", fontWeight: 600, lineHeight: "1rem" },
             })}
           >
