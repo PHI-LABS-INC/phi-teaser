@@ -1,12 +1,11 @@
 import { createPublicClient, decodeEventLog, http, parseAbi, parseAbiItem } from "viem";
-import { mainnet, sepolia } from "viem/chains";
+import { base, mainnet } from "viem/chains";
 import { alchemyID, phiTeaserNFTContract } from "./config";
 import abi from "./abi";
 
 export const client = createPublicClient({
-  chain: sepolia,
-  // transport: http(),
-  transport: http("https://eth-sepolia.g.alchemy.com/v2/" + alchemyID),
+  chain: base,
+  transport: http("https://base-mainnet.g.alchemy.com/v2/" + alchemyID),
 });
 
 export async function fetchTotalSupply() {

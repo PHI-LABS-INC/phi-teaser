@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { base, sepolia } from "viem/chains";
+import { base } from "viem/chains";
 import { useAccount, useReadContract, useSwitchChain, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
@@ -311,7 +311,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             {hash && status === "success" ? (
               <div className={vstack({ gap: { base: "1rem", md: "1.5rem" } })}>
                 <Link
-                  href={sepolia.blockExplorers.default.url + "/tx/" + hash}
+                  href={base.blockExplorers.default.url + "/tx/" + hash}
                   target="_blank"
                   className={flex({
                     align: "center",
@@ -385,8 +385,8 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                       openWalletModal();
                       return;
                     }
-                    if (chainId !== sepolia.id) {
-                      switchChain({ chainId: sepolia.id });
+                    if (chainId !== base.id) {
+                      switchChain({ chainId: base.id });
                       return;
                     }
                     await writeContractAsync({ abi, address: phiTeaserNFTContract, functionName: "mint", args: [address] });

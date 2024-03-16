@@ -1,5 +1,5 @@
 import { http, createConfig } from "wagmi";
-import { base, sepolia } from "wagmi/chains";
+import { base } from "wagmi/chains";
 import { injected, walletConnect } from "wagmi/connectors";
 import { alchemyID, frontendURL, wcProjectID } from "./config";
 
@@ -11,16 +11,10 @@ const metadata = {
 };
 
 export const config = createConfig({
-  chains: [
-    // base,
-    sepolia,
-  ],
+  chains: [base],
   connectors: [injected(), walletConnect({ projectId: wcProjectID, metadata, showQrModal: false })],
   ssr: true,
-  transports: {
-    // [base.id]: http(),
-    [sepolia.id]: http("https://eth-sepolia.g.alchemy.com/v2/" + alchemyID),
-  },
+  transports: { [base.id]: http("https://base-mainnet.g.alchemy.com/v2/" + alchemyID) },
 });
 
 declare module "wagmi" {
