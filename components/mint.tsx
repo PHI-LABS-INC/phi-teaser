@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { base, sepolia } from "viem/chains";
-import { useAccount, useReadContract, useSwitchChain, useWriteContract } from "wagmi";
+import { useAccount, useReadContract, useSwitchChain, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
@@ -81,14 +81,25 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
   const { switchChain } = useSwitchChain();
   const { open: openWalletModal } = useWeb3Modal();
   const [open, setOpen] = useState(false);
-  const { data: tokenId, isFetched } = useReadContract({
+  const {
+    data: tokenId,
+    isFetched,
+    refetch,
+  } = useReadContract({
     abi,
     address: phiTeaserNFTContract,
     functionName: "addressToTokenId",
     args: address ? [address] : undefined,
   });
   const { data: hash, status, writeContractAsync } = useWriteContract();
+  const { data: receipt } = useWaitForTransactionReceipt({ hash });
   const minted = address && isFetched && tokenId !== BigInt(0);
+
+  useEffect(() => {
+    if (receipt && receipt.status === "success") {
+      refetch();
+    }
+  }, [receipt]);
 
   return (
     <Root open={open}>
