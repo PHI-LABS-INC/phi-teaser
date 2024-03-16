@@ -1,6 +1,6 @@
 import { http, createConfig } from "wagmi";
 import { base, sepolia } from "wagmi/chains";
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
+import { injected, walletConnect } from "wagmi/connectors";
 import { alchemyID, wcProjectID } from "./config";
 
 export const config = createConfig({

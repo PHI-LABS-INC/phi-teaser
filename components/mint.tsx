@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { base, sepolia } from "viem/chains";
 import { useAccount, useReadContract, useSwitchChain, useWriteContract } from "wagmi";
-import { useModal } from "connectkit";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
@@ -14,6 +13,7 @@ import { phiTeaserNFTContract } from "@/lib/config";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
 
 const mintCva = cva({
   base: {
@@ -79,7 +79,7 @@ const mintCva = cva({
 export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: string; mintedList: string[]; disabled?: boolean }) {
   const { address, chainId } = useAccount();
   const { switchChain } = useSwitchChain();
-  const { setOpen: setOpenpenWalletModal } = useModal();
+  const { open: openWalletModal } = useWeb3Modal();
   const [open, setOpen] = useState(false);
   const { data: tokenId, isFetched } = useReadContract({
     abi,
@@ -97,7 +97,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
         disabled={disabled || minted}
         onClick={() => {
           if (!address) {
-            setOpenpenWalletModal(true);
+            openWalletModal();
             return;
           }
           setOpen(true);
@@ -371,7 +371,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                       return;
                     }
                     if (!address) {
-                      setOpenpenWalletModal(true);
+                      openWalletModal();
                       return;
                     }
                     if (chainId !== sepolia.id) {
