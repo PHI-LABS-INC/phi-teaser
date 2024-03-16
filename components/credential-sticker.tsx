@@ -7,13 +7,13 @@ import { ArtworkKey, artworkSticker, artworks } from "./draggable";
 // refactor: openTransformCva
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
-  md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc(1024px / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
+  md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc((1024px - 2rem) / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
 const defaultTransform = (position: { x: number; y: number }, opt?: string) => ({
   base: `translate(calc(50vw - 1rem), calc(434px / 2)) translate(-50%, -50%) translate(${position.x / 3}rem, ${position.y / 3}rem) scale(0.166) ${opt || ""}`,
-  md: `translate(calc(50vw - 1rem * 2), calc(64rem / 2)) translate(-50%, -50%) translate(${position.x}rem, ${position.y}rem) scale(0.5) ${opt || ""}`,
+  md: `translate(calc(50vw - 1rem * 2), calc((1024px - 2rem) / 2)) translate(-50%, -50%) translate(${position.x}rem, ${position.y}rem) scale(0.5) ${opt || ""}`,
 });
 
 const defaultTransformCva = cva({
