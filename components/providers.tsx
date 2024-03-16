@@ -1,19 +1,27 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
-import { ConnectKitProvider } from "connectkit";
+import { sepolia } from "viem/chains";
+import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { config } from "@/lib/wagmi";
+import { wcProjectID } from "@/lib/config";
 
-export function Providers(props: { children: ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
+const queryClient = new QueryClient();
 
+createWeb3Modal({
+  wagmiConfig: config,
+  projectId: wcProjectID,
+  defaultChain: sepolia,
+  themeMode: "light",
+  enableAnalytics: false,
+  enableOnramp: false,
+});
+
+export function Providers(props: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <ConnectKitProvider>{props.children}</ConnectKitProvider>
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
     </WagmiProvider>
   );
 }

@@ -1,14 +1,21 @@
 import { http, createConfig } from "wagmi";
 import { base, sepolia } from "wagmi/chains";
-import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
-import { alchemyID, wcProjectID } from "./config";
+import { injected, walletConnect } from "wagmi/connectors";
+import { alchemyID, frontendURL, wcProjectID } from "./config";
+
+const metadata = {
+  name: "Phi",
+  description: "A decentralized identity layer for web3, empowering people to express their on-chain identity.",
+  url: frontendURL,
+  icons: [frontendURL + "/logo.svg"],
+};
 
 export const config = createConfig({
   chains: [
     // base,
     sepolia,
   ],
-  connectors: [injected(), walletConnect({ projectId: wcProjectID, showQrModal: false })],
+  connectors: [injected(), walletConnect({ projectId: wcProjectID, metadata, showQrModal: false })],
   ssr: true,
   transports: {
     // [base.id]: http(),
