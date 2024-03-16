@@ -6,7 +6,7 @@ import { useState } from "react";
 import { base, sepolia } from "viem/chains";
 import { useAccount, useReadContract, useSwitchChain, useWriteContract } from "wagmi";
 import { useModal } from "connectkit";
-import { Trigger, Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
+import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import abi from "@/lib/abi";
@@ -91,30 +91,38 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
   const minted = address && isFetched && tokenId !== BigInt(0);
 
   return (
-    <Root open={open} onOpenChange={setOpen}>
-      <Trigger asChild>
-        <button className={mintCva({ size: "md" })} disabled={disabled || minted}>
-          {disabled && (
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M12.6667 7.3335H3.33333C2.59695 7.3335 2 7.93045 2 8.66683V13.3335C2 14.0699 2.59695 14.6668 3.33333 14.6668H12.6667C13.403 14.6668 14 14.0699 14 13.3335V8.66683C14 7.93045 13.403 7.3335 12.6667 7.3335Z"
-                stroke="#B3B2B1"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M4.66675 7.3335V4.66683C4.66675 3.78277 5.01794 2.93493 5.64306 2.30981C6.26818 1.68469 7.11603 1.3335 8.00008 1.3335C8.88414 1.3335 9.73198 1.68469 10.3571 2.30981C10.9822 2.93493 11.3334 3.78277 11.3334 4.66683V7.3335"
-                stroke="#B3B2B1"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          )}
-          {minted ? "Minted" : disabled ? "Mint" : "Mint For Free"}
-        </button>
-      </Trigger>
+    <Root open={open}>
+      <button
+        className={mintCva({ size: "md" })}
+        disabled={disabled || minted}
+        onClick={() => {
+          if (!address) {
+            setOpenpenWalletModal(true);
+            return;
+          }
+          setOpen(true);
+        }}
+      >
+        {disabled && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M12.6667 7.3335H3.33333C2.59695 7.3335 2 7.93045 2 8.66683V13.3335C2 14.0699 2.59695 14.6668 3.33333 14.6668H12.6667C13.403 14.6668 14 14.0699 14 13.3335V8.66683C14 7.93045 13.403 7.3335 12.6667 7.3335Z"
+              stroke="#B3B2B1"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M4.66675 7.3335V4.66683C4.66675 3.78277 5.01794 2.93493 5.64306 2.30981C6.26818 1.68469 7.11603 1.3335 8.00008 1.3335C8.88414 1.3335 9.73198 1.68469 10.3571 2.30981C10.9822 2.93493 11.3334 3.78277 11.3334 4.66683V7.3335"
+              stroke="#B3B2B1"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+        {minted ? "Minted" : disabled ? "Mint" : "Mint For Free"}
+      </button>
       <Portal>
         <Overlay
           className={css({
