@@ -69,7 +69,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
             },
           })}
         >
-          <div className={flex({ direction: "column", gap: "3rem" })}>
+          <div className={flex({ direction: "column", gap: { base: "1rem", md: "3rem" } })}>
             <h1>Why Phi</h1>
             <p>
               In web3, transactions are the building blocks of your identity. Many onchain transactions already contain snippets of
@@ -79,7 +79,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               onchain identity.
             </p>
           </div>
-          <div className={flex({ direction: "column", gap: "1rem" })}>
+          <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
             <h2>Our Journey</h2>
             <p>
               Phi started on Jan 1st, 2021 driven by a single question: how can users express their onchain identity to one another and to
@@ -90,7 +90,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               protocols But we haven’t stopped there.
             </p>
           </div>
-          <div className={flex({ direction: "column", gap: "1rem" })}>
+          <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
             <h2>Our feature : Phi2.0</h2>
             <div
               className={flex({
@@ -118,7 +118,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               photos, GIFs, movies, text, score, in-game objects, onchain score, and many other possibilities. Whatever suits your tastes.
             </p>
           </div>
-          <div className={flex({ direction: "column", gap: "1rem" })}>
+          <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
             <h2>Taking control</h2>
             <p>
               Phi Protocol is a{" "}
@@ -128,7 +128,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               freedom to form the credentials, the format, and the visual that best expresses yourself to the world.
             </p>
           </div>
-          <div className={flex({ direction: "column", gap: "1rem" })}>
+          <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
             <h2>The Board</h2>
             <div
               className={flex({

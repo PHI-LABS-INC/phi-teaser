@@ -34,7 +34,7 @@ export function Canvas() {
   }, [focusKey]);
 
   return (
-    <div className={css({ position: "relative", w: "100%", h: { base: "434px", md: "calc(1024px - 2rem)" } })}>
+    <div className={css({ position: "relative", w: "100%", h: { base: "calc(374px + 60px)", md: "calc(1024px - 2rem)" } })}>
       <DndContext
         id={dndCtxId}
         sensors={sensors}
