@@ -282,7 +282,13 @@ export function FreeSticker({ artworkKey }: { artworkKey: FreeArtworkKey }) {
             },
           },
         })({ artworkKey }),
-        css({ position: "absolute", _focus: { outline: "none" } })
+        css({
+          position: "absolute",
+          transition: "cubic-bezier(0.19,1,0.22,1)",
+          transitionProperty: "transform",
+          transitionDuration: ".8s",
+          _focus: { outline: "none" },
+        })
       )}
     >
       {freeArtworkSticker[artworkKey]}
