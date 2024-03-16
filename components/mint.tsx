@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { base, sepolia } from "viem/chains";
 import { useAccount, useReadContract, useSwitchChain, useWriteContract } from "wagmi";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
@@ -13,7 +14,6 @@ import { phiTeaserNFTContract } from "@/lib/config";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import { useWeb3Modal } from "@web3modal/wagmi/react";
 
 const mintCva = cva({
   base: {
