@@ -91,7 +91,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
             </p>
           </div>
           <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
-            <h2>Our feature : Phi2.0</h2>
+            <h2>Our future : Phi2.0</h2>
             <div
               className={flex({
                 align: "center",
