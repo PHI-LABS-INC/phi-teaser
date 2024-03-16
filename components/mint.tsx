@@ -195,6 +195,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                 src="/nft.png"
                 width={16 * 16}
                 height={16 * 16}
+                quality={100}
                 alt="nft"
                 className={css({
                   borderRadius: "0.5rem",
