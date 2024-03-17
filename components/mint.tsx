@@ -10,7 +10,7 @@ import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import abi from "@/lib/abi";
-import { phiTeaserNFTContract } from "@/lib/config";
+import { frontendURL, phiTeaserNFTContract } from "@/lib/config";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
@@ -75,6 +75,10 @@ const mintCva = cva({
     },
   },
 });
+
+const socialShareText = encodeURIComponent(
+  `Excited to explore my future decentralised identity on Phi!\n\nLearn all about Phi 2.0 on ${frontendURL} and mint a free milestone NFT!`
+);
 
 export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: string; mintedList: string[]; disabled?: boolean }) {
   const { address, chainId } = useAccount();
@@ -358,14 +362,14 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                   })}
                 >
                   <Link
-                    href="https://twitter.com/phi_xyz"
+                    href={`https://twitter.com/intent/tweet?text=${socialShareText}`}
                     target="_blank"
                     className={css({ bgColor: "xBrandPrimary", _hover: { bgColor: "#2F2723" } })}
                   >
                     <Image src={X} width={24} height={24} alt="logo-x" />
                   </Link>
                   <Link
-                    href="https://twitter.com/phi_xyz"
+                    href={`https://warpcast.com/~/compose?text=${socialShareText}`}
                     target="_blank"
                     className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
                   >
