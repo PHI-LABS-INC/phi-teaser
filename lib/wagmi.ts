@@ -1,6 +1,6 @@
 import { http, createConfig } from "wagmi";
 import { base } from "wagmi/chains";
-import { injected, walletConnect } from "wagmi/connectors";
+import { coinbaseWallet, injected, walletConnect } from "wagmi/connectors";
 import { alchemyID, frontendURL, wcProjectID } from "./config";
 
 const metadata = {
@@ -12,7 +12,11 @@ const metadata = {
 
 export const config = createConfig({
   chains: [base],
-  connectors: [injected(), walletConnect({ projectId: wcProjectID, metadata, showQrModal: false })],
+  connectors: [
+    injected(),
+    walletConnect({ projectId: wcProjectID, metadata, showQrModal: false }),
+    coinbaseWallet({ appName: metadata.name }),
+  ],
   ssr: true,
   transports: { [base.id]: http("https://base-mainnet.g.alchemy.com/v2/" + alchemyID) },
 });
