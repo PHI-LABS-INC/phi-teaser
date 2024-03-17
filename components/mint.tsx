@@ -23,18 +23,7 @@ const mintCva = cva({
     gap: "0.5rem",
     w: "fit-content",
     borderRadius: "0.375rem",
-    bgColor: "indigo.500",
     cursor: "pointer",
-    _hover: {
-      "&:not(:disabled)": {
-        bgColor: "bgPrimaryWeak",
-      },
-    },
-    _active: {
-      "&:not(:disabled)": {
-        bgColor: "bgPrimaryWeaker",
-      },
-    },
     _disabled: {
       cursor: "not-allowed",
       border: "1px solid",
@@ -42,22 +31,14 @@ const mintCva = cva({
       bgColor: "bg",
       color: "textWeakest",
     },
-    _focus: {
-      outline: "none",
-    },
-    color: "textInvert",
+    _focus: { outline: "none" },
     lineHeight: "1.5rem",
     textAlign: "center",
     whiteSpace: "nowrap",
   },
   variants: {
     size: {
-      xs: {
-        p: "0.5rem 1rem",
-        fontSize: "1rem",
-        fontWeight: 650,
-      },
-      sm: {
+      base: {
         p: "0.5rem 1rem",
         fontSize: "1rem",
         fontWeight: 650,
@@ -67,10 +48,37 @@ const mintCva = cva({
         fontSize: "1rem",
         fontWeight: 650,
       },
-      lg: {
-        p: "0.5rem 1rem",
-        fontSize: "1rem",
-        fontWeight: 650,
+    },
+    state: {
+      active: {
+        color: "textInvert",
+        bgColor: "indigo.500",
+        _hover: {
+          "&:not(:disabled)": {
+            bgColor: "bgPrimaryWeak",
+          },
+        },
+        _active: {
+          "&:not(:disabled)": {
+            bgColor: "bgPrimaryWeaker",
+          },
+        },
+      },
+      minted: {
+        color: "text",
+        bgColor: "bg",
+        border: "1px solid",
+        borderColor: "border",
+        _hover: {
+          "&:not(:disabled)": {
+            bgColor: "gray.100",
+          },
+        },
+        _active: {
+          "&:not(:disabled)": {
+            bgColor: "gray.200",
+          },
+        },
       },
     },
   },
@@ -108,8 +116,8 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
   return (
     <Root open={open}>
       <button
-        className={mintCva({ size: "md" })}
-        disabled={disabled || minted}
+        className={mintCva({ size: "md", state: minted ? "minted" : disabled ? undefined : "active" })}
+        disabled={disabled}
         onClick={() => {
           if (!address) {
             openWalletModal();
@@ -380,7 +388,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             ) : (
               <div className={vstack({ gap: "1rem" })}>
                 <button
-                  className={mintCva({ size: "md" })}
+                  className={mintCva({ size: "md", state: disabled || minted ? undefined : "active" })}
                   onClick={async () => {
                     if (status === "pending") {
                       return;
@@ -395,9 +403,11 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                     }
                     await writeContractAsync({ abi, address: phiTeaserNFTContract, functionName: "mint", args: [address] });
                   }}
-                  disabled={disabled}
+                  disabled={disabled || minted}
                 >
-                  {disabled ? (
+                  {minted ? (
+                    "Minted"
+                  ) : disabled ? (
                     "Mint"
                   ) : status === "pending" ? (
                     <span className={css({ animation: "spin 2.5s linear infinite" })}>
