@@ -22,7 +22,10 @@ export const metadata: Metadata = {
   title,
   description,
   icons: {
-    icon: "/favicon/favicon.ico",
+    icon: [
+      { media: "(prefers-color-scheme: light)", url: "favicon/favicon.ico" },
+      { media: "(prefers-color-scheme: dark)", url: "favicon/favicon-dark.ico" },
+    ],
     shortcut: "/favicon/favicon-16x16.png",
     apple: "/favicon/apple-touch-icon.png",
   },
