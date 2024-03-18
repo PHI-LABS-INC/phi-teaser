@@ -3,8 +3,8 @@ import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
-import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
 import { useCurate } from "@/hooks/use-curate";
+import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
 
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
@@ -128,15 +128,18 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                   borderColor: "border",
                   background: "bg",
                   "& p": { color: "text", fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" },
+                  "& svg path": {
+                    stroke: curated ? "pink.300" : "gray.400",
+                    fill: curated ? "pink.300" : undefined,
+                  },
                 })}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
                     d="M12.6667 9.33333C13.66 8.36 14.6667 7.19333 14.6667 5.66667C14.6667 4.69421 14.2804 3.76158 13.5927 3.07394C12.9051 2.38631 11.9725 2 11 2C9.82667 2 9 2.33333 8 3.33333C7 2.33333 6.17333 2 5 2C4.02754 2 3.09491 2.38631 2.40728 3.07394C1.71964 3.76158 1.33333 4.69421 1.33333 5.66667C1.33333 7.2 2.33333 8.36667 3.33333 9.33333L8 14L12.6667 9.33333Z"
-                    stroke="#B3B2B1"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
                 <p>Like</p>
@@ -248,7 +251,6 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 p: "0.5rem",
                 gap: "0.5rem",
                 cursor: "pointer",
-                _hover: { "& svg path": { stroke: "gray.500" } },
                 _focus: { outline: "none" },
               },
             })}
@@ -258,20 +260,28 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 centorize();
                 focus(artworks[(artworks.indexOf(artworkKey) + artworks.length - 1) % artworks.length]);
               }}
+              className={css({ _hover: { "& svg path": { stroke: "gray.500" } } })}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
             {address && (
-              <button onClick={() => (curated ? uncurate() : curate())}>
+              <button
+                onClick={() => (curated ? uncurate() : curate())}
+                className={css({
+                  "& svg path": {
+                    stroke: curated ? "pink.300" : "gray.400",
+                    fill: curated ? "pink.300" : undefined,
+                  },
+                })}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path
                     d="M15.8334 11.6667C17.075 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.9909 3.84243C16.1314 2.98289 14.9656 2.5 13.75 2.5C12.2834 2.5 11.25 2.91667 10 4.16667C8.75002 2.91667 7.71669 2.5 6.25002 2.5C5.03444 2.5 3.86866 2.98289 3.00911 3.84243C2.14957 4.70197 1.66669 5.86776 1.66669 7.08333C1.66669 9 2.91669 10.4583 4.16669 11.6667L10 17.5L15.8334 11.6667Z"
-                    stroke="#B3B2B1"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -281,9 +291,10 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 centorize();
                 focus(artworks[(artworks.indexOf(artworkKey) + 1) % artworks.length]);
               }}
+              className={css({ _hover: { "& svg path": { stroke: "gray.500" } } })}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M7.5 15L12.5 10L7.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="#3C3837" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           </div>
