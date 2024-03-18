@@ -271,13 +271,13 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 onClick={() => (curated ? uncurate() : curate())}
                 className={css({
                   "& svg path": {
-                    stroke: curated ? "pink.300" : "gray.400",
+                    stroke: curated ? "pink.300" : "gray.500",
                     fill: curated ? "pink.300" : undefined,
                   },
                   _hover: {
                     "& svg path": {
-                      stroke: curated ? "pink.400" : "gray.500",
-                      fill: curated ? "pink.400" : undefined,
+                      stroke: curated ? "pink.200" : "gray.400",
+                      fill: curated ? "pink.200" : undefined,
                     },
                   },
                 })}
