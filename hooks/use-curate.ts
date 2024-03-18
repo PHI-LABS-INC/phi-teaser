@@ -30,7 +30,6 @@ export function useCurate({ address, artworkKey }: Props) {
     },
     onSettled: () => {
       refetchCurated();
-      refetchCount();
     },
   });
   const { mutateAsync: uncurate } = useMutation({
@@ -46,7 +45,6 @@ export function useCurate({ address, artworkKey }: Props) {
     },
     onSettled: () => {
       refetchCurated();
-      refetchCount();
     },
   });
   return { count, curated, curate, uncurate };
