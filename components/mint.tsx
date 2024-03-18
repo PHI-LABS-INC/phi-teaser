@@ -442,9 +442,11 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             )}
           </div>
         </Content>
-        <div className={center({ zIndex: "modal-confetti", position: "fixed", inset: 0 })}>
-          <Confetti />
-        </div>
+        {hash && status === "success" && (
+          <div className={center({ zIndex: "modal-confetti", position: "fixed", inset: 0 })}>
+            <Confetti />
+          </div>
+        )}
       </Portal>
     </Root>
   );
