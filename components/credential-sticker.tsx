@@ -56,7 +56,7 @@ type ArtworkStickerProps = {
 export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
   const open = focusKey === artworkKey;
   const { address } = useAccount();
-  const { count, curated, curate, uncurate } = useCurate({ address, artworkKey, focusKey });
+  const { count, curated, curate, uncurate } = useCurate({ address, artworkKey });
 
   function centorize() {
     window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
