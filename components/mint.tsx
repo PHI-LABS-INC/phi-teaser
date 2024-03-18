@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { base } from "viem/chains";
 import { useAccount, useReadContract, useSwitchChain, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
@@ -14,6 +15,8 @@ import { frontendURL, phiTeaserNFTContract } from "@/lib/config";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+
+const Confetti = dynamic(() => import("./confetti"));
 
 const mintCva = cva({
   base: {
@@ -154,7 +157,9 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             inset: 0,
             background: "rgba(24, 20, 18, 0.32)",
           })}
-        />
+        >
+          <Confetti />
+        </Overlay>
         <Content
           onPointerDownOutside={(e) => setOpen(false)}
           className={flex({
