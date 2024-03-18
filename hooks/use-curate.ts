@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ArtworkKey } from "@/components/draggable";
+import { queryClient } from "@/components/providers";
 
 type Props = { address?: `0x${string}`; artworkKey: ArtworkKey; focusKey: ArtworkKey | null };
 
@@ -23,6 +24,13 @@ export function useCurate({ address, artworkKey, focusKey }: Props) {
     mutationFn: async () => {
       const { status } = await fetch(`/api/curation/${artworkKey}?address=${address}`, { method: "PUT" });
       if (status !== 200) throw new Error("Failed to curate");
+    },
+    onMutate: async () => {
+      const previousCount = queryClient.getQueryData<number>(["get-curation", artworkKey]);
+      queryClient.setQueryData(["get-curation", artworkKey], previousCount ? previousCount + 1 : 1);
+      queryClient.setQueryData(["get-curation-me", artworkKey, address], true);
+    },
+    onSettled: () => {
       refetchCurated();
       refetchCount();
     },
@@ -32,6 +40,13 @@ export function useCurate({ address, artworkKey, focusKey }: Props) {
     mutationFn: async () => {
       const { status } = await fetch(`/api/curation/${artworkKey}?address=${address}`, { method: "DELETE" });
       if (status !== 200) throw new Error("Failed to uncurate");
+    },
+    onMutate: async () => {
+      const prevCount = queryClient.getQueryData<number>(["get-curation", artworkKey]);
+      queryClient.setQueryData(["get-curation", artworkKey], prevCount ? prevCount - 1 : 0);
+      queryClient.setQueryData(["get-curation-me", artworkKey, address], false);
+    },
+    onSettled: () => {
       refetchCurated();
       refetchCount();
     },

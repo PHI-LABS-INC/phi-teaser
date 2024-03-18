@@ -7,7 +7,7 @@ import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { config } from "@/lib/wagmi";
 import { wcProjectID } from "@/lib/config";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 createWeb3Modal({
   wagmiConfig: config,
