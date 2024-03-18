@@ -1,8 +1,10 @@
+import { useAccount } from "wagmi";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
 import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
+import { useCurate } from "@/hooks/use-curate";
 
 const openTransform = {
   base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
@@ -53,6 +55,8 @@ type ArtworkStickerProps = {
 
 export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
   const open = focusKey === artworkKey;
+  const { address } = useAccount();
+  const { count, curated, curate, uncurate } = useCurate({ address, artworkKey, focusKey });
 
   function centorize() {
     window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
@@ -115,16 +119,31 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             })}
           >
             <div className={flex({ justify: "space-between", w: "100%" })}>
-              <div />
-              <button
-                onClick={() => focus(null)}
-                className={css({ cursor: "pointer", _hover: { "& svg path": { stroke: "gray.500" } }, _focus: { outline: "none" } })}
+              <div
+                className={center({
+                  p: "0.25rem 0.75rem",
+                  gap: "0.5rem",
+                  borderRadius: "2rem",
+                  border: "1px solid",
+                  borderColor: "border",
+                  background: "bg",
+                  "& p": { color: "text", fontSize: "0.875rem", fontWeight: 650, lineHeight: "1.25rem" },
+                })}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M6 6L18 18" stroke="#9B9A99" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M12.6667 9.33333C13.66 8.36 14.6667 7.19333 14.6667 5.66667C14.6667 4.69421 14.2804 3.76158 13.5927 3.07394C12.9051 2.38631 11.9725 2 11 2C9.82667 2 9 2.33333 8 3.33333C7 2.33333 6.17333 2 5 2C4.02754 2 3.09491 2.38631 2.40728 3.07394C1.71964 3.76158 1.33333 4.69421 1.33333 5.66667C1.33333 7.2 2.33333 8.36667 3.33333 9.33333L8 14L12.6667 9.33333Z"
+                    stroke="#B3B2B1"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
-              </button>
+                <p>Like</p>
+                <div className={css({ w: "0.0625rem", h: "1.3125rem", bgColor: "border" })} />
+                <p>{count ? count.toLocaleString() : "0"}</p>
+              </div>
+              <div />
             </div>
             <h2
               className={css({
@@ -222,16 +241,19 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
               borderColor: "border",
               background: "bg",
               boxShadow: "0px 1px 2px 0px rgba(0, 0, 0, 0.16)",
-            })}
-          >
-            <button
-              className={center({
+              "& > button": {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 p: "0.5rem",
                 gap: "0.5rem",
                 cursor: "pointer",
                 _hover: { "& svg path": { stroke: "gray.500" } },
                 _focus: { outline: "none" },
-              })}
+              },
+            })}
+          >
+            <button
               onClick={(e) => {
                 centorize();
                 focus(artworks[(artworks.indexOf(artworkKey) + artworks.length - 1) % artworks.length]);
@@ -241,14 +263,20 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </button>
+            {address && (
+              <button onClick={() => (curated ? uncurate() : curate())}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path
+                    d="M15.8334 11.6667C17.075 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.9909 3.84243C16.1314 2.98289 14.9656 2.5 13.75 2.5C12.2834 2.5 11.25 2.91667 10 4.16667C8.75002 2.91667 7.71669 2.5 6.25002 2.5C5.03444 2.5 3.86866 2.98289 3.00911 3.84243C2.14957 4.70197 1.66669 5.86776 1.66669 7.08333C1.66669 9 2.91669 10.4583 4.16669 11.6667L10 17.5L15.8334 11.6667Z"
+                    stroke="#B3B2B1"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            )}
             <button
-              className={center({
-                p: "0.5rem",
-                gap: "0.5rem",
-                cursor: "pointer",
-                _hover: { "& svg path": { stroke: "gray.500" } },
-                _focus: { outline: "none" },
-              })}
               onClick={(e) => {
                 centorize();
                 focus(artworks[(artworks.indexOf(artworkKey) + 1) % artworks.length]);
