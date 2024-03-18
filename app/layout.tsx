@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { type ReactNode } from "react";
 import { Providers } from "@/components/providers";
 import { frontendURL } from "@/lib/config";
@@ -63,6 +64,7 @@ export default function RootLayout(props: { children: ReactNode }) {
       >
         <Providers>{props.children}</Providers>
       </body>
+      <GoogleAnalytics gaId="G-MY4V7VW8J0" />
     </html>
   );
 }
