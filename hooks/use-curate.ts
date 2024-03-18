@@ -2,20 +2,22 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { ArtworkKey } from "@/components/draggable";
 import { queryClient } from "@/components/providers";
 
-type Props = { address?: `0x${string}`; artworkKey: ArtworkKey };
+type Props = { address?: `0x${string}`; artworkKey: ArtworkKey; focusKey: ArtworkKey | null };
 
-export function useCurate({ address, artworkKey }: Props) {
+export function useCurate({ address, artworkKey, focusKey }: Props) {
   const { data: count, refetch: refetchCount } = useQuery({
     queryKey: ["get-curation", artworkKey],
     queryFn: async () => {
       return ((await (await fetch(`/api/curation/${artworkKey}`)).json()) as { count: number }).count;
     },
+    enabled: artworkKey === focusKey,
   });
   const { data: curated, refetch: refetchCurated } = useQuery({
     queryKey: ["get-curation-me", artworkKey, address],
     queryFn: async () => {
       return ((await (await fetch(`/api/curation/${artworkKey}/me?address=${address}`)).json()) as { curated: boolean }).curated;
     },
+    enabled: artworkKey === focusKey,
   });
   const { mutateAsync: curate } = useMutation({
     mutationKey: ["curate", artworkKey, address],
@@ -30,6 +32,7 @@ export function useCurate({ address, artworkKey }: Props) {
     },
     onSettled: () => {
       refetchCurated();
+      refetchCount();
     },
   });
   const { mutateAsync: uncurate } = useMutation({
@@ -45,6 +48,7 @@ export function useCurate({ address, artworkKey }: Props) {
     },
     onSettled: () => {
       refetchCurated();
+      refetchCount();
     },
   });
   return { count, curated, curate, uncurate };
