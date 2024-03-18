@@ -157,9 +157,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             inset: 0,
             background: "rgba(24, 20, 18, 0.32)",
           })}
-        >
-          <Confetti />
-        </Overlay>
+        />
         <Content
           onPointerDownOutside={(e) => setOpen(false)}
           className={flex({
@@ -448,6 +446,9 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             )}
           </div>
         </Content>
+        <div className={center({ zIndex: "modal-confetti", position: "fixed", inset: 0 })}>
+          <Confetti />
+        </div>
       </Portal>
     </Root>
   );

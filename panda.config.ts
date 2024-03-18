@@ -145,6 +145,7 @@ export default defineConfig({
         tooltip: { value: 100 },
         "modal-overlay": { value: 900 },
         "modal-content": { value: 901 },
+        "modal-confetti": { value: 902 },
         "drawer-overlay": { value: 910 },
         "drawer-content": { value: 911 },
         draggable: { value: 920 },
