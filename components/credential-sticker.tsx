@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useAccount } from "wagmi";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
 import { css, cva, cx } from "@/styled-system/css";
@@ -5,9 +6,10 @@ import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
 import { useCurate } from "@/hooks/use-curate";
 import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
+import LogoGray from "@/public/logo-gray.svg";
 
 const openTransform = {
-  base: "translate(50vw, 50vh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
+  base: "translate(50vw, 50dvh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
   md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc((1024px - 2rem) / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
@@ -105,7 +107,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
               translate: { base: "-50%", md: "none" },
               alignItems: "flex-start",
               w: { base: "calc(100vw - 4rem)", md: "25rem" },
-              h: { md: "calc(100dvh - 2rem)" },
+              h: { base: "calc(50dvh - 3rem)", md: "calc(100dvh - 2rem)" },
               p: { base: "1rem", md: "1.5rem" },
               gap: { base: "0.5rem", md: "1rem" },
               animation: {
@@ -116,6 +118,9 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
               border: "1px solid",
               borderColor: "border",
               bgColor: "bgWeak",
+              overflowY: "scroll",
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": { display: "none" },
             })}
           >
             <div className={flex({ justify: "space-between", w: "100%" })}>
@@ -173,7 +178,6 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             {credentialAttributes[artworkKey].description && (
               <p
                 className={css({
-                  display: { base: "none", md: "block" },
                   color: "textWeak",
                   fontSize: { base: "0.75rem", md: "0.875rem" },
                   fontWeight: 500,
@@ -228,6 +232,12 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
               >
                 {new URL(credentialAttributes[artworkKey].url).hostname}
               </a>
+            </div>
+            <div className={vstack({ display: { base: "flex", md: "none" }, mt: "3rem", alignItems: "flex-start" })}>
+              <Image src={LogoGray} alt="phi-logo-gray" />
+              <p className={css({ color: "textWeakest", fontSize: "0.75rem", fontWeight: 400, letterSpacing: { md: "0.0025rem" } })}>
+                © 2024 PHI-LABS-INC.
+              </p>
             </div>
           </div>
 
