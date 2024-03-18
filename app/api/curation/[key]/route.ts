@@ -7,7 +7,7 @@ export async function GET(request: NextRequest, { params: { key } }: { params: {
     { count },
     {
       status: 200,
-      headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=60" },
+      // headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=60" },
     }
   );
 }
