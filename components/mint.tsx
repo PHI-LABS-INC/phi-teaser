@@ -231,12 +231,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                 height={16 * 16}
                 quality={100}
                 alt="nft"
-                className={css({
-                  borderRadius: "0.5rem",
-                  border: "1px solid",
-                  borderColor: "gray.200",
-                  bgColor: "blue.300",
-                })}
+                className={css({ borderRadius: "0.5rem", border: "1px solid", borderColor: "gray.200" })}
               />
               <div className={vstack({ gap: "1.5rem" })}>
                 <p
