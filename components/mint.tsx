@@ -156,7 +156,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
           })}
         />
         <Content
-          onPointerDownOutside={(e) => e.preventDefault()}
+          onPointerDownOutside={(e) => setOpen(false)}
           className={flex({
             zIndex: "modal-content",
             position: "fixed",
