@@ -12,7 +12,7 @@ export function useCurate({ address, artworkKey, focusKey }: Props) {
     enabled: artworkKey === focusKey,
   });
   const { data: curated, refetch: refetchCurated } = useQuery({
-    queryKey: ["get-curation-me", artworkKey],
+    queryKey: ["get-curation-me", artworkKey, address],
     queryFn: async () => {
       return ((await (await fetch(`/api/curation/${artworkKey}/me?address=${address}`)).json()) as { curated: boolean }).curated;
     },
