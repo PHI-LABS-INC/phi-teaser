@@ -58,7 +58,7 @@ type ArtworkStickerProps = {
 export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
   const open = focusKey === artworkKey;
   const { address } = useAccount();
-  const { count, curated, curate, uncurate } = useCurate({ address, artworkKey, focusKey });
+  const { count, curated, curate, isPendingCurate, uncurate, isPendingUncurate } = useCurate({ address, artworkKey, focusKey });
 
   function centorize() {
     window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
@@ -278,7 +278,10 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             </button>
             {address && (
               <button
-                onClick={() => (curated ? uncurate() : curate())}
+                onClick={() => {
+                  if (isPendingCurate || isPendingUncurate) return;
+                  curated ? uncurate() : curate();
+                }}
                 className={css({
                   "& svg path": {
                     stroke: curated ? "pink.300" : "gray.500",

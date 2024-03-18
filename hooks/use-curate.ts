@@ -19,7 +19,7 @@ export function useCurate({ address, artworkKey, focusKey }: Props) {
     },
     enabled: artworkKey === focusKey,
   });
-  const { mutateAsync: curate } = useMutation({
+  const { mutateAsync: curate, isPending: isPendingCurate } = useMutation({
     mutationKey: ["curate", artworkKey, address],
     mutationFn: async () => {
       const { status } = await fetch(`/api/curation/${artworkKey}?address=${address}`, { method: "PUT" });
@@ -35,7 +35,7 @@ export function useCurate({ address, artworkKey, focusKey }: Props) {
       refetchCount();
     },
   });
-  const { mutateAsync: uncurate } = useMutation({
+  const { mutateAsync: uncurate, isPending: isPendingUncurate } = useMutation({
     mutationKey: ["uncurate", artworkKey, address],
     mutationFn: async () => {
       const { status } = await fetch(`/api/curation/${artworkKey}?address=${address}`, { method: "DELETE" });
@@ -51,5 +51,5 @@ export function useCurate({ address, artworkKey, focusKey }: Props) {
       refetchCount();
     },
   });
-  return { count, curated, curate, uncurate };
+  return { count, curated, curate, isPendingCurate, uncurate, isPendingUncurate };
 }
