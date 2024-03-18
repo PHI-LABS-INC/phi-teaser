@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { base } from "viem/chains";
 import { useAccount, useReadContract, useSwitchChain, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
@@ -14,6 +15,8 @@ import { frontendURL, phiTeaserNFTContract } from "@/lib/config";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+
+const Confetti = dynamic(() => import("./confetti"));
 
 const mintCva = cva({
   base: {
@@ -228,12 +231,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                 height={16 * 16}
                 quality={100}
                 alt="nft"
-                className={css({
-                  borderRadius: "0.5rem",
-                  border: "1px solid",
-                  borderColor: "gray.200",
-                  bgColor: "blue.300",
-                })}
+                className={css({ borderRadius: "0.5rem", border: "1px solid", borderColor: "gray.200" })}
               />
               <div className={vstack({ gap: "1.5rem" })}>
                 <p
@@ -252,6 +250,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                     className={center({
                       w: "2rem",
                       h: "2rem",
+                      p: "0.5625rem 0.25rem 0.573rem 0.25rem",
                       borderRadius: "3.5rem",
                       border: "1px solid",
                       borderColor: "gray.200",
@@ -268,7 +267,7 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
-                        d="M0.865967 2.07496V3.26955H2.02576H3.18555V2.07496V0.880371H2.02576H0.865967V2.07496ZM4.63916 3.52104V4.71562H3.46391H2.28865V8.28404V11.8525L3.45617 11.8442L4.6237 11.836L4.6318 10.6493L4.63991 9.46254H6.97459H9.30927V5.89449V2.32645H6.97421H4.63916V3.52104ZM11.0103 7.08908V11.8517H12.1701H13.3299V10.6571V9.46254H14.5051H15.6804V10.6575V11.8525L16.8479 11.8442L18.0155 11.836V7.08908V2.34217L16.8479 2.33393L15.6804 2.3257V4.69953V7.07336H14.5051H13.3299V4.69991V2.32645H12.1701H11.0103V7.08908ZM19.701 7.08908V11.8517H20.8763H22.0515V7.08908V2.32645H20.8763H19.701V7.08908ZM6.95875 5.89449V7.07336H5.79896H4.63916V5.89449V4.71562H5.79896H6.95875V5.89449Z"
+                        d="M0.865967 2.07496V3.26955H2.02576H3.18555V2.07496V0.880371H2.02576H0.865967V2.07496ZM4.63916 3.52104V4.71562H3.46391H2.28865V8.28404V11.8525L3.45617 11.8442L4.6237 11.836L4.6318 10.6493L4.63991 9.46253H6.97459H9.30927V5.89449V2.32645H6.97421H4.63916V3.52104ZM11.0103 7.08908V11.8517H12.1701H13.3299V10.6571V9.46253H14.5051H15.6804V10.6575V11.8525L16.8479 11.8442L18.0155 11.836V7.08908V2.34217L16.8479 2.33393L15.6804 2.3257V4.69953V7.07336H14.5051H13.3299V4.69991V2.32645H12.1701H11.0103V7.08908ZM19.701 7.08908V11.8517H20.8763H22.0515V7.08908V2.32645H20.8763H19.701V7.08908ZM6.95875 5.89449V7.07336H5.79896H4.63916V5.89449V4.71562H5.79896H6.95875V5.89449Z"
                         fill="white"
                       />
                     </svg>
@@ -443,6 +442,9 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
             )}
           </div>
         </Content>
+        <div className={center({ zIndex: "modal-confetti", position: "fixed", inset: 0 })}>
+          <Confetti />
+        </div>
       </Portal>
     </Root>
   );
