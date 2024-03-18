@@ -274,6 +274,12 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                     stroke: curated ? "pink.300" : "gray.400",
                     fill: curated ? "pink.300" : undefined,
                   },
+                  _hover: {
+                    "& svg path": {
+                      stroke: curated ? "pink.400" : "gray.500",
+                      fill: curated ? "pink.400" : undefined,
+                    },
+                  },
                 })}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
