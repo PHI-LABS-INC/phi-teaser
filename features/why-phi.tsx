@@ -62,9 +62,9 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
             },
             "& p": {
               color: "gray.800",
-              fontSize: { base: "1.25rem", md: "1.75rem" },
+              fontSize: { base: "1.25rem", md: "1.5rem" },
               fontWeight: 650,
-              lineHeight: { base: "1.875rem", md: "2.625rem" },
+              lineHeight: { base: "1.875rem", md: "140%" },
               letterSpacing: { base: "-0.005rem", md: "-0.0075rem" },
             },
           })}
