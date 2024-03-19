@@ -27,7 +27,6 @@ export const metadata: Metadata = {
       { media: "(prefers-color-scheme: light)", url: "favicon/favicon.ico" },
       { media: "(prefers-color-scheme: dark)", url: "favicon/favicon-dark.ico" },
     ],
-    shortcut: "/favicon/favicon-16x16.png",
     apple: "/favicon/apple-touch-icon.png",
   },
   openGraph: {
