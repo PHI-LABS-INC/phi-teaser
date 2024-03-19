@@ -60,11 +60,11 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               lineHeight: { base: "1.875rem", md: "2.5rem" },
               letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
             },
-            "& p": {
+            "& p, li": {
               color: "gray.800",
-              fontSize: { base: "1.25rem", md: "1.5rem" },
+              fontSize: { base: "1.25rem", md: "1.75rem" },
               fontWeight: 650,
-              lineHeight: { base: "1.875rem", md: "140%" },
+              lineHeight: { base: "1.875rem", md: "150%" },
               letterSpacing: { base: "-0.005rem", md: "-0.0075rem" },
             },
           })}
@@ -83,12 +83,22 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
             <h2>Our Journey</h2>
             <p>
               Phi started on Jan 1st, 2021 driven by a single question: how can users express their onchain identity to one another and to
-              themselves? To answer it, we created our first product, PhiLand. PhiLand is a web3 Sim based on your onchain activities. Users
-              can complete onchain activity quests, claim object NFTs, and build their own slice of #philand using artwork designed
-              primarily by the renowned eBoy. Over the last year, PhiLand has seen significant success: More than 4 million Phi NFTs minted
-              269k+ unique users (151k+ unique wallet) Became #1 dApp on Polygon in Q2 2023 according to Dappradar. Collaborated with 65+
-              protocols But we haven’t stopped there.
+              themselves? To answer it, we created our first product, PhiLand.
             </p>
+            <br />
+            <p>
+              PhiLand is a web3 Sim based on your onchain activities. Users can complete onchain activity quests, claim object NFTs, and
+              build their own slice of #philand using artwork designed primarily by the renowned eBoy.
+            </p>
+            <br />
+            <p>Over the last year, PhiLand has seen significant success:</p>
+            <ul>
+              <li>・More than 4 million Phi NFTs minted</li>
+              <li>・269k+ unique users (151k+ unique wallet)</li>
+              <li>・Became #1 dApp on Polygon in Q2 2023 according to Dappradar.</li>
+              <li>・Collaborated with 65+ protocols But we haven’t stopped there.</li>
+            </ul>
+            <p>But we haven’t stopped there.</p>
           </div>
           <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
             <h2>Our future : Phi2.0</h2>
@@ -123,9 +133,12 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
             <p>
               Phi Protocol is a{" "}
               <BlankSpace id="community">{puzzle["community"] === "community" ? puzzleSticker["community"] : null}</BlankSpace>
-              -driven system: anyone(curators, developers, artists, others) can participate and get rewarded. No more questing, No more
-              tasks. Your wallet is self-custodial, so you can take back control and shape your onchain presence on your own. You have the
-              freedom to form the credentials, the format, and the visual that best expresses yourself to the world.
+              -driven system: anyone(curators, developers, artists, others) can participate and get rewarded.
+            </p>
+            <p>
+              No more questing, No more tasks. Your wallet is self-custodial, so you can take back control and shape your onchain presence
+              on your own. You have the freedom to form the credentials, the format, and the visual that best expresses yourself to the
+              world.
             </p>
           </div>
           <div className={flex({ direction: "column", gap: { base: "0.5rem", md: "1rem" } })}>
