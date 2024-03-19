@@ -92,11 +92,11 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
             </p>
             <br />
             <p>Over the last year, PhiLand has seen significant success:</p>
-            <ul>
-              <li>・More than 4 million Phi NFTs minted</li>
-              <li>・269k+ unique users (151k+ unique wallet)</li>
-              <li>・Became #1 dApp on Polygon in Q2 2023 according to Dappradar.</li>
-              <li>・Collaborated with 65+ protocols But we haven’t stopped there.</li>
+            <ul className={css({ listStyleType: "disc", listStylePosition: "outside", pl: { base: "1rem", md: "2rem" } })}>
+              <li>More than 4 million Phi NFTs minted</li>
+              <li>269k+ unique users (151k+ unique wallet)</li>
+              <li>Became #1 dApp on Polygon in Q2 2023 according to Dappradar.</li>
+              <li>Collaborated with 65+ protocols But we haven’t stopped there.</li>
             </ul>
             <p>But we haven’t stopped there.</p>
           </div>
