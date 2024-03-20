@@ -93,7 +93,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             zIndex: "drawer-overlay",
             position: "fixed",
             inset: 0,
-            background: `url('/dot.png'), 50px 50px repeat, #FFF`,
+            background: "url('/dot.png') 0 0 / 25px 25px repeat, #FFF !important",
           })}
         />
         <Content onPointerDownOutside={() => focus(null)} className={css({ zIndex: "drawer-content" })}>

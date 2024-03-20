@@ -17,7 +17,7 @@ const roobert = localFont({
   ],
 });
 
-const title = "Phi";
+const title = "Phi - Why Phi";
 const description = "A decentralized identity layer for web3, empowering people to express their on-chain identity.";
 export const metadata: Metadata = {
   title,
