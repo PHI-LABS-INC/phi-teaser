@@ -51,7 +51,7 @@ export default async function Page() {
           border: "1px solid",
           borderColor: "border",
           borderRadius: "1rem",
-          background: "url('/dot.png'), 50px 50px repeat, #FFF !important",
+          background: "url('/dot.png') 0 0 / 25px 25px repeat, #FFF !important",
         })}
       >
         <Canvas />
