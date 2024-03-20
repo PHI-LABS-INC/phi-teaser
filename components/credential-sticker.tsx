@@ -10,7 +10,7 @@ import LogoGray from "@/public/logo-gray.svg";
 
 const openTransform = {
   base: "translate(50vw, 50dvh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
-  md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc((1024px - 2rem) / 8)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
+  md: "translate(calc((100vw - 2rem - 25rem) / 2), 50vh) translate(0, calc(1024px / 2 - 50vh)) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.7)",
 };
 const openTransformfarcaster = { base: openTransform.base + " scale(0.4)", md: openTransform.md + " scale(0.4)" };
 
