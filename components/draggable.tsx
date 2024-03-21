@@ -13,9 +13,7 @@ import CredentialOwner from "@/public/free-artwork/credential-owner.png";
 import Curator from "@/public/free-artwork/curator.png";
 import Verifier from "@/public/free-artwork/verifier.png";
 import Artist from "@/public/free-artwork/artist.png";
-import Pizza from "@/public/free-artwork/pizza.png";
-import Legit from "@/public/free-artwork/legit.png";
-import Bull from "@/public/free-artwork/bull.png";
+import BoundingBox from "@/public/free-artwork/bounding-box.png";
 // artworks
 import ChessUniswap from "@/public/artwork/chess-uniswap.png";
 import CrowdFront from "@/public/artwork/crowd-front.png";
@@ -40,6 +38,9 @@ import SepoliaBuilder from "@/public/artwork/sepolia-builder.png";
 import FarcasterInk from "@/public/artwork/farcaster-ink.png";
 import Phi from "@/public/artwork/phi.png";
 import Gitcoin from "@/public/artwork/gitcoin.png";
+import Pizza from "@/public/artwork/pizza.png";
+import Legit from "@/public/artwork/legit.png";
+import Bull from "@/public/artwork/bull.png";
 
 function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey; children: React.ReactNode }) {
   const { attributes, listeners, isDragging, setNodeRef } = useDraggable({ id });
@@ -109,10 +110,10 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   ),
 };
 
-export type FreeArtworkKey = "owner" | "curator" | "verifier" | "artist";
+export type FreeArtworkKey = "owner" | "curator" | "verifier" | "artist" | "bounding-box";
 
 function isFreeArtworKey(key: string): key is FreeArtworkKey {
-  return ["owner", "curator", "verifier", "artist"].includes(key);
+  return ["owner", "curator", "verifier", "artist", "bounding-box"].includes(key);
 }
 
 export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
@@ -134,6 +135,11 @@ export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
   artist: (
     <Sticker id="artist">
       <Image src={Artist} alt="artist" height={70.86 * 2} />
+    </Sticker>
+  ),
+  "bounding-box": (
+    <Sticker id="bounding-box">
+      <Image src={BoundingBox} alt="bounding-box" height={512 * 2} />
     </Sticker>
   ),
 };

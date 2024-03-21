@@ -43,6 +43,7 @@ export function Canvas() {
       >
         <CredentialSticker artworkKey="farcaster-ink" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="basepaint-nouns-base" focusKey={focusKey} focus={focus} />
+        <FreeSticker artworkKey="bounding-box" />
         <CredentialSticker artworkKey="shib-profit" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="basepaint-mickymouse-cc0" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="sepolia-builder" focusKey={focusKey} focus={focus} />
