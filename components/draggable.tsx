@@ -109,10 +109,10 @@ export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
   ),
 };
 
-export type FreeArtworkKey = "owner" | "curator" | "verifier" | "artist" | "pizza" | "legit" | "bull";
+export type FreeArtworkKey = "owner" | "curator" | "verifier" | "artist";
 
 function isFreeArtworKey(key: string): key is FreeArtworkKey {
-  return ["owner", "curator", "verifier", "artist", "pizza", "legit", "bull"].includes(key);
+  return ["owner", "curator", "verifier", "artist"].includes(key);
 }
 
 export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
@@ -134,21 +134,6 @@ export const freeArtworkSticker: Record<FreeArtworkKey, JSX.Element> = {
   artist: (
     <Sticker id="artist">
       <Image src={Artist} alt="artist" height={70.86 * 2} />
-    </Sticker>
-  ),
-  pizza: (
-    <Sticker id="pizza">
-      <Image src={Pizza} alt="pizza" height={220 * 2} />
-    </Sticker>
-  ),
-  legit: (
-    <Sticker id="legit">
-      <Image src={Legit} alt="legit" height={153 * 2} />
-    </Sticker>
-  ),
-  bull: (
-    <Sticker id="bull">
-      <Image src={Bull} alt="bull" height={145 * 2} />
     </Sticker>
   ),
 };
@@ -177,6 +162,9 @@ export const artworks = [
   "ethereum-first-tx-date",
   "phi",
   "gitcoin",
+  "pizza",
+  "legit",
+  "bull",
 ] as const;
 
 export type ArtworkKey = (typeof artworks)[number];
@@ -295,6 +283,21 @@ export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   gitcoin: (
     <Sticker id="gitcoin">
       <Image src={Gitcoin} alt="gitcoin" height={192 * 2} priority />
+    </Sticker>
+  ),
+  pizza: (
+    <Sticker id="pizza">
+      <Image src={Pizza} alt="pizza" height={220 * 2} priority />
+    </Sticker>
+  ),
+  legit: (
+    <Sticker id="legit">
+      <Image src={Legit} alt="legit" height={153 * 2} priority />
+    </Sticker>
+  ),
+  bull: (
+    <Sticker id="bull">
+      <Image src={Bull} alt="bull" height={145 * 2} priority />
     </Sticker>
   ),
 };
