@@ -64,14 +64,14 @@ export function Canvas() {
         <CredentialSticker artworkKey="ethereum-first-tx-date" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="phi" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="gitcoin" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="pizza" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="legit" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="bull" focusKey={focusKey} focus={focus} />
 
         <FreeSticker artworkKey="owner" />
         <FreeSticker artworkKey="curator" />
         <FreeSticker artworkKey="verifier" />
         <FreeSticker artworkKey="artist" />
-        <FreeSticker artworkKey="pizza" />
-        <FreeSticker artworkKey="legit" />
-        <FreeSticker artworkKey="bull" />
 
         <DragOverlay
           dropAnimation={{ duration: 200, easing: "cubic-bezier(0.175,0.885,0.32,1.1)" }}
