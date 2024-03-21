@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useAccount } from "wagmi";
 import { Content, Overlay, Portal, Root } from "@radix-ui/react-dialog";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
@@ -61,6 +62,7 @@ type ArtworkStickerProps = {
 export default function CredentialSticker({ artworkKey, focusKey, focus }: ArtworkStickerProps) {
   const open = focusKey === artworkKey;
   const { address } = useAccount();
+  const { open: openConnectModal } = useWeb3Modal();
   const { count, curated, curate, isPendingCurate, uncurate, isPendingUncurate } = useCurate({ address, artworkKey, focusKey });
 
   function centorize() {
@@ -99,7 +101,19 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
             background: "url('/dot.png') 0 0 / 25px 25px repeat, #FFF !important",
           })}
         />
-        <Content onPointerDownOutside={() => focus(null)} className={css({ zIndex: "drawer-content" })}>
+        <Content
+          onPointerDownOutside={(e) => {
+            console.log(e);
+            try {
+              // @ts-ignore
+              if (e.target.localName === "w3m-modal") {
+                return;
+              }
+            } catch {}
+            focus(null);
+          }}
+          className={css({ zIndex: "drawer-content" })}
+        >
           <div
             className={vstack({
               position: "fixed",
@@ -279,35 +293,39 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                 <path d="M12.5 15L7.5 10L12.5 5" stroke="#3C3837" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-            {address && (
-              <button
-                onClick={() => {
-                  if (isPendingCurate || isPendingUncurate) return;
-                  curated ? uncurate() : curate();
-                }}
-                className={css({
+
+            <button
+              onClick={() => {
+                if (isPendingCurate || isPendingUncurate) return;
+                if (!address) {
+                  openConnectModal();
+                  return;
+                }
+                curated ? uncurate() : curate();
+              }}
+              className={css({
+                "& svg path": {
+                  stroke: curated ? "pink.300" : "gray.500",
+                  fill: curated ? "pink.300" : undefined,
+                },
+                _hover: {
                   "& svg path": {
-                    stroke: curated ? "pink.300" : "gray.500",
-                    fill: curated ? "pink.300" : undefined,
+                    stroke: curated ? "pink.200" : "gray.400",
+                    fill: curated ? "pink.200" : undefined,
                   },
-                  _hover: {
-                    "& svg path": {
-                      stroke: curated ? "pink.200" : "gray.400",
-                      fill: curated ? "pink.200" : undefined,
-                    },
-                  },
-                })}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M15.8334 11.6667C17.075 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.9909 3.84243C16.1314 2.98289 14.9656 2.5 13.75 2.5C12.2834 2.5 11.25 2.91667 10 4.16667C8.75002 2.91667 7.71669 2.5 6.25002 2.5C5.03444 2.5 3.86866 2.98289 3.00911 3.84243C2.14957 4.70197 1.66669 5.86776 1.66669 7.08333C1.66669 9 2.91669 10.4583 4.16669 11.6667L10 17.5L15.8334 11.6667Z"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            )}
+                },
+              })}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M15.8334 11.6667C17.075 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.9909 3.84243C16.1314 2.98289 14.9656 2.5 13.75 2.5C12.2834 2.5 11.25 2.91667 10 4.16667C8.75002 2.91667 7.71669 2.5 6.25002 2.5C5.03444 2.5 3.86866 2.98289 3.00911 3.84243C2.14957 4.70197 1.66669 5.86776 1.66669 7.08333C1.66669 9 2.91669 10.4583 4.16669 11.6667L10 17.5L15.8334 11.6667Z"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
             <button
               onClick={(e) => {
                 centorize();
