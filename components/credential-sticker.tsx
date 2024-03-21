@@ -6,8 +6,8 @@ import { css, cva, cx } from "@/styled-system/css";
 import { center, flex, vstack } from "@/styled-system/patterns";
 import { credentialAttributes } from "@/lib/credential-attributes";
 import { useCurate } from "@/hooks/use-curate";
-import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
 import LogoGray from "@/public/logo-gray.svg";
+import { artworks, ArtworkKey, artworkSticker, FreeArtworkKey, freeArtworkSticker } from "./draggable";
 
 const openTransform = {
   base: "translate(50vw, 50dvh) translate(-1rem, -1rem) translate(-50%, -50%) scale(0.45)",
@@ -67,6 +67,28 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
 
   function centorize() {
     window.scrollTo({ top: Math.abs(window.innerHeight / 2 - (window.innerWidth >= 768 ? 1024 : 434) / 2), behavior: "smooth" });
+  }
+
+  function LikeButton({ children }: { children: React.ReactNode }) {
+    return (
+      <button
+        onClick={() => {
+          if (isPendingCurate || isPendingUncurate) return;
+          if (!address) {
+            openConnectModal();
+            return;
+          }
+          curated ? uncurate() : curate();
+        }}
+        className={css({
+          cursor: "pointer",
+          "& svg path": { stroke: curated ? "pink.300" : "gray.500", fill: curated ? "pink.300" : undefined },
+          _hover: { "& svg path": { stroke: curated ? "pink.200" : "gray.400", fill: curated ? "pink.200" : undefined } },
+        })}
+      >
+        {children}
+      </button>
+    );
   }
 
   return (
@@ -156,14 +178,16 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                   },
                 })}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M12.6667 9.33333C13.66 8.36 14.6667 7.19333 14.6667 5.66667C14.6667 4.69421 14.2804 3.76158 13.5927 3.07394C12.9051 2.38631 11.9725 2 11 2C9.82667 2 9 2.33333 8 3.33333C7 2.33333 6.17333 2 5 2C4.02754 2 3.09491 2.38631 2.40728 3.07394C1.71964 3.76158 1.33333 4.69421 1.33333 5.66667C1.33333 7.2 2.33333 8.36667 3.33333 9.33333L8 14L12.6667 9.33333Z"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <LikeButton>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M12.6667 9.33333C13.66 8.36 14.6667 7.19333 14.6667 5.66667C14.6667 4.69421 14.2804 3.76158 13.5927 3.07394C12.9051 2.38631 11.9725 2 11 2C9.82667 2 9 2.33333 8 3.33333C7 2.33333 6.17333 2 5 2C4.02754 2 3.09491 2.38631 2.40728 3.07394C1.71964 3.76158 1.33333 4.69421 1.33333 5.66667C1.33333 7.2 2.33333 8.36667 3.33333 9.33333L8 14L12.6667 9.33333Z"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </LikeButton>
                 <p>Like</p>
                 <div className={css({ w: "0.0625rem", h: "1.3125rem", bgColor: "border" })} />
                 <p>{count ? count.toLocaleString() : "0"}</p>
@@ -294,28 +318,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
               </svg>
             </button>
 
-            <button
-              onClick={() => {
-                if (isPendingCurate || isPendingUncurate) return;
-                if (!address) {
-                  openConnectModal();
-                  return;
-                }
-                curated ? uncurate() : curate();
-              }}
-              className={css({
-                "& svg path": {
-                  stroke: curated ? "pink.300" : "gray.500",
-                  fill: curated ? "pink.300" : undefined,
-                },
-                _hover: {
-                  "& svg path": {
-                    stroke: curated ? "pink.200" : "gray.400",
-                    fill: curated ? "pink.200" : undefined,
-                  },
-                },
-              })}
-            >
+            <LikeButton>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path
                   d="M15.8334 11.6667C17.075 10.45 18.3334 8.99167 18.3334 7.08333C18.3334 5.86776 17.8505 4.70197 16.9909 3.84243C16.1314 2.98289 14.9656 2.5 13.75 2.5C12.2834 2.5 11.25 2.91667 10 4.16667C8.75002 2.91667 7.71669 2.5 6.25002 2.5C5.03444 2.5 3.86866 2.98289 3.00911 3.84243C2.14957 4.70197 1.66669 5.86776 1.66669 7.08333C1.66669 9 2.91669 10.4583 4.16669 11.6667L10 17.5L15.8334 11.6667Z"
@@ -324,7 +327,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
                   strokeLinejoin="round"
                 />
               </svg>
-            </button>
+            </LikeButton>
 
             <button
               onClick={(e) => {
