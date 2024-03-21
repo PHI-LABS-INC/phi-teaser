@@ -51,14 +51,15 @@ export function Canvas() {
         <CredentialSticker artworkKey="moduler-believer" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="hash-hunter-aave" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="crowd-front" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="wawa" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="ds-planet" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="arb-game" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="op-game" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="ethereum-builder" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="ethereum-space-station" focusKey={focusKey} focus={focus} />
-        <CredentialSticker artworkKey="wawa" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="gnosis-owl" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="ens-newbie" focusKey={focusKey} focus={focus} />
+        <CredentialSticker artworkKey="bull" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="op-airdrop" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="heartbeat" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="chess-uniswap" focusKey={focusKey} focus={focus} />
@@ -67,7 +68,6 @@ export function Canvas() {
         <CredentialSticker artworkKey="gitcoin" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="pizza" focusKey={focusKey} focus={focus} />
         <CredentialSticker artworkKey="legit" focusKey={focusKey} focus={focus} />
-        <CredentialSticker artworkKey="bull" focusKey={focusKey} focus={focus} />
 
         <FreeSticker artworkKey="owner" />
         <FreeSticker artworkKey="curator" />

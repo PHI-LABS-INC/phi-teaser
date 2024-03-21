@@ -298,7 +298,7 @@ export const artworkSticker: Record<ArtworkKey, JSX.Element> = {
   ),
   legit: (
     <Sticker id="legit">
-      <Image src={Legit} alt="legit" height={153 * 2} priority />
+      <Image src={Legit} alt="legit" height={225.5 * 2} priority />
     </Sticker>
   ),
   bull: (
