@@ -59,7 +59,15 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
             },
           })}
         >
-          <div className={flex({ justify: "space-between", align: "center", p: "0 1.125rem", w: "100%", h: "4rem" })}>
+          <div
+            className={flex({
+              justify: "space-between",
+              align: "center",
+              p: "0 1.125rem",
+              w: "100%",
+              minH: { base: "3.5rem", md: "4rem" },
+            })}
+          >
             <div />
             <p
               className={css({

@@ -36,13 +36,13 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
       "This sticker acknowledges individuals who have actively participated in an ETH Global Hackathon, demonstrating their creativity and skills in Ethereum-based project development. ETH Global Hackathons are events where developers and enthusiasts come together to innovate and build on the Ethereum blockchain, pushing the boundaries of decentralized applications and solutions. This recognition showcases the recipient's dedication to Ethereum's ecosystem and their contribution to its advancement.",
     url: "https://app.airstack.xyz/query/qbCWxsxdyu/",
   },
- "wawa": {
-  title: "Wawa - Unique avatar",
-  requirement: "Own an Ethereum address with transaction history",
-  description:
-  "This sticker is awarded to those who own an Ethereum address with a history of transactions, showcasing their active participation in the Ethereum network. This is a recognition of your engagement with Ethereum, highlighting your involvement in various transactions and activities on the blockchain. By owning an Ethereum address with transaction history, you're not just a bystander but an active participant in the evolving world of cryptocurrency.",
-  url: "https://wawa.philand.xyz/",
-    },
+  wawa: {
+    title: "Wawa - Unique avatar",
+    requirement: "Own an Ethereum address with transaction history",
+    description:
+      "This sticker is awarded to those who own an Ethereum address with a history of transactions, showcasing their active participation in the Ethereum network. This is a recognition of your engagement with Ethereum, highlighting your involvement in various transactions and activities on the blockchain. By owning an Ethereum address with transaction history, you're not just a bystander but an active participant in the evolving world of cryptocurrency.",
+    url: "https://wawa.philand.xyz/",
+  },
   "ethereum-space-station": {
     title: "Weekend Ethereum Degen",
     requirement: "Complete at least 10 transactions on the Ethereum network during the most recent weekend",
@@ -162,25 +162,25 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
       "This sticker celebrates your smart approach to security in the crypto world. By setting up a multi-signature wallet with Gnosis Safe and ensuring at least two signers, you’re not just protecting your digital assets but also embracing collaborative security. This step shows your understanding of the importance of enhanced safety measures in managing digital assets and your commitment to responsible and secure crypto management.",
     url: "https://safe.global/",
   },
-  "pizza": {
+  pizza: {
     title: "Bitcoin Pizza Day Commemoration",
     requirement: "Complete a transaction on Ethereum on Bitcoin Pizza Day",
     description:
       "This sticker honors the famous Bitcoin Pizza Day, celebrated annually on May 22nd, marking the day in 2010 when a programmer purchased two large pizzas for 10,000 Bitcoins. This event is widely regarded as the first real-world transaction using Bitcoin, symbolizing its potential as a digital currency. By completing a transaction on Ethereum on this historic day, you connect the pioneering spirit of Bitcoin with the innovative potential of Ethereum, commemorating the evolution and growth of cryptocurrency.",
     url: "https://en.wikipedia.org/wiki/Bitcoin_Pizza_Day",
-    },
-  "bull": {
+  },
+  bull: {
     title: "Ethereum All-Time High Enthusiast",
     requirement: "Confirm your bullish prediction for Ethereum's all-time high on PolyMarket",
     description:
       "This sticker is awarded for demonstrating your bullish outlook on Ethereum by confirming your prediction on its potential to reach an all-time high on PolyMarket. It highlights your active engagement in the world of cryptocurrency speculation and your confidence in Ethereum's growth and potential in 2024. Your participation in this specific market reflects an analytical approach to crypto trends and a commitment to being at the forefront of blockchain technology's evolution.",
     url: "https://polymarket.com/event/ethereum-all-time-high-in-2024/ethereum-all-time-high-in-2024?tid=1711008161380",
-    },
-  "legit": {
+  },
+  legit: {
     title: "Doge Enthusiast",
     requirement: "Have Dogecoin in your collection",
     description:
-    "This sticker represents your support for Dogecoin. With a mix of views out there – some seeing it as a bit of a joke, others taking it more seriously – holding Dogecoin shows you're on the side of those who see its value and potential in the crypto world. It's a fun way to express your belief in Dogecoin's place in the diverse world of digital currencies.",
+      "This sticker represents your support for Dogecoin. With a mix of views out there – some seeing it as a bit of a joke, others taking it more seriously – holding Dogecoin shows you're on the side of those who see its value and potential in the crypto world. It's a fun way to express your belief in Dogecoin's place in the diverse world of digital currencies.",
     url: "https://en.wikipedia.org/wiki/Dogecoin",
   },
 };
