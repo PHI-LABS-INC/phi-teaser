@@ -17,7 +17,7 @@ const initialData: PuzzleState = {
   theboard: "inventory",
 };
 
-const localStorageKey = "puzzle-state";
+const localStorageKey = "puzzle-state-v2";
 
 function getPuzzleState(): PuzzleState {
   const item = localStorage.getItem(localStorageKey);
