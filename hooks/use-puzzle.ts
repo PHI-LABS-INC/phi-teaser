@@ -25,7 +25,7 @@ function getPuzzleState(): PuzzleState {
 }
 
 export function usePuzzleState() {
-  const { data: puzzle, refetch } = useQuery({ queryKey: ["get-puzzle-state-v2"], queryFn: getPuzzleState, initialData });
+  const { data: puzzle, refetch } = useQuery({ queryKey: ["get-" + localStorageKey], queryFn: getPuzzleState, initialData });
 
   const setPuzzleState = useCallback(
     (key: PuzzleKey, area: DroppableArea) => {
