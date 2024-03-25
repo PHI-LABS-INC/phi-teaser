@@ -60,13 +60,14 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               lineHeight: { base: "1.875rem", md: "2.5rem" },
               letterSpacing: { base: "-0.00625rem", md: "-0.01rem" },
             },
-            "& p, li": {
+            "& p, a, li": {
               color: "gray.800",
               fontSize: { base: "1.25rem", md: "1.6rem" },
               fontWeight: 650,
               lineHeight: { base: "1.875rem", md: "2.625rem" },
               letterSpacing: { base: "-0.005rem", md: "-0.0075rem" },
             },
+            "& a": { textDecoration: "underline" },
           })}
         >
           <h1>Why Phi</h1>
@@ -78,14 +79,17 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               social graph, and engage with digital content. With the rise of the decentralized internet, we’re entering a whole new digital
               identity era.
             </p>
+            <br />
             <p>
               In web3, onchain transactions are the building blocks for your onchain identity. Unlike web2, these transactions emerge as a
               distinct and openly accessible dataset for everyone.
             </p>
+            <br />
             <p>
               However, currently, there's no dedicated platform for crafting an onchain persona that encapsulates both your past and
               present, despite the existence of dashboards showing your current onchain status.
             </p>
+            <br />
             <p>
               Our mission is to give you as much freedom as possible to shape, express, and share your onchain identity from your onchain
               footprints. This endeavor aims to unlock the social and financial benefits inherent in your onchain identity, enhancing your
@@ -99,10 +103,25 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               <BlankSpace id="express">{puzzle["express"] === "express" ? puzzleSticker["express"] : null}</BlankSpace> their onchain
               identity?
             </p>
+            <br />
             <p>
-              This query led to the creation of Phi Land, a social metaverse that visualizes onchain activities on ENS in a visually
-              captivating format designed by eBoy, a world-class pixel artist and also co-founder of Nouns DAO. As you know, on Phi Land,
-              users can claim adorable NFTs based on their onchain transactions, and build #philand🏝 as a showcase of onchain identity.
+              This query led to the creation of{" "}
+              <a href="https://philand.xyz/" target="_blank">
+                Phi Land
+              </a>
+              , a social metaverse that visualizes onchain activities on ENS in a visually captivating format designed by{" "}
+              <a href="https://www.eboy.com/" target="_blank">
+                eBoy
+              </a>
+              , a world-class pixel artist and also co-founder of{" "}
+              <a href="https://nouns.wtf/" target="_blank">
+                Nouns DAO
+              </a>
+              . As you know, on Phi Land, users can claim adorable NFTs based on their onchain transactions, and build{" "}
+              <a href="https://twitter.com/search?q=%23philand&src=hashtag_click" target="_blank">
+                #philand🏝
+              </a>
+               as a showcase of onchain identity.
             </p>
             <p>Over the last year, Phi Land has gained significant tractions:</p>
             <ul className={css({ listStyleType: "disc", listStylePosition: "outside", pl: { base: "1rem", md: "2rem" } })}>
@@ -110,15 +129,21 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               <li>Engaged more than 296k+ unique users (including over 163k+ unique wallets).</li>
               <li>Collaborated with 65+ protocols</li>
             </ul>
+            <br />
             <p>
-              Our team is pleased to see many people sharing their #philand🏝 on the timeline. The goal was to visualize onchain transaction
-              data uniquely. In this vision, users would utilize PhiLand as their onchain profile, creating a seamless connection between
-              their digital identity and blockchain interactions.
+              Our team is pleased to see many people sharing their{" "}
+              <a href="https://twitter.com/search?q=%23philand&src=hashtag_click" target="_blank">
+                #philand🏝
+              </a>
+               on the timeline. The goal was to visualize onchain transaction data uniquely. In this vision, users would utilize PhiLand as
+              their onchain profile, creating a seamless connection between their digital identity and blockchain interactions.
             </p>
+            <br />
             <p>
               This approach not only personalizes the blockchain experience but also integrates it into a broader social context, bridging
               the gap between transactional data and personal expression.
             </p>
+            <br />
             <p>
               While PhiLand has successfully achieved its initial goals, we're eager to expand and enhance your experience even further!
             </p>
@@ -145,17 +170,20 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               We’re entering our new chapter with Phi Protocol, an open credentialing protocol for onchain identity. We’re working on our
               vision not as one dApp, but as an ecosystem built on Phi Protocol from now on.
             </p>
+            <br />
             <p>
               In contrast to Phi Land, where the decision of what onchain activities to visualize was made by the Phi team and Partner
               Protocol team, Phi Protocol empowers anyone to create any ‘
               <BlankSpace id="cred">{puzzle["cred"] === "cred" ? puzzleSticker["cred"] : null}</BlankSpace>’(=Onchain Credentials) that is
               meaningful to individuals or communities.
             </p>
+            <br />
             <p>
               While eBoy’s artwork is amazing on Phi Land, Phi Protocol allows for a variety of visuals and formats for content that
               expresses Creds. Content can be anything you want: artwork(2D, 3D, pixel, and others), pictures, GIFs, movies, text, scores,
               in-game objects, attestations, and more.
             </p>
+            <br />
             <p>
               This shift opens up endless possibilities, making the process permissionless and inspiring personal creativity in the realm of
               onchain credentials. Through Phi Protocol, we aim to empower you to fully express onchain yourself.
@@ -167,10 +195,12 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               Phi Protocol heralds a paradigm shift. Unlike traditional credentialing platforms, our protocol is a fully community-driven
               credential system dedicated to onchain identity.
             </p>
+            <br />
             <p>
               Curators, developers, artists, and others are encouraged to join, expanding the spectrum of identity expression and earning
               rewards.
             </p>
+            <br />
             <p>
               <BlankSpace id="community">{puzzle["community"] === "community" ? puzzleSticker["community"] : null}</BlankSpace> is the
               architect of our vision and every person’s unique identity is our goal. With Phi Protocol, say bye to quests and tasks. Just
@@ -200,6 +230,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               Community creators are an essential part of Phi and we’ll be providing massive support to them as they help us expand the
               experience of our users.
             </p>
+            <br />
             <p>
               And internally our team will also be striving to create an awesome experience as the application layer leading the Phi
               community. As our first app, we’re building “
