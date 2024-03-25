@@ -55,7 +55,7 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     requirement: "Mint a Phi 2.0 teaser NFT",
     description:
       "This sticker celebrates users who engage with the Phi 2.0 by minting a NFT. Key feature of Phi 2.0, is a decentralized system that allows indexing of blockchain data as Onchain Credentials. It enables users to curate and verify this data, creating diverse NFTs that can include art, photos, GIFs, and more. This recognition symbolizes your active role in shaping your onchain identity, showcasing your unique interactions with blockchain technology through the Phi ecosystem.",
-    url: "https://phi-teaser.vercel.app/",
+    url: "https://phiprotocol.xyz/",
   },
   "ds-planet": {
     title: "Degenscore Planet",
