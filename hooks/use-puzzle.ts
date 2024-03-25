@@ -8,12 +8,13 @@ import { DroppableArea } from "@/components/droppable";
 type PuzzleState = Record<PuzzleKey, DroppableArea>;
 
 const initialData: PuzzleState = {
-  creators: "inventory",
-  decentralized: "inventory",
-  community: "inventory",
-  visualize: "inventory",
-  red: "inventory",
   blue: "inventory",
+  community: "inventory",
+  cred: "inventory",
+  express: "inventory",
+  identity: "inventory",
+  red: "inventory",
+  theboard: "inventory",
 };
 
 const localStorageKey = "puzzle-state";

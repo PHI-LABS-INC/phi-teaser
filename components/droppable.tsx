@@ -1,8 +1,9 @@
 import React from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { css, cva, cx } from "@/styled-system/css";
+import { PuzzleKey } from "./draggable";
 
-export type DroppableArea = "inventory" | "visualize" | "decentralized" | "community" | "creators" | "blue" | "red";
+export type DroppableArea = "inventory" | PuzzleKey;
 
 export function Inventory({ children }: { children: React.ReactNode }) {
   const { setNodeRef } = useDroppable({ id: "inventory" });
@@ -12,12 +13,13 @@ export function Inventory({ children }: { children: React.ReactNode }) {
 const sizeCva = cva({
   variants: {
     id: {
-      visualize: { w: { base: "70px", md: "103px" }, h: { base: "26px", md: "38px" } },
-      decentralized: { w: { base: "106px", md: "155px" }, h: { base: "26px", md: "38px" } },
-      community: { w: { base: "90px", md: "132px" }, h: { base: "26px", md: "38px" } },
-      creators: { w: { base: "70px", md: "102px" }, h: { base: "26px", md: "38px" } },
       blue: { w: { base: "48px", md: "64px" }, h: { base: "48px", md: "64px" } },
+      community: { w: { base: "92.85px", md: "135.71px" }, h: { base: "26px", md: "38px" } },
+      cred: { w: { base: "45.8px", md: "66.95px" }, h: { base: "26px", md: "38px" } },
+      express: { w: { base: "64.38px", md: "94.09px" }, h: { base: "26px", md: "38px" } },
+      identity: { w: { base: "65.3px", md: "95.45px" }, h: { base: "26px", md: "38px" } },
       red: { w: { base: "48px", md: "64px" }, h: { base: "48px", md: "64px" } },
+      theboard: { w: { base: "81.71px", md: "119.42px" }, h: { base: "26px", md: "38px" } },
     },
   },
 });

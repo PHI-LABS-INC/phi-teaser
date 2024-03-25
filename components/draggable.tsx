@@ -2,12 +2,13 @@ import Image from "next/image";
 import { useDraggable } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
 // puzzles
-import PuzzleCreators from "@/public/puzzle/creators.png";
-import PuzzleDecentralized from "@/public/puzzle/decentralized.png";
-import PuzzleCommunity from "@/public/puzzle/community.png";
-import PuzzleVisualize from "@/public/puzzle/visualize.png";
-import PuzzleRed from "@/public/puzzle/red.png";
 import PuzzleBlue from "@/public/puzzle/blue.png";
+import PuzzleCommunity from "@/public/puzzle/community.png";
+import PuzzleCred from "@/public/puzzle/cred.png";
+import PuzzleExpress from "@/public/puzzle/express.png";
+import PuzzleIdentity from "@/public/puzzle/identity.png";
+import PuzzleRed from "@/public/puzzle/red.png";
+import PuzzleTheboard from "@/public/puzzle/theboard.png";
 // free-artworks
 import CredentialOwner from "@/public/free-artwork/credential-owner.png";
 import Curator from "@/public/free-artwork/curator.png";
@@ -71,41 +72,46 @@ function Sticker({ id, children }: { id: PuzzleKey | FreeArtworkKey | ArtworkKey
   );
 }
 
-export type PuzzleKey = "creators" | "decentralized" | "community" | "visualize" | "red" | "blue";
+export type PuzzleKey = "blue" | "community" | "cred" | "express" | "identity" | "red" | "theboard";
 
 function isPuzzleKey(key: string): key is PuzzleKey {
-  return ["creators", "decentralized", "community", "visualize", "red", "blue"].includes(key);
+  return ["blue", "community", "cred", "express", "identity", "red", "theboard"].includes(key);
 }
 
 export const puzzleSticker: Record<PuzzleKey, JSX.Element> = {
-  red: (
-    <Sticker id="red">
-      <Image src={PuzzleRed} alt="red" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
-    </Sticker>
-  ),
-  creators: (
-    <Sticker id="creators">
-      <Image src={PuzzleCreators} alt="creators" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
-    </Sticker>
-  ),
-  visualize: (
-    <Sticker id="visualize">
-      <Image src={PuzzleVisualize} alt="visualize" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
-    </Sticker>
-  ),
   blue: (
     <Sticker id="blue">
       <Image src={PuzzleBlue} alt="blue" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
     </Sticker>
   ),
-  decentralized: (
-    <Sticker id="decentralized">
-      <Image src={PuzzleDecentralized} alt="decentralized" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
-    </Sticker>
-  ),
   community: (
     <Sticker id="community">
       <Image src={PuzzleCommunity} alt="community" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
+    </Sticker>
+  ),
+  cred: (
+    <Sticker id="cred">
+      <Image src={PuzzleCred} alt="cred" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
+    </Sticker>
+  ),
+  express: (
+    <Sticker id="express">
+      <Image src={PuzzleExpress} alt="express" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
+    </Sticker>
+  ),
+  identity: (
+    <Sticker id="identity">
+      <Image src={PuzzleIdentity} alt="identity" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
+    </Sticker>
+  ),
+  red: (
+    <Sticker id="red">
+      <Image src={PuzzleRed} alt="red" className={css({ w: "auto", h: { base: "48px", md: "64px" } })} />
+    </Sticker>
+  ),
+  theboard: (
+    <Sticker id="theboard">
+      <Image src={PuzzleTheboard} alt="theboard" className={css({ w: "auto", h: { base: "26px", md: "38px" } })} />
     </Sticker>
   ),
 };
