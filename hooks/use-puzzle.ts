@@ -8,15 +8,16 @@ import { DroppableArea } from "@/components/droppable";
 type PuzzleState = Record<PuzzleKey, DroppableArea>;
 
 const initialData: PuzzleState = {
-  creators: "inventory",
-  decentralized: "inventory",
-  community: "inventory",
-  visualize: "inventory",
-  red: "inventory",
   blue: "inventory",
+  community: "inventory",
+  cred: "inventory",
+  express: "inventory",
+  identity: "inventory",
+  red: "inventory",
+  theboard: "inventory",
 };
 
-const localStorageKey = "puzzle-state";
+const localStorageKey = "puzzle-state-v2";
 
 function getPuzzleState(): PuzzleState {
   const item = localStorage.getItem(localStorageKey);
@@ -24,7 +25,7 @@ function getPuzzleState(): PuzzleState {
 }
 
 export function usePuzzleState() {
-  const { data: puzzle, refetch } = useQuery({ queryKey: ["get-puzzle-state"], queryFn: getPuzzleState, initialData });
+  const { data: puzzle, refetch } = useQuery({ queryKey: ["get-" + localStorageKey], queryFn: getPuzzleState, initialData });
 
   const setPuzzleState = useCallback(
     (key: PuzzleKey, area: DroppableArea) => {
