@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useId, useMemo, useState } from "react";
 import { DndContext, DragEndEvent, DragOverlay, DragStartEvent } from "@dnd-kit/core";
 import { css } from "@/styled-system/css";
@@ -123,6 +124,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               </a>
                as a showcase of onchain identity.
             </p>
+            <Image src="/philand-3.png" width={768} height={415} quality={100} alt="philand" />
             <p>Over the last year, Phi Land has gained significant tractions:</p>
             <ul className={css({ listStyleType: "disc", listStylePosition: "outside", pl: { base: "1rem", md: "2rem" } })}>
               <li>Over 4.1 million Phi NFTs were minted.</li>
