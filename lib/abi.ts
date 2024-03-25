@@ -202,6 +202,13 @@ export default [
   { inputs: [], name: "name", outputs: [{ internalType: "string", name: "", type: "string" }], stateMutability: "pure", type: "function" },
   {
     inputs: [],
+    name: "originUrl",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "owner",
     outputs: [{ internalType: "address", name: "result", type: "address" }],
     stateMutability: "view",
@@ -292,6 +299,13 @@ export default [
   {
     inputs: [{ internalType: "bool", name: "_queued", type: "bool" }],
     name: "setOpen",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "string", name: "_originUrl", type: "string" }],
+    name: "setOriginUrl",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
