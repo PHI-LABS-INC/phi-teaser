@@ -76,7 +76,7 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     requirement: "Complete a transaction on Optimism",
     description:
       "This sticker celebrates users who have completed a transaction on the Optimism network. Optimism is a Layer 2 scaling solution for Ethereum, known for its Optimistic Rollups, which significantly reduce fees and increase transaction throughput while maintaining Ethereum's security.",
-    url: "https://www.optimism.io/",
+    url: "https://optimism.io/",
   },
   "ens-newbie": {
     title: "ENS Newbie",
@@ -111,7 +111,7 @@ export const credentialAttributes: Record<ArtworkKey, { title: string; requireme
     requirement: "Receive tokens from Optimism's first airdrop",
     description:
       "This sticker is awarded to individuals who were recipients of Optimism’s first airdrop, recognizing their early involvement and positive contribution to the Optimism network. The first airdrop was a pivotal moment in Optimism's journey, aimed at rewarding users who actively contributed to the ecosystem’s growth.",
-    url: "https://op.com/",
+    url: "https://optimism.io/",
   },
   "ethereum-first-tx-date": {
     title: "Ethereum First transaction",

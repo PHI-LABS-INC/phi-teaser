@@ -1,5 +1,5 @@
-import { createPublicClient, decodeEventLog, http, parseAbi, parseAbiItem } from "viem";
-import { base, mainnet } from "viem/chains";
+import { createPublicClient, http } from "viem";
+import { base } from "viem/chains";
 import { alchemyID, phiTeaserNFTContract } from "./config";
 import abi from "./abi";
 
@@ -12,12 +12,12 @@ export async function fetchTotalSupply() {
   return (await client.readContract({ address: phiTeaserNFTContract, abi, functionName: "tokenIdCounter" })).toLocaleString();
 }
 
-const filterLogMint = (fromBlock: bigint, toBlock?: bigint) => ({
-  address: phiTeaserNFTContract,
-  event: parseAbiItem("event Minted(address to, uint256 tokenId)"),
-  fromBlock,
-  toBlock,
-});
+// const filterLogMint = (fromBlock: bigint, toBlock?: bigint) => ({
+//   address: phiTeaserNFTContract,
+//   event: parseAbiItem("event Minted(address to, uint256 tokenId)"),
+//   fromBlock,
+//   toBlock,
+// });
 
 // const mainnetClient = createPublicClient({
 //   chain: mainnet,
