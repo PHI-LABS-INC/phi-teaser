@@ -9,7 +9,7 @@ export function useScroll() {
     const isDesktop = window.innerWidth >= 768;
     const heroHeight = isDesktop ? 1024 : 434;
     const pos = window.scrollY + window.innerHeight;
-    setIsScrolled(pos > heroHeight * (isDesktop ? 1.25 : 1.75));
+    setIsScrolled(window.scrollY !== 0 && pos > heroHeight * (isDesktop ? 1.25 : 1.75));
   };
 
   useEffect(() => {
