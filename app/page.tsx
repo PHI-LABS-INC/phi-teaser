@@ -4,9 +4,8 @@ import { center, flex, vstack } from "@/styled-system/patterns";
 import { css } from "@/styled-system/css";
 import { Canvas } from "@/features/canvas";
 import { WhyPhi } from "@/features/why-phi";
-import { Wallet } from "@/components/wallet";
+import { Header } from "@/components/header";
 import { fetchMintedList, fetchTotalSupply } from "@/lib/fetch";
-import Logo from "@/public/logo.svg";
 import LogoGray from "@/public/logo-gray.svg";
 import X from "@/public/x.svg";
 import Warpcast from "@/public/warpcast.svg";
@@ -20,28 +19,7 @@ export default async function Page() {
 
   return (
     <>
-      <div
-        className={center({
-          zIndex: "header",
-          position: "fixed",
-          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem + 0.5rem)" },
-          left: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem + 0.5rem)" },
-          h: { base: "2.5rem", md: "3rem" },
-        })}
-      >
-        <Image src={Logo} alt="phi-logo" />
-      </div>
-      <div
-        className={center({
-          zIndex: "header",
-          position: "fixed",
-          top: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1rem + 0.5rem)" },
-          right: { base: "calc(1rem + 0.75rem)", md: "calc(1rem + 1.25rem + 0.5rem)" },
-          h: { base: "2.5rem", md: "3rem" },
-        })}
-      >
-        <Wallet />
-      </div>
+      <Header />
 
       <div
         className={css({
