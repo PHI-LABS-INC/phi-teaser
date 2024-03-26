@@ -87,7 +87,11 @@ const mintCva = cva({
   },
 });
 
-const socialShareText = encodeURIComponent(
+const shareTwitterText = encodeURIComponent(
+  `Excited to explore my future decentralised identity on @phi_xyz\n\nLearn all about Phi 2.0 on ${frontendURL} and mint a free milestone NFT!`
+);
+
+const shareFarcasterText = encodeURIComponent(
   `Excited to explore my future decentralised identity on Phi!\n\nLearn all about Phi 2.0 on ${frontendURL} and mint a free milestone NFT!`
 );
 
@@ -377,14 +381,14 @@ export function Mint({ totalSupply, mintedList, disabled }: { totalSupply: strin
                   })}
                 >
                   <Link
-                    href={`https://twitter.com/intent/tweet?text=${socialShareText}`}
+                    href={`https://twitter.com/intent/tweet?text=${shareTwitterText}`}
                     target="_blank"
                     className={css({ bgColor: "xBrandPrimary", _hover: { bgColor: "#2F2723" } })}
                   >
                     <Image src={X} width={24} height={24} alt="logo-x" />
                   </Link>
                   <Link
-                    href={`https://warpcast.com/~/compose?text=${socialShareText}`}
+                    href={`https://warpcast.com/~/compose?text=${shareFarcasterText}`}
                     target="_blank"
                     className={css({ bgColor: "warpcastBrandPrimary", _hover: { bgColor: "#5734B2" } })}
                   >
