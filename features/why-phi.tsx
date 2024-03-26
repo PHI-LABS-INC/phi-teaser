@@ -228,7 +228,7 @@ export function WhyPhi({ totalSupply, mintedList }: { totalSupply: string; minte
               enrich the spectrum of identity expression on the decentralized internet. Each of you is an essential part of Phi and we’ll be
               providing massive support for you to thrive together.
             </p>
-            <br />
+            <Image src="/theboard.png" width={768} height={576} quality={100} alt="theboard" />
             <p>
               We also are striving to create an awesome experience as the application layer leading the Phi community. You will be able to
               experience Phi Protocol on “
