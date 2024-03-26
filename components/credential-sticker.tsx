@@ -84,6 +84,7 @@ export default function CredentialSticker({ artworkKey, focusKey, focus }: Artwo
           cursor: "pointer",
           "& svg path": { stroke: curated ? "pink.300" : "gray.500", fill: curated ? "pink.300" : undefined },
           _hover: { "& svg path": { stroke: curated ? "pink.200" : "gray.400", fill: curated ? "pink.200" : undefined } },
+          _focus: { outline: "none" },
         })}
       >
         {children}
