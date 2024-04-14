@@ -45,7 +45,8 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
             direction: "column",
             justify: "center",
             align: "center",
-            p: { base: "1rem 1rem 2rem 1rem", md: "0 0 2rem 0" },
+            p: { base: "1rem 1rem 0 1rem", md: "0 0 0 0" },
+
             w: { base: "100vw", md: "40rem" },
             maxH: { base: "calc(100dvh - 6rem)", md: "40rem" },
             bgColor: "bg",
@@ -93,7 +94,7 @@ export function MintedList({ totalSupply, mintedList }: { totalSupply: string; m
           </div>
           <div
             className={vstack({
-              p: "0 1rem",
+              p: "0 1rem 1rem 1rem",
               w: "100%",
               overflowY: "scroll",
               scrollbarWidth: "none",
