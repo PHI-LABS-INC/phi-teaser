@@ -8,7 +8,7 @@ The Phi is a decentralized identity layer for web3, empowering people to express
 
 ## Sign Protocol
 
-Evaluating artists In Phi Protocol, artwork created by artists is associated with credential NFTs. Community members can use [Ethsign](<(https://scan.sign.global/)>) to attest to these artworks, allowing them to evaluate the artists. When an artist who creates outstanding artworks receives a large number of attestations from members, the evaluation of that artist is visualized.
+Evaluating artists In Phi Protocol, artwork created by artists is associated with credential NFTs. Community members can use [Ethsign](https://scan.sign.global/) to attest to these artworks, allowing them to evaluate the artists. When an artist who creates outstanding artworks receives a large number of attestations from members, the evaluation of that artist is visualized.
 
 you can see more details:
 
