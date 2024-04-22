@@ -31,6 +31,7 @@ export async function PUT(request: NextRequest, { params: { key } }: { params: {
     const attestationId = await createCreatorEvaluationAttestation(
       creatorEvaluationSchemaId,
       creatorAddress,
+      key,
       evaluatorAddress,
       score,
       comment

@@ -11,17 +11,20 @@ export async function createCreatorEvaluationSchema(): Promise<string> {
   //   name: "Creator Evaluation",
   //   data: [
   //     { name: "creatorAddress", type: "address" },
+  //     { name: "artwork", type: "string" },
   //     { name: "score", type: "uint256" },
   //     { name: "comment", type: "string" },
   //   ],
   // });
   // return schemaInfo.schemaId;
-  return "SPS_z1W-nPCSkuCSk-7d2cJ_g";
+
+  return "SPS_5ZiQmNPbNuDu1HFZIPd4s";
 }
 
 export async function createCreatorEvaluationAttestation(
   schemaId: string,
   creatorAddress: Address,
+  artwork: string,
   evaluatorAddress: Address,
   score: number,
   comment: string
@@ -30,6 +33,7 @@ export async function createCreatorEvaluationAttestation(
     schemaId,
     data: {
       creatorAddress,
+      artwork,
       score,
       comment,
     },
