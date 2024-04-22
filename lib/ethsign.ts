@@ -10,15 +10,16 @@ export async function createCreatorEvaluationSchema(): Promise<string> {
   // const schemaInfo = await client.createSchema({
   //   name: "Creator Evaluation",
   //   data: [
-  //     { name: "creatorAddress", type: "address" },
   //     { name: "artwork", type: "string" },
+  //     { name: "creatorAddress", type: "address" },
+  //     { name: "evaluatorAddress", type: "address" },
   //     { name: "score", type: "uint256" },
   //     { name: "comment", type: "string" },
   //   ],
   // });
   // return schemaInfo.schemaId;
 
-  return "SPS_5ZiQmNPbNuDu1HFZIPd4s";
+  return "SPS_ZVaqNYNHA7D_o6FuF4HEb";
 }
 
 export async function createCreatorEvaluationAttestation(
@@ -32,15 +33,15 @@ export async function createCreatorEvaluationAttestation(
   const attestationInfo = await client.createAttestation({
     schemaId,
     data: {
-      creatorAddress,
       artwork,
+      creatorAddress,
+      evaluatorAddress,
       score,
       comment,
     },
     recipients: [creatorAddress],
     attestTimestamp: Date.now(),
     indexingValue: creatorAddress,
-    attester: evaluatorAddress,
   });
   return attestationInfo.attestationId;
 }
