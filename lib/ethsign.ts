@@ -7,15 +7,16 @@ const client = new SignProtocolClient(SpMode.OffChain, {
 });
 
 export async function createCreatorEvaluationSchema(): Promise<string> {
-  const schemaInfo = await client.createSchema({
-    name: "Creator Evaluation",
-    data: [
-      { name: "creatorAddress", type: "address" },
-      { name: "score", type: "uint256" },
-      { name: "comment", type: "string" },
-    ],
-  });
-  return schemaInfo.schemaId;
+  // const schemaInfo = await client.createSchema({
+  //   name: "Creator Evaluation",
+  //   data: [
+  //     { name: "creatorAddress", type: "address" },
+  //     { name: "score", type: "uint256" },
+  //     { name: "comment", type: "string" },
+  //   ],
+  // });
+  // return schemaInfo.schemaId;
+  return "SPS_z1W-nPCSkuCSk-7d2cJ_g";
 }
 
 export async function createCreatorEvaluationAttestation(
